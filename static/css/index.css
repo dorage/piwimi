@@ -13,9 +13,11 @@
 }
 
 * {
+    box-sizing: border-box;
     padding: 0;
     margin: 0;
     color: var(--text-color-normal);
+    font-family: 'Noto Sans KR', sans-serif;
 }
 
 #Background {
@@ -57,11 +59,19 @@
     width: 100%;
 }
 
+.test_header {
+    height: 70px;
+
+    font-size: 24px;
+    text-align: center;
+    font-weight: 700;
+}
 .test_selections {
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
+    padding: 0 50px;
 }
 .selection_box {
     display: flex;
@@ -69,16 +79,38 @@
     margin: 5px;
     padding: 0 20px;
 
-    width: 50%;
+    width: 100%;
     height: 50px;
 
     border-radius: 25px;
     border: 1px solid var(--border-color);
 }
-
 .selection_box:hover {
     background-color: var(--highlight-color1);
+    cursor: pointer;
 }
 .selection_box:active {
+    background-color: var(--highlight-color1-pressed);
+    cursor: pointer;
+}
+.test_submit {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+    padding: 0 50px;
+    margin-top: 50px;
+}
+.bt_submit {
+    width: 85px;
+    height: 50px;
+
+    background-color: var(--highlight-color1);
+    border: none;
+    border-radius: 5px;
+    box-shadow: inset 0 -2px 0 var(--text-color-gray);
+    cursor: pointer;
+}
+.bt_submit:active {
     background-color: var(--highlight-color1-pressed);
 }

@@ -1,0 +1,15 @@
+extends layout.pug 
+
+block content
+    .content_body
+        .test_header
+            .test_question=question
+        .test_selections
+            each answer in answers
+                .selection_box 
+                    .selection_text=answer
+        .test_index 
+            p="1/24"
+        .test_submit 
+            button.bt_submit="이전"
+            button.bt_submit="다음"

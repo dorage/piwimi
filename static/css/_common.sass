@@ -20,15 +20,15 @@ button:active
 .background
     position: fixed
     width: 100vw
-    height: 100vh
+    height: 100%
     background-color: vars.$background-color
+    overflow-y: auto
 
 #App
-    position: fixed
+    position: absolute
     left: calc(50% - 25%)
     width: 50vw
-    min-height: 100vh
-    padding: 5px 10px
+    padding: 15px 10px
 
     background-color: vars.$app-color
     border: 1px solid vars.$border-color

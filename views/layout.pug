@@ -4,15 +4,13 @@ head
     title="너나심리::우리들의 심리테스트"
     link(rel="preconnect" href="https://fonts.gstatic.com")
     link(href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@100;300;400;500;700;900&display=swap" rel="stylesheet")
-    style
-        include ../static/css/index.css
+    script(src="/public/js/index.bundle.js")
 body 
-    #Background 
+    .background 
         #App
             .header 
-                h1.logo="너나심리"
+                h1.logo=`너나심리 - ${contentHeader}`
             .body
-                .content_header=contentHeader
                 block content
             .footer 
                 p.contact_partnership="제휴문의:baloonflower554@gmail.com"

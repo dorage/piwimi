@@ -1,0 +1,55 @@
+@use 'vars'
+
+*
+    box-sizing: border-box
+    padding: 0
+    margin: 0
+    color: vars.$text-color-normal
+    font-family: 'Noto Sans KR', sans-serif
+
+button
+    background-color: vars.$highlight-color1
+    border: none
+    border-radius: 5px
+    box-shadow: inset 0 -2px 0 vars.$text-color-gray
+    cursor: pointer
+
+button:active
+    background-color: vars.$highlight-color1-pressed
+
+.background
+    position: fixed
+    width: 100vw
+    height: 100vh
+    background-color: vars.$background-color
+
+#App
+    position: fixed
+    left: calc(50% - 25%)
+    width: 50vw
+    min-height: 100vh
+    padding: 5px 10px
+
+    background-color: vars.$app-color
+    border: 1px solid vars.$border-color
+    border-top: none
+    border-bottom: none
+
+.header
+    width: 100%
+    height: 50px
+    border-bottom: 1px solid vars.$border-color
+
+.body
+    width: 100%
+    margin: 50px 0px
+
+.footer
+    position: absolute
+    bottom: 0
+    width: 100%
+    padding-bottom: 20px
+
+    color: vars.$text-color-gray
+    text-align: center
+    font-size: 8px

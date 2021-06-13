@@ -1,15 +1,29 @@
 extends layout.pug 
 
 block content
-    .content_body
-        .test_header
-            .test_question=question
-        .test_selections
-            each answer in answers
-                .selection_box 
-                    .selection_text=answer
-        .test_index 
-            p="1/24"
-        .test_submit 
+    template
+        .content
+            .content-header="브레이브걸스 테스트"
+            .content-description="자신과 가장 닮은 브레이브걸스 멤버를 찾아보세요!"
+            .content-thumbnail
+                img.img_title(src="/public/imgs/bg-title.jpg")
+            .content-submit
+                button.bt_start="시작하기"
+    template#template-question
+        .content-question
+            .content-header=``
+            .content-selections
+            .content-index
+                p=''
+    template#template-selection
+        .selection_box 
+            .selection_text=''
+
+    
+    .content
+        .content-question
+        .content-submit
             button.bt_submit="이전"
             button.bt_submit="다음"
+    .question(data-questions=`${JSON.stringify(contents)}`)
+    script(src="/public/js/psychotest.bundle.js")

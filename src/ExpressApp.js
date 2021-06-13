@@ -1,10 +1,12 @@
 import express from 'express';
 import helmet from 'helmet';
 import session from 'express-session';
+import path from 'path';
 
 import './db';
 import mainRouter from './routers/main';
 import psyRouter from './routers/psy';
+import apiRouter from './routers/api';
 import { configs } from './configs';
 import morgan from 'morgan';
 
@@ -23,6 +25,9 @@ app.use(
 );
 app.use(morgan('dev'));
 
+app.use('/public', express.static(path.join(__dirname, 'public')));
+console.log(__dirname);
+app.use('/api', apiRouter);
 app.use('/psy', psyRouter);
 app.use('/', mainRouter);
 

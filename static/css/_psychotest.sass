@@ -69,3 +69,26 @@
     &:active
         background-color: vars.$highlight-color1-pressed
         cursor: pointer
+
+.deactivated
+    background-color: vars.$highlight-color-deactivate
+    &:active
+        background-color: vars.$highlight-color-deactivate-pressed
+
+.submit
+    color: white
+    background-color: vars.$highlight-color2
+    font-size: 18px
+    font-weight: 700
+    &:active
+        background-color: vars.$highlight-color2-pressed
+
+.selected
+    background-color: vars.$highlight-color1
+    cursor: default
+
+@keyframes fadein
+    0%
+        opacity: 0
+    100%
+        opacity: 1

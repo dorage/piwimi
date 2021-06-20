@@ -2,10 +2,10 @@
     "name": "psychotest",
     "private": true,
     "scripts": {
-        "start": "nodemon -e js --exec cross-env NODE_ENV=development babel-node src/index.js",
+        "start": "nodemon -e js --config package.json --exec cross-env NODE_ENV=development babel-node src/index.js",
         "production": "cross-env NODE_ENV=production babel-node src/index.js",
-        "sass": "sass --watch static/css/index.sass src/public/css/index.css",
-        "watch": "webpack --watch --mode development"
+        "watch": "webpack --watch --mode development",
+        "build": "webpack --mode production"
     },
     "dependencies": {
         "@sentry/node": "^5.20.0",
@@ -37,5 +37,10 @@
         "sass-loader": "^11.1.1",
         "webpack": "^5.38.1",
         "webpack-cli": "^4.7.0"
+    },
+    "nodemonConfig": {
+        "ignore": [
+            "static/*"
+        ]
     }
 }

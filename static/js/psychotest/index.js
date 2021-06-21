@@ -9,24 +9,37 @@ const state = {
     maxPage: questions.length,
 };
 
+const fetchURL = async (url, options) => {
+    try {
+        const data = await fetch(url, options);
+        return data.json();
+    } catch (err) {
+        console.log(err);
+        return undefined;
+    }
+};
+
 const events = {
     // 셀력션 선택
     onClickSelection: (event, idx) => {
         state.answer[state.currentPage] = idx;
-        console.log(state.answer);
         draw();
     },
     // 이전 버튼
     onClickPrev: () => {
-        if (state.currentPage === 0) return;
         state.currentPage--;
         draw();
     },
     // 다음 버튼
     onClickNext: () => {
-        if (!state.answer[state.currentPage]) return;
         state.currentPage++;
         draw();
+    },
+    onSubmit: async () => {
+        const {
+            data: { link },
+        } = await fetchURL('http://localhost:4000/api/');
+        window.location.href = `${window.location.href}/results/${link}`;
     },
 };
 
@@ -38,53 +51,61 @@ const cloneTemplate = (query) => {
 
 const draw = () => {
     const { questions, currentPage, answer, maxPage } = state;
+    {
+        const newElem = cloneTemplate('#template-question');
 
-    let newElem = cloneTemplate('#template-question');
+        const header = newElem.querySelector('.content-header');
+        const selections = newElem.querySelector('.content-selections');
+        const index = newElem.querySelector('p');
 
-    const header = newElem.querySelector('.content-header');
-    const selections = newElem.querySelector('.content-selections');
-    const index = newElem.querySelector('p');
+        header.textContent = `Q. ${questions[currentPage].question}`;
+        questions[currentPage].answers.forEach((value, idx) => {
+            const elem = cloneTemplate('#template-selection');
+            console.log();
+            if (answer[currentPage] === idx) {
+                elem.classList.add('selected');
+            }
+            elem.querySelector('.selection_text').textContent = value;
+            elem.addEventListener('click', (e) =>
+                events.onClickSelection(e, idx),
+            );
+            selections.appendChild(elem);
+        });
+        index.textContent = `${currentPage + 1}/${questions.length}`;
 
-    header.textContent = `Q. ${questions[currentPage].question}`;
-    questions[currentPage].answers.forEach((value, idx) => {
-        const elem = cloneTemplate('#template-selection');
-        console.log();
-        if (answer[currentPage] === idx) {
-            elem.classList.add('selected');
-        }
-        elem.querySelector('.selection_text').textContent = value;
-        elem.addEventListener('click', (e) => events.onClickSelection(e, idx));
-        selections.appendChild(elem);
-    });
-    index.textContent = `1/${questions.length}`;
+        const oldElem = document.querySelector('.content-question');
+        oldElem.replaceWith(newElem);
+    }
 
     // submit
-    const prevBt = document.getElementById('prev');
-    const nextBt = document.getElementById('next');
-    prevBt.removeEventListener('click', events.onClickPrev);
-    nextBt.removeEventListener('click', events.onClickNext);
-    prevBt.addEventListener('click', events.onClickPrev);
-    nextBt.addEventListener('click', events.onClickNext);
+    {
+        const newElem = cloneTemplate('#template-submit');
 
-    nextBt.classList.remove('submit');
-    nextBt.classList.textContent = '다음';
-    if (currentPage === 0) {
-        prevBt.classList.add('deactivated');
-    }
-    if (currentPage === maxPage - 1) {
-        nextBt.classList.add('submit');
-        nextBt.classList.textContent = '제출하기';
-    }
-    if (!answer[currentPage]) {
-        nextBt.classList.add('deactivated');
-    }
+        const prevBt = newElem.querySelector('#prev');
+        const nextBt = newElem.querySelector('#next');
 
-    let oldElem = document.querySelector('.content-question');
+        if (currentPage === 0) {
+            prevBt.classList.add('deactivated');
+        } else {
+            prevBt.addEventListener('click', events.onClickPrev);
+        }
 
-    oldElem.replaceWith(newElem);
+        if (currentPage === maxPage - 1) {
+            nextBt.classList.add('completed');
+            nextBt.textContent = '제출완료';
+        } else {
+            if (isNaN(answer[currentPage])) {
+                nextBt.classList.add('deactivated');
+            } else {
+                nextBt.addEventListener('click', events.onClickNext);
+            }
+        }
+
+        const oldElem = document.querySelector('.content-submit');
+        oldElem.replaceWith(newElem);
+    }
 };
 
 window.requestAnimationFrame(() => {
-    console.log('hello');
     draw(state);
 });

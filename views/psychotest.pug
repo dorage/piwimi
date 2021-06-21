@@ -12,12 +12,10 @@ block content
             .selection_text=''
     template#template-submit
         .content-submit
-            button.bt_submit.deactivated#prev="이전"
-            button.bt_submit.deactivated#next="다음"
+            button.bt_submit#prev="이전"
+            button.bt_submit#next="다음"
     .content
         .content-question
         .content-submit
-            button.bt_submit.deactivated#prev="이전"
-            button.bt_submit.deactivated#next="다음"
     .question(data-questions=`${JSON.stringify(contents)}`)
     script(src="/public/js/psychotest.bundle.js")

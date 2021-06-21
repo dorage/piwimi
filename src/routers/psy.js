@@ -5,9 +5,8 @@ const router = new Router();
 const questions = (question, answers) => ({ question, answers });
 
 router.get('/:id', (req, res) =>
-    res.render('index', {
+    res.render('psychotest', {
         contentHeader: '브레이브걸스 테스트',
-        contentBody: '내가 제일 좋아하는 브레이브걸스는?',
         contents: [
             questions('당신이 울음이 나는 상황은?', [
                 '일이 잘 풀리지 않아서 운다',
@@ -47,10 +46,11 @@ router.get('/:id', (req, res) =>
         ],
     }),
 );
-router.get('/:id/:result', (req, res) =>
-    res.render('index', {
-        contentHeader: '브레이브걸스 테스트',
-        contentBody: '내가 제일 좋아하는 브레이브걸스는?',
+router.get('/:id/:result/:id', (req, res) =>
+    res.render('psychotest', {
+        contentHeader: '브레이브걸스 테스트 결과',
+        imgURL: '',
+        contentBody: '내가 제일 좋아하는 브레이브걸스는 누구입니다!',
     }),
 );
 

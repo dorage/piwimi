@@ -7,7 +7,6 @@ const responseJSON = (json) => {
         data: json,
     };
 };
-
 router.get('/', (req, res) => {
     res.send(responseJSON({ link: '00' }));
 });

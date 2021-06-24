@@ -1,5 +1,12 @@
 # EXPRESS psychotest ON VSCODE
 
+## TODO
+
+-   결과 페이지 제작
+-   배포
+-   SEO 적용해보기
+-   Febby 한테 번역 부탁하기
+
 ## Install
 
     $ git clone https://github.com/dorage/nodepsychotest.git

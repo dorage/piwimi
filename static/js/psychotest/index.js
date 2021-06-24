@@ -106,6 +106,8 @@ const draw = () => {
     }
 };
 
+/*
 window.requestAnimationFrame(() => {
     draw(state);
 });
+*/

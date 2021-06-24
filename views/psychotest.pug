@@ -14,8 +14,24 @@ block content
         .content-submit
             button.bt_submit#prev="이전"
             button.bt_submit#next="다음"
+    template#template-loading
+        .content-question
+            .content-loading
+                .left
+                    .circle
+                .center
+                    .circle
+                    .circle
+                    .circle
+                .right
+                    .circle
+            .loading_text="결과를 불러오는중입니다."
     .content
         .content-question
+            .content-header="브레이브걸스 테스트"
+            .content-thumbnail
+            .content-description="브레이브걸스 멤버 중 누가 가장 나와 닮았을까?!"
         .content-submit
+            button.bt_start="시작"
     .question(data-questions=`${JSON.stringify(contents)}`)
     script(src="/public/js/psychotest.bundle.js")

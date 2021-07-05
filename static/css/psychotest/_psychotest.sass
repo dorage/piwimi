@@ -1,38 +1,45 @@
-@use 'vars'
+@use '../vars'
 
-.content
-    display: flex
-    flex-direction: column
-    align-items: cente
-    padding-top: 50px
-
-.content-question
+.psycho__question
     display: flex
     flex-direction: column
     align-items: center
     justify-content: center
     width: 100%
+    padding-bottom: 20px
+    flex: 1
 
 .content-header
     text-align: center
     font-weight: 700
     font-size: 32px
+    padding-bottom: 20px
 
 .content-description
     text-align: center
     font-size: 28px
+    padding-bottom: 20px
 
 .content-thumbnail
     display: flex
     justify-content: center
     margin: 20px 0px
-
-.content-submit
-    display: flex
-    justify-content: space-around
+.thumbnail__img
     width: 100%
-    margin-bottom: 50px
 
+.psycho__control
+    display: flex
+    flex-direction: column
+    align-items: center
+    width: 80%
+    margin-bottom: 50px
+.psycho__control-row
+    display: flex
+    justify-content: space-between
+    width: 100%
+    margin-bottom: 25px
+.bt_submit#submit
+    flex: 1
 .content-selections
     display: flex
     flex-direction: column
@@ -50,8 +57,6 @@
     font-weight: 700
     width: 200px
     height: 40px
-
-    color: white
     background-color: vars.$highlight-color2
     &:active
         background-color: vars.$highlight-color2-pressed
@@ -82,9 +87,7 @@
         background-color: vars.$highlight-color-deactivate-pressed
 
 .completed
-    color: white
     background-color: vars.$highlight-color2
-    font-size: 18px
     font-weight: 700
     &:active
         background-color: vars.$highlight-color2-pressed

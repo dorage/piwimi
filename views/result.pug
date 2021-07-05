@@ -1,0 +1,21 @@
+extends layout.pug 
+
+block head
+    title="너나심리::브레이브걸스 테스트"
+
+block body_body
+    .content
+        .header="Kamu dari"
+        .result="Kalimantan!"
+        img(src="https://blog.kakaocdn.net/dn/bgjkAo/btq05oN26hy/veFKaVhPV2gozOCajDwd8K/img.png").house_img
+        .description="자유분방하고 항상 다른 사람을 즐겁게 하는 매력을 가진 당신은 꼬북좌와 닮았군요."
+        .share
+            .share__block
+            .share__title="share"
+        .control
+            .control__row
+                button.control__button-backward="Save as Image"
+                button.control__button-retry="Lagi"
+            .control__row
+                button.control__button-another="play another psychotest"
+        script(src="/public/js/result.bundle.js")

@@ -1,15 +1,10 @@
 import { Router } from 'express';
+import { getQuestionApi, postQuestionApi } from '../controllers/api';
 
 const router = new Router();
 
-const responseJSON = (json) => {
-    return {
-        data: json,
-    };
-};
-router.get('/', (req, res) => {
-    res.send(responseJSON({ link: '00' }));
-});
-router.get('/question/:id', (req, res) => {});
+router.get('/question/1', getQuestionApi);
+
+router.post('/question/1', postQuestionApi);
 
 export default router;

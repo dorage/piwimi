@@ -1,10 +1,11 @@
-const MiniCssExtractPlugin = require('mini-css-extract-plugin');
+//const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 const path = require('path');
 
 module.exports = {
     entry: {
         index: './static/js/index.js',
         psychotest: './static/js/psychotest/index.js',
+        result: './static/js/result/index.js',
     },
     output: {
         filename: '[name].bundle.js',

@@ -9,7 +9,6 @@ import psyRouter from './routers/psy';
 import apiRouter from './routers/api';
 import { configs } from './configs';
 import morgan from 'morgan';
-
 const app = express();
 
 app.set('view engine', 'pug');

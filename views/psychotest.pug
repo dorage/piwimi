@@ -1,21 +1,35 @@
 extends layout.pug 
 
-block content
-    template#template-question
-        .content-question
+block head
+    title="PIWIMI | Indonesian Test"
+
+block body_body
+    template#template-question-multiple
+        .psycho__question
             .content-header=``
             .content-selections
             .content-index
                 p=''
+    template#template-question-singular
+        .psycho__question
+            .question__index
+                p=''
+            .question__query
+            .question__yes-or-no
+                button.question__yes-button
+                button.question__no-button
     template#template-selection
         .selection_box
             .selection_text=''
     template#template-submit
-        .content-submit
-            button.bt_submit#prev="이전"
-            button.bt_submit#next="다음"
+        .psycho__control
+            .psycho__control-row
+                button.bt_submit#prev="이전"
+                button.bt_submit#next="다음"
+            .psycho__control-row
+                button.bt_submit#submit="제출완료"
     template#template-loading
-        .content-question
+        .psycho__question
             .content-loading
                 .left
                     .circle
@@ -27,11 +41,12 @@ block content
                     .circle
             .loading_text="결과를 불러오는중입니다."
     .content
-        .content-question
-            .content-header="브레이브걸스 테스트"
+        .content-header=contentHeader
+        .psycho__question
             .content-thumbnail
-            .content-description="브레이브걸스 멤버 중 누가 가장 나와 닮았을까?!"
-        .content-submit
-            button.bt_start="시작"
-    .question(data-questions=`${JSON.stringify(contents)}`)
+                img.thumbnail__img(src="/public/img/indo1.jpg")
+            .content-description=contentDescription
+        .psycho__control
+            button.bt_start="Mulai"
+    //.questions(data-questions=`${JSON.stringify(contents)}`)
     script(src="/public/js/psychotest.bundle.js")

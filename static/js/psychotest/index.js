@@ -1,28 +1,47 @@
-const qElem = document.querySelector('div[data-questions]');
-const questions = JSON.parse(qElem.dataset.questions);
-qElem.remove();
+import '../../css/psychotest/index.sass';
+import { fetchURL, setStateWrapper } from '../utils';
+import { Question } from './components/Question';
+import { TestSubmit } from './components/Submit';
+
+export const APPSTATE = {
+    INTRO: 'INTRO',
+    LOADING_Q: 'LOADING_QUESTIONS',
+    PLAYING: 'PLAYING',
+    LOADING_A: 'LOADING_ANSWER',
+};
 
 const state = {
-    questions,
-    answer: Array(questions.length).fill(undefined),
+    appState: APPSTATE.INTRO,
+    loadingQ: false,
+    loadingA: false,
+    questions: {},
+    answers: [],
     currentPage: 0,
-    maxPage: questions.length,
+    maxPage: 0,
 };
 
-const fetchURL = async (url, options) => {
-    try {
-        const data = await fetch(url, options);
-        return data.json();
-    } catch (err) {
-        console.log(err);
-        return undefined;
-    }
-};
+const event = {
+    onClickStart: async () => {
+        console.log('start');
+        //TODO; API call
+        const {
+            data: { type, contents },
+        } = await fetchURL('question/1');
+        console.log(type, contents);
 
-const events = {
+        setState({
+            appState: APPSTATE.LOADING_Q,
+            questions: contents,
+            answers: Array(contents.length).fill(undefined),
+            loadingQ: true,
+            maxPage: contents.length,
+        });
+
+        draw();
+    },
     // 셀력션 선택
     onClickSelection: (event, idx) => {
-        state.answer[state.currentPage] = idx;
+        state.answers[state.currentPage] = idx;
         draw();
     },
     // 이전 버튼
@@ -35,22 +54,45 @@ const events = {
         state.currentPage++;
         draw();
     },
-    onSubmit: async () => {
+    onClickSubmit: async () => {
+        const data = JSON.parse(localStorage.getItem('answer'));
         const {
             data: { link },
-        } = await fetchURL('http://localhost:4000/api/');
+        } = await fetchURL('question/1', {
+            method: 'POST',
+            body: JSON.stringify({ data }),
+            headers: {
+                'Content-Type': 'application/json',
+            },
+        });
         window.location.href = `${window.location.href}/results/${link}`;
     },
 };
 
-// template 복제하여 반환
-const cloneTemplate = (query) => {
-    const template = document.querySelector(query);
-    return template.content.firstElementChild.cloneNode(true);
-};
-
 const draw = () => {
-    const { questions, currentPage, answer, maxPage } = state;
+    const { appState } = state;
+
+    Question(state, event);
+    TestSubmit(state, event);
+
+    switch (appState) {
+        case APPSTATE.INTRO:
+            TestSubmit(state, event);
+            break;
+        case APPSTATE.LOADING_Q:
+            Question(state, event);
+            TestSubmit(state, event);
+            break;
+        case APPSTATE.PLAYING:
+            Question(state, event);
+            TestSubmit(state, event);
+            break;
+        case APPSTATE.LOADING_A:
+            Question(state, event);
+            TestSubmit(state, event);
+            break;
+    }
+    /*
     {
         const newElem = cloneTemplate('#template-question');
 
@@ -67,47 +109,23 @@ const draw = () => {
             }
             elem.querySelector('.selection_text').textContent = value;
             elem.addEventListener('click', (e) =>
-                events.onClickSelection(e, idx),
+                event.onClickSelection(e, idx),
             );
             selections.appendChild(elem);
         });
         index.textContent = `${currentPage + 1}/${questions.length}`;
 
-        const oldElem = document.querySelector('.content-question');
+        const oldElem = document.querySelector('.psycho__question');
         oldElem.replaceWith(newElem);
     }
-
-    // submit
-    {
-        const newElem = cloneTemplate('#template-submit');
-
-        const prevBt = newElem.querySelector('#prev');
-        const nextBt = newElem.querySelector('#next');
-
-        if (currentPage === 0) {
-            prevBt.classList.add('deactivated');
-        } else {
-            prevBt.addEventListener('click', events.onClickPrev);
-        }
-
-        if (currentPage === maxPage - 1) {
-            nextBt.classList.add('completed');
-            nextBt.textContent = '제출완료';
-        } else {
-            if (isNaN(answer[currentPage])) {
-                nextBt.classList.add('deactivated');
-            } else {
-                nextBt.addEventListener('click', events.onClickNext);
-            }
-        }
-
-        const oldElem = document.querySelector('.content-submit');
-        oldElem.replaceWith(newElem);
-    }
+    */
 };
 
-/*
-window.requestAnimationFrame(() => {
-    draw(state);
-});
-*/
+const setState = setStateWrapper(state, draw);
+
+document
+    .querySelector('.bt_start')
+    .addEventListener('click', event.onClickStart);
+
+//TODO; temp
+draw();

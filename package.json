@@ -2,10 +2,11 @@
     "name": "psychotest",
     "private": true,
     "scripts": {
-        "start": "nodemon --exec cross-env NODE_ENV=development babel-node src/index.js",
         "production": "cross-env NODE_ENV=production babel-node src/index.js",
         "watch": "webpack --watch --mode development",
-        "build": "webpack --mode production"
+        "build": "webpack --mode production",
+        "dev-server": "nodemon --exec cross-env NODE_ENV=development babel-node src/index.js",
+        "start": "npm run dev-server"
     },
     "dependencies": {
         "@sentry/node": "^5.20.0",
@@ -15,6 +16,7 @@
         "helmet": "^3.22.0",
         "mongoose": "^5.12.9",
         "morgan": "^1.10.0",
+        "node-fetch": "^2.6.1",
         "pug": "^3.0.2",
         "style-loader": "^2.0.0"
     },

@@ -8,10 +8,15 @@
     font-family: 'Noto Sans KR', sans-serif
 
 button
+    min-width: 80px
+    min-height: 40px
+    padding: 5px 10px
+
+    font-weight: 700
+    color: vars.$text-color-normal
     background-color: vars.$highlight-color1
     border: none
     border-radius: 5px
-    box-shadow: inset 0 -2px 0 vars.$text-color-gray
     cursor: pointer
     &:active
         background-color: vars.$highlight-color1-pressed
@@ -24,32 +29,46 @@ button
     overflow-y: auto
 
 #App
+    display: flex
+    flex-direction: column
     position: absolute
-    left: calc(50% - 25%)
-    min-width: 480px
-    max-width: 1080px
-    height: 100%
-    padding: 15px 10px
+    left: calc(50% - 240px)
+    width: 480px
+    min-height: 100vh
 
-    background-color: vars.$app-color
-    border: 1px solid vars.$border-color
-    border-top: none
-    border-bottom: none
-
-.header
+.nav
+    display: flex
+    align-items: center
     width: 100%
-    height: 50px
-    border-bottom: 1px solid vars.$border-color
+    height: 75px
+
+.header_logo_img
+    height: 35px
 
 .body
+    flex: 1
     width: 100%
-    margin: 50px 0px
+    height: 100%
+    padding: 30px 10px
+
+    border-radius: 20px
+    background: #ffffff
+
+.content
+    display: flex
+    flex-direction: column
+    align-items: center
+    width: 100%
+    height: 100%
 
 .footer
-    position: absolute
-    bottom: 0
+    display: flex
+    flex-direction: column
+    justify-content: center
+    align-items: center
     width: 100%
-    padding-bottom: 20px
+    height: 50px
+    margin-bottom: 20px
 
     color: vars.$text-color-gray
     text-align: center

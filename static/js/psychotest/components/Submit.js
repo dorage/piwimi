@@ -1,7 +1,7 @@
 import { cloneTemplate } from '../../utils';
 
 const setButtons = (elem, state, event) => {
-    const { currentPage, answers } = state;
+    const { currentPage, maxPage, answer } = state;
 
     const prevBt = elem.querySelector('#prev');
     const nextBt = elem.querySelector('#next');
@@ -12,14 +12,18 @@ const setButtons = (elem, state, event) => {
     } else {
         prevBt.addEventListener('click', event.onClickPrev);
     }
-
-    if (isNaN(answers[currentPage])) {
+    if (isNaN(answer[currentPage])) {
         nextBt.classList.add('deactivated');
     } else {
-        nextBt.addEventListener('click', event.onClickNext);
+        if (currentPage === maxPage - 1) {
+            nextBt.classList.add('deactivated');
+            nextBt.textContent = 'DONE';
+        } else {
+            nextBt.addEventListener('click', event.onClickNext);
+        }
     }
 
-    if (true || currentPage === maxPage - 1) {
+    if (true || answer.every((elem) => !isNaN(elem))) {
         submitBt.classList.add('completed');
         submitBt.textContent = '제출완료';
         submitBt.addEventListener('click', event.onClickSubmit);

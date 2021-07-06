@@ -13,11 +13,11 @@ block body_body
     template#template-question-singular
         .psycho__question
             .question__index
-                p=''
-            .question__query
+                p
+            .question__query="I heard often my voice is small"
             .question__yes-or-no
-                button.question__yes-button
-                button.question__no-button
+                button.question__yes-button="IYA"
+                button.question__no-button="TIDAK"
     template#template-selection
         .selection_box
             .selection_text=''
@@ -41,8 +41,8 @@ block body_body
                     .circle
             .loading_text="결과를 불러오는중입니다."
     .content
-        .content-header=contentHeader
         .psycho__question
+            .content-header=contentHeader
             .content-thumbnail
                 img.thumbnail__img(src="/public/img/indo1.jpg")
             .content-description=contentDescription

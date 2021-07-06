@@ -6,7 +6,7 @@ const responseJSON = (json) => {
         data: json,
     };
 };
-const getQuestionObject = (question, answers) => ({ question, answers });
+const getQuestionObject = (query, answers) => ({ query, answers });
 const contents = [
     getQuestionObject('I heard often my voice is small'),
     getQuestionObject('I greeting first to people who I first meet'),
@@ -28,9 +28,31 @@ const contents = [
 export const getQuestionApi = (req, res) => {
     res.send(responseJSON({ type: QUESTION_TYPE.YES_OR_NO, contents }));
 };
+const getResultObject = (island, imgURL, description) => ({
+    island,
+    imgURL,
+    description,
+});
+const results = [
+    getResultObject('Sumatra', '', 'Kamu orang Sumatra'),
+    getResultObject('Java', '', 'Kamu orang Sumatra'),
+    getResultObject('Sulawesi', '', 'Kamu orang Sumatra'),
+    getResultObject('Papua', '', 'Kamu orang Sumatra'),
+    getResultObject('Bali', '', 'Kamu orang Sumatra'),
+];
+const weight = [-2, 2, 2, -2, 2, 2, 2, 2, 2, 2, -2, 2, 2, 2, -2];
 
 export const postQuestionApi = (req, res) => {
-    console.log(req.params);
-    console.log(req.body);
-    res.send(responseJSON({ result: '0' }));
+    const kindOfResults = 5;
+    const { data } = { data: [0, 0, 1, 1, 0, 0, 1, 1, 0, 0, 0, 0, 1, 1, 1] };
+    const score = Array(kindOfResults).fill(0);
+    data.forEach((elem, idx) => {
+        score[idx % kindOfResults] += elem ? weight[idx] : -weight[idx];
+    });
+
+    // 가장 많은 득점을 한 첫번째 인덱스를 찾아서 반환
+    const maxValue = Math.max(...score);
+    const resultParam = score.findIndex((elem) => elem === maxValue);
+
+    res.send(responseJSON({ result: resultParam }));
 };

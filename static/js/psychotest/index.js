@@ -15,7 +15,7 @@ const state = {
     loadingQ: false,
     loadingA: false,
     questions: {},
-    answers: [],
+    answer: [],
     currentPage: 0,
     maxPage: 0,
 };
@@ -29,19 +29,29 @@ const event = {
         } = await fetchURL('question/1');
         console.log(type, contents);
 
-        setState({
-            appState: APPSTATE.LOADING_Q,
-            questions: contents,
-            answers: Array(contents.length).fill(undefined),
-            loadingQ: true,
-            maxPage: contents.length,
-        });
+        state.appState = APPSTATE.LOADING_Q;
+        state.questions = contents;
+        state.answer = Array(contents.length).fill(undefined);
+        state.loadingQ = true;
+        state.maxPage = contents.length;
 
         draw();
     },
     // 셀력션 선택
     onClickSelection: (event, idx) => {
-        state.answers[state.currentPage] = idx;
+        state.answer[state.currentPage] = idx;
+        draw();
+    },
+    // YES 버튼
+    onClickYes: () => {
+        const { answer, currentPage } = state;
+        answer[currentPage] = 1;
+        draw();
+    },
+    // NO 버튼
+    onClickNo: () => {
+        const { answer, currentPage } = state;
+        answer[currentPage] = 0;
         draw();
     },
     // 이전 버튼
@@ -55,7 +65,8 @@ const event = {
         draw();
     },
     onClickSubmit: async () => {
-        const data = JSON.parse(localStorage.getItem('answer'));
+        const data = state.answer;
+        localStorage.setItem('answer', JSON.stringify(data));
         const {
             data: { link },
         } = await fetchURL('question/1', {
@@ -72,11 +83,9 @@ const event = {
 const draw = () => {
     const { appState } = state;
 
-    Question(state, event);
-    TestSubmit(state, event);
-
     switch (appState) {
         case APPSTATE.INTRO:
+            Question(state, event);
             TestSubmit(state, event);
             break;
         case APPSTATE.LOADING_Q:
@@ -101,7 +110,7 @@ const draw = () => {
         const index = newElem.querySelector('p');
 
         header.textContent = `Q. ${questions[currentPage].question}`;
-        questions[currentPage].answers.forEach((value, idx) => {
+        questions[currentPage].answer.forEach((value, idx) => {
             const elem = cloneTemplate('#template-selection');
             console.log();
             if (answer[currentPage] === idx) {
@@ -121,11 +130,9 @@ const draw = () => {
     */
 };
 
-const setState = setStateWrapper(state, draw);
-
 document
     .querySelector('.bt_start')
     .addEventListener('click', event.onClickStart);
 
 //TODO; temp
-draw();
+event.onClickStart();

@@ -9,6 +9,8 @@
     padding-bottom: 20px
     flex: 1
 
+    animation: fadeIn 2s
+
 .question__index
     margin-bottom: 50px
 .question__query
@@ -121,6 +123,7 @@
 .completed
     background-color: vars.$highlight-color2
     font-weight: 700
+    animation: completed 1s infinite
     &:active
         background-color: vars.$highlight-color2-pressed
 
@@ -130,6 +133,7 @@
 
 .content-loading
     display: flex
+
 .left
     display: flex
     transform-origin: center top
@@ -139,34 +143,18 @@
     display: flex
     height: 100px
 
-.right
-    display: flex
-    transform-origin: left top
-    transform-origin: center top
-    animation: turn-right 2s infinite
+.hidden
+    visibility: hidden
 
-.circle
-    width: 50px
-    height: 50px
-    border-radius: 50%
-    background-color: vars.$border-color
-
-@keyframes turn-left
+@keyframes completed
     0%
-        transform: rotate(0deg)
-    35%
-        transform: rotate(90deg)
+        transform: scale(1,1)
     50%
-        transform: rotate(0deg)
-@keyframes turn-right
-    50%
-        transform: rotate(0deg)
-    85%
-        transform: rotate(-90deg)
+        transform: scale(1.05, 1.05)
     100%
-        transform: rotate(0deg)
+        transform: scale(1, 1)
 
-@keyframes fadein
+@keyframes fadeIn
     0%
         opacity: 0
     100%

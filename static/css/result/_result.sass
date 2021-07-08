@@ -1,22 +1,42 @@
 @use "../vars"
 
-.header
+$marginBotBetweenBlock: 20px
+
+// header
+.result__header
+    width: 100%
+    text-align: center
+.header__placeholder
     font-size: 18px
-.result
-    font-size: 24px
+    line-height: 0.9
+.header__type
+    line-height: 0.9
+    font-size: 48px
     font-weight: 700
 
-.house_img
+// body
+.result__body
+    display: flex
+    flex-direction: column
+    align-items: center
+    width: 85%
+    margin: 20px 0px 40px 0px
+    margin-bottom: $marginBotBetweenBlock
+.body__img
     width: 100%
+    margin-bottom: 20px
+.body__description
+    font-size: 18px
 
 // 공유
-.share
+.result__share
     position: relative
     display: flex
     justify-content: center
-    width: 100%
+    width: 95%
     height: 100px
     padding-top: 15px
+    margin-bottom: $marginBotBetweenBlock
 .share__block
     width: 100%
     height: 100%
@@ -35,8 +55,8 @@
     border-radius: 20px
 
 // 버튼들
-.control
-    width: 100%
+.result__control
+    width: 95%
 .control__row
     display: flex
     justify-content: space-between

@@ -8,7 +8,7 @@ const setButtons = (elem, state, event) => {
     const submitBt = elem.querySelector('#submit');
 
     if (currentPage === 0) {
-        prevBt.classList.add('deactivated');
+        prevBt.classList.add('hidden');
     } else {
         prevBt.addEventListener('click', event.onClickPrev);
     }
@@ -16,8 +16,7 @@ const setButtons = (elem, state, event) => {
         nextBt.classList.add('deactivated');
     } else {
         if (currentPage === maxPage - 1) {
-            nextBt.classList.add('deactivated');
-            nextBt.textContent = 'DONE';
+            nextBt.classList.add('hidden');
         } else {
             nextBt.addEventListener('click', event.onClickNext);
         }

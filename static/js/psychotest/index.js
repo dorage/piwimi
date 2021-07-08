@@ -23,7 +23,6 @@ const state = {
 const event = {
     onClickStart: async () => {
         console.log('start');
-        //TODO; API call
         const {
             data: { type, contents },
         } = await fetchURL('question/1');
@@ -65,10 +64,13 @@ const event = {
         draw();
     },
     onClickSubmit: async () => {
-        const data = state.answer;
-        localStorage.setItem('answer', JSON.stringify(data));
+        // TODO; 랜덤값으로 대체해서 발사
+        //const data = state.answer;
+        const data = Array(15)
+            .fill(0)
+            .map((elem) => Math.round(Math.random()));
         const {
-            data: { link },
+            data: { result },
         } = await fetchURL('question/1', {
             method: 'POST',
             body: JSON.stringify({ data }),
@@ -76,7 +78,7 @@ const event = {
                 'Content-Type': 'application/json',
             },
         });
-        window.location.href = `${window.location.href}/results/${link}`;
+        window.location.href = `${window.location.href}/results/${result}`;
     },
 };
 
@@ -85,7 +87,6 @@ const draw = () => {
 
     switch (appState) {
         case APPSTATE.INTRO:
-            Question(state, event);
             TestSubmit(state, event);
             break;
         case APPSTATE.LOADING_Q:
@@ -101,38 +102,8 @@ const draw = () => {
             TestSubmit(state, event);
             break;
     }
-    /*
-    {
-        const newElem = cloneTemplate('#template-question');
-
-        const header = newElem.querySelector('.content-header');
-        const selections = newElem.querySelector('.content-selections');
-        const index = newElem.querySelector('p');
-
-        header.textContent = `Q. ${questions[currentPage].question}`;
-        questions[currentPage].answer.forEach((value, idx) => {
-            const elem = cloneTemplate('#template-selection');
-            console.log();
-            if (answer[currentPage] === idx) {
-                elem.classList.add('selected');
-            }
-            elem.querySelector('.selection_text').textContent = value;
-            elem.addEventListener('click', (e) =>
-                event.onClickSelection(e, idx),
-            );
-            selections.appendChild(elem);
-        });
-        index.textContent = `${currentPage + 1}/${questions.length}`;
-
-        const oldElem = document.querySelector('.psycho__question');
-        oldElem.replaceWith(newElem);
-    }
-    */
 };
 
 document
     .querySelector('.bt_start')
     .addEventListener('click', event.onClickStart);
-
-//TODO; temp
-event.onClickStart();

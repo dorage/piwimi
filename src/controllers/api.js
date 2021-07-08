@@ -28,23 +28,12 @@ const contents = [
 export const getQuestionApi = (req, res) => {
     res.send(responseJSON({ type: QUESTION_TYPE.YES_OR_NO, contents }));
 };
-const getResultObject = (island, imgURL, description) => ({
-    island,
-    imgURL,
-    description,
-});
-const results = [
-    getResultObject('Sumatra', '', 'Kamu orang Sumatra'),
-    getResultObject('Java', '', 'Kamu orang Sumatra'),
-    getResultObject('Sulawesi', '', 'Kamu orang Sumatra'),
-    getResultObject('Papua', '', 'Kamu orang Sumatra'),
-    getResultObject('Bali', '', 'Kamu orang Sumatra'),
-];
 const weight = [-2, 2, 2, -2, 2, 2, 2, 2, 2, 2, -2, 2, 2, 2, -2];
 
 export const postQuestionApi = (req, res) => {
     const kindOfResults = 5;
-    const { data } = { data: [0, 0, 1, 1, 0, 0, 1, 1, 0, 0, 0, 0, 1, 1, 1] };
+    const { data } = req.body;
+    console.log(data);
     const score = Array(kindOfResults).fill(0);
     data.forEach((elem, idx) => {
         score[idx % kindOfResults] += elem ? weight[idx] : -weight[idx];

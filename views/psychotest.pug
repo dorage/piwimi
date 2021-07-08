@@ -14,7 +14,7 @@ block body_body
         .psycho__question
             .question__index
                 p
-            .question__query="I heard often my voice is small"
+            .question__query="Question"
             .question__yes-or-no
                 button.question__yes-button="IYA"
                 button.question__no-button="TIDAK"
@@ -40,13 +40,12 @@ block body_body
                 .right
                     .circle
             .loading_text="결과를 불러오는중입니다."
-    .content
-        .psycho__question
-            .content-header=contentHeader
-            .content-thumbnail
-                img.thumbnail__img(src="/public/img/indo1.jpg")
-            .content-description=contentDescription
-        .psycho__control
-            button.bt_start="Mulai"
+    .psycho__question
+        .content-header=contentHeader
+        .content-thumbnail
+            img.thumbnail__img(src="/public/img/indo1.jpg")
+        .content-description=contentDescription
+    .psycho__control
+        button.bt_start="Mulai"
     //.questions(data-questions=`${JSON.stringify(contents)}`)
     script(src="/public/js/psychotest.bundle.js")

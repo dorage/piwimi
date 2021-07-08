@@ -3,7 +3,6 @@ import helmet from 'helmet';
 import session from 'express-session';
 import path from 'path';
 
-import './db';
 import mainRouter from './routers/main';
 import psyRouter from './routers/psy';
 import apiRouter from './routers/api';

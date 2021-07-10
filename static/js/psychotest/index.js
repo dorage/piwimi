@@ -12,8 +12,9 @@ export const APPSTATE = {
 
 const state = {
     appState: APPSTATE.INTRO,
-    loadingQ: false,
-    loadingA: false,
+    loadingQuery: true, // query fade-in animation
+    loadingQuestion: false, // loading question
+    loadingAnswer: false, // loading answer
     questions: {},
     answer: [],
     currentPage: 0,
@@ -21,6 +22,9 @@ const state = {
 };
 
 const event = {
+    turnOffLoadingQuery: () => {
+        state.loadingQuery = false;
+    },
     onClickStart: async () => {
         console.log('start');
         const {
@@ -31,7 +35,7 @@ const event = {
         state.appState = APPSTATE.LOADING_Q;
         state.questions = contents;
         state.answer = Array(contents.length).fill(undefined);
-        state.loadingQ = true;
+        state.loadingQuestion = true;
         state.maxPage = contents.length;
 
         draw();
@@ -56,11 +60,13 @@ const event = {
     // 이전 버튼
     onClickPrev: () => {
         state.currentPage--;
+        state.loadingQuery = true;
         draw();
     },
     // 다음 버튼
     onClickNext: () => {
         state.currentPage++;
+        state.loadingQuery = true;
         draw();
     },
     onClickSubmit: async () => {

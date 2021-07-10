@@ -1,14 +1,20 @@
 import { cloneTemplate } from '../../utils';
 
 const draw = (elem, state, event) => {
-    const { questions, answer, currentPage, maxPage } = state;
-    const { onClickYes, onClickNo } = event;
+    const { loadingQuery, questions, answer, currentPage, maxPage } = state;
+    const { turnOffLoadingQuery, onClickYes, onClickNo } = event;
 
     const divIndex = elem.querySelector('.question__index');
     divIndex.firstElementChild.textContent = `${currentPage + 1}/${maxPage}`;
 
     const divQuery = elem.querySelector('.question__query');
-    divQuery.textContent = `${questions[currentPage]['query']}`;
+    if (loadingQuery) {
+        divQuery.style.animation = 'fadeIn 2s';
+        turnOffLoadingQuery();
+    }
+
+    const pQuery = elem.querySelector('.question__query > p');
+    pQuery.textContent = `${questions[currentPage]['query']}`;
 
     const btYes = elem.querySelector('.question__yes-button');
     const btNo = elem.querySelector('.question__no-button');
@@ -21,7 +27,9 @@ const draw = (elem, state, event) => {
     }
     if (currAnswer) {
         btYes.classList.add('selected');
+        btNo.classList.add('unselected');
     } else {
+        btYes.classList.add('unselected');
         btNo.classList.add('selected');
     }
 };

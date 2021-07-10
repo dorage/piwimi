@@ -15,14 +15,13 @@ const setButtons = (elem, state, event) => {
     if (isNaN(answer[currentPage])) {
         nextBt.classList.add('deactivated');
     } else {
-        if (currentPage === maxPage - 1) {
-            nextBt.classList.add('hidden');
-        } else {
-            nextBt.addEventListener('click', event.onClickNext);
-        }
+        nextBt.addEventListener('click', event.onClickNext);
+    }
+    if (currentPage === maxPage - 1) {
+        nextBt.classList.add('hidden');
     }
 
-    if (true || answer.every((elem) => !isNaN(elem))) {
+    if (answer.every((elem) => !isNaN(elem))) {
         submitBt.classList.add('completed');
         submitBt.textContent = '제출완료';
         submitBt.addEventListener('click', event.onClickSubmit);

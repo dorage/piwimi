@@ -6,9 +6,11 @@ block head
 block body_body
     .result__header
         .header__placeholder="Kamu dari"
-        .header__type=`${content.island}`
+        .header__type=`${content.type}`
     .result__body
-        img(src="https://blog.kakaocdn.net/dn/bgjkAo/btq05oN26hy/veFKaVhPV2gozOCajDwd8K/img.png").body__img
+        //img(src="https://blog.kakaocdn.net/dn/bgjkAo/btq05oN26hy/veFKaVhPV2gozOCajDwd8K/img.png").body__img
+        .body__circle(data-result=`${content.type}`)
+            img.body__circle__img(src=`/public/img/indonesianTest/results/${content.type}.png`)
         .description=`${content.description}`
     .result__share
         .share__block

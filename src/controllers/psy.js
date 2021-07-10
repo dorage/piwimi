@@ -1,5 +1,5 @@
-const getResultObject = (island, imgURL, description) => ({
-    island,
+const getResultObject = (type, imgURL, description) => ({
+    type,
     imgURL,
     description,
 });

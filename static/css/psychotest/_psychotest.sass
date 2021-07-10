@@ -8,10 +8,8 @@
     width: 100%
     padding-bottom: 20px
     flex: 1
-
 .question__index
     margin-bottom: 50px
-
 .question__query
     width: 80%
     height: 150px
@@ -20,7 +18,6 @@
         font-size: 24px
         font-weight: 700
         text-align: center
-
 .question__yes-or-no
     display: flex
     width: 50%
@@ -30,14 +27,13 @@
         padding: 10px 20px
         font-size: 24px
         border: 1px solid vars.$border-color
-
 .question__yes-button
     margin-right: 5px
-    color: #1ACBC3
+    color: vars.$right-color
     border-top-right-radius: 0px
     border-bottom-right-radius: 0px
 .question__no-button
-    color: #F25E42
+    color: vars.$warning-color
     border-top-left-radius: 0px
     border-bottom-left-radius: 0px
 
@@ -129,10 +125,10 @@
         background-color: vars.$highlight-color2-pressed
 
 .selected
-    background-color: #eeeeee
     cursor: default
 .unselected
-    color: #eeeeee
+    background-color: #eeeeee
+    color: #999999
 
 .content-loading
     display: flex

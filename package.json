@@ -2,9 +2,9 @@
     "name": "psychotest",
     "private": true,
     "scripts": {
-        "production": "cross-env NODE_ENV=production babel-node src/index.js",
-        "watch": "webpack --watch --mode development",
         "build": "webpack --mode production",
+        "production": "npm run build && cross-env NODE_ENV=production babel-node src/index.js",
+        "watch": "webpack --watch --mode development",
         "dev-server": "nodemon --exec cross-env NODE_ENV=development babel-node src/index.js",
         "start": "npm run dev-server"
     },

@@ -8,21 +8,23 @@ const responseJSON = (json) => {
 };
 const getQuestionObject = (query, answers) => ({ query, answers });
 const contents = [
-    getQuestionObject('I heard often my voice is small'),
-    getQuestionObject('I greeting first to people who I first meet'),
-    getQuestionObject('I am fearless'),
-    getQuestionObject('I don’t mind my loss when I help people'),
-    getQuestionObject('I heard often Im polite'),
-    getQuestionObject('People find it difficult to close to me'),
-    getQuestionObject('I feel uncomfortable when people aid me'),
-    getQuestionObject('I come forward to help others'),
-    getQuestionObject('I like hand-craft'),
-    getQuestionObject('I don’t like violence'),
-    getQuestionObject('I like simple and small house'),
-    getQuestionObject('I think important to keep trandition'),
-    getQuestionObject('I heard often im stubborn'),
-    getQuestionObject('I am open-minded'),
-    getQuestionObject('I am impatient'),
+    getQuestionObject('Saya selalu mendengar suara saya kecil'),
+    getQuestionObject('Saya menyapa orang yang baru pertama kali bertemu'),
+    getQuestionObject('Saya tidak kenal takut '),
+    getQuestionObject(
+        'Saya tidak keberatan untuk membantu walau harus kehilangan saya',
+    ),
+    getQuestionObject('Saya selalu mendengar bahwa saya sopan '),
+    getQuestionObject('Orang merasa sulit untuk dekat dengan saya '),
+    getQuestionObject('Saya merasa sungkan saat orang membantu saya '),
+    getQuestionObject('Saya datang untuk membantu yang lain '),
+    getQuestionObject('Saya suka kerajinan tangan '),
+    getQuestionObject('Saya tidak suka kekerasan'),
+    getQuestionObject('Saya suka rumah yang simple dan tidak terlalu besar'),
+    getQuestionObject('Saya pikir ini penting untuk menjaga tradisi daerah'),
+    getQuestionObject('Saya mendengar sering bahwa saya keras kepala'),
+    getQuestionObject('Saya orangnya terbuka'),
+    getQuestionObject('Saya orangnya tidak sabar'),
 ];
 
 export const getQuestionApi = (req, res) => {

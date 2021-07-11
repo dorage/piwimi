@@ -21,6 +21,7 @@
         "morgan": "^1.10.0",
         "node-fetch": "^2.6.1",
         "pug": "^3.0.2",
+        "serve-favicon": "^2.5.0",
         "style-loader": "^2.0.0"
     },
     "devDependencies": {

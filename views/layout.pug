@@ -5,6 +5,15 @@ head
     link(href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@100;300;400;500;700;900&display=swap" rel="stylesheet")
     script(src="/public/js/index.bundle.js")
     block head
+    // Global site tag (gtag.js) - Google Analytics
+    script(async=true, src="https://www.googletagmanager.com/gtag/js?id=G-ZCEBP6GGCY")
+    script(type="text/javascript").
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        gtag('js', new Date());
+        gtag('config', 'G-ZCEBP6GGCY');
+    // Adsense
+    script(data-ad-client="ca-pub-6616061311166935" async=true src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js")
 body 
     .background 
         #App

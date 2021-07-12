@@ -4,7 +4,7 @@ block head
     title=`PIWIMI | ${content.type}`
     meta(property="og:title" content=content.type)
     meta(property="og:type" content="result")
-    meta(property="og:image" content=`/public/img/indonesianTest/results/${content.type}.png`)
+    meta(property="og:image" content=`/public/img/indonesianTest/results/${content.type.toLowerCase()}.png`)
     meta(property="og:url" content="https://piwimi.id")
 
 block body_body
@@ -14,7 +14,7 @@ block body_body
     .result__body
         //img(src="https://blog.kakaocdn.net/dn/bgjkAo/btq05oN26hy/veFKaVhPV2gozOCajDwd8K/img.png").body__img
         .body__circle(data-result=`${content.type}`)
-            img.body__circle__img(src=`/public/img/indonesianTest/results/${content.type}.png`)
+            img.body__circle__img(src=`/public/img/indonesianTest/results/${content.type.toLowerCase()}.png`)
         .body__description=`${content.description}`
     .result__share
         .share__block

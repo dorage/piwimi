@@ -23,7 +23,6 @@ const setButtons = (elem, state, event) => {
 
     if (answer.every((elem) => !isNaN(elem))) {
         submitBt.classList.add('completed');
-        submitBt.textContent = '제출완료';
         submitBt.addEventListener('click', event.onClickSubmit);
     } else {
         submitBt.classList.add('unselected');

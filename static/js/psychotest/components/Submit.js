@@ -13,7 +13,7 @@ const setButtons = (elem, state, event) => {
         prevBt.addEventListener('click', event.onClickPrev);
     }
     if (isNaN(answer[currentPage])) {
-        nextBt.classList.add('deactivated');
+        nextBt.classList.add('unselected');
     } else {
         nextBt.addEventListener('click', event.onClickNext);
     }
@@ -26,7 +26,7 @@ const setButtons = (elem, state, event) => {
         submitBt.textContent = '제출완료';
         submitBt.addEventListener('click', event.onClickSubmit);
     } else {
-        submitBt.classList.add('deactivated');
+        submitBt.classList.add('unselected');
     }
 };
 

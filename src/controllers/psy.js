@@ -28,7 +28,7 @@ const results = [
 
 export const getQuestion = (req, res) => {
     res.render('psychotest', {
-        contentHeader: 'memuat tes asal',
+        contentHeader: 'Memuat tes asal',
         contentDescription: 'Dari pulau mana kamu berasal?',
     });
 };

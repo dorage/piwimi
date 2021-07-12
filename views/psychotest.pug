@@ -2,6 +2,10 @@ extends layout.pug
 
 block head
     title="PIWIMI | Indonesian Test"
+    meta(property="og:title" content=`PIWIMI | ${contentHeader}`)
+    meta(property="og:type" content="result")
+    meta(property="og:image" content=`/public/img/indonesianTest/thumb.png`)
+    meta(property="og:url" content="https://piwimi.id")
 
 block body_body
     template#template-question-multiple
@@ -25,10 +29,10 @@ block body_body
     template#template-submit
         .psycho__control
             .psycho__control-row
-                button.bt_submit#prev="이전"
-                button.bt_submit#next="다음"
+                button.bt_submit#prev="Sebelumnya"
+                button.bt_submit#next="Selanjutnya"
             .psycho__control-row
-                button.bt_submit#submit="제출완료"
+                button.bt_submit#submit="Lihat Hasil"
     template#template-loading
         .psycho__question
             .content-loading
@@ -46,7 +50,7 @@ block body_body
         .content-thumbnail
             img.thumbnail__img(src="/public/img/indonesianTest/thumb.png")
         .content-description=contentDescription
-        .content-notice="※ It is just for fun"
+        .content-notice="※ Ini hanya untuk bersenang-senang"
     .psycho__control
         button.bt_start.completed="Mulai"
     //.questions(data-questions=`${JSON.stringify(contents)}`)

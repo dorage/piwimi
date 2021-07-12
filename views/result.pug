@@ -1,7 +1,11 @@
 extends layout.pug 
 
 block head
-    title="너나심리::브레이브걸스 테스트"
+    title=`PIWIMI | ${content.type}`
+    meta(property="og:title" content=content.type)
+    meta(property="og:type" content="result")
+    meta(property="og:image" content=`/public/img/indonesianTest/results/${content.type}.png`)
+    meta(property="og:url" content="https://piwimi.id")
 
 block body_body
     .result__header
@@ -11,12 +15,12 @@ block body_body
         //img(src="https://blog.kakaocdn.net/dn/bgjkAo/btq05oN26hy/veFKaVhPV2gozOCajDwd8K/img.png").body__img
         .body__circle(data-result=`${content.type}`)
             img.body__circle__img(src=`/public/img/indonesianTest/results/${content.type}.png`)
-        .description=`${content.description}`
+        .body__description=`${content.description}`
     .result__share
         .share__block
         .share__title="share"
     .result__control
         .control__row
-            button.control__button-save-img="Save as Image"
-            button.control__button-retry="Lagi"
+            button.control__button-save-img="Simpan Gambar"
+            button.control__button-retry="Ulangi"
     script(src="/public/js/result.bundle.js")

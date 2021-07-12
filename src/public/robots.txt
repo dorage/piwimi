@@ -1,0 +1,5 @@
+User-agent: *
+Allow: /
+Disallow: /psy/*/result/
+
+Sitemap: https://piwimi.id/sitemap.xml

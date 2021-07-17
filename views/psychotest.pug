@@ -1,19 +1,25 @@
 extends layout.pug 
 
 block head
-    title="PIWIMI | Indonesian Test"
-    meta(property="og:title" content=`PIWIMI | ${contentHeader}`)
-    meta(property="og:type" content="result")
-    meta(property="og:image" content=`/public/img/indonesianTest/thumb.png`)
-    meta(property="og:url" content="https://piwimi.id")
+    title=`PIWIMI | ${content.header}`
+    meta(property='og:title' content=`PIWIMI | ${content.header}`)
+    meta(property='og:type' content='website')
+    meta(property='og:image' content=`https://piwimi.id${content.imgUrl}`)
+    meta(property='og:url' content='piwimi.id')
 
 block body_body
+    // 퀴즈 컨텐츠 템플릿 - 다중선택지
     template#template-question-multiple
         .psycho__question
             .content-header=``
             .content-selections
             .content-index
                 p=''
+    // 다중선택지 셀렉션 템플릿
+    template#template-selection
+        .selection_box
+            .selection_text=''
+    // 퀴즈 컨텐츠 템플릿 - Yes Or No
     template#template-question-singular
         .psycho__question
             .question__index
@@ -21,37 +27,30 @@ block body_body
             .question__query
                 p='placeholder_Question'
             .question__yes-or-no
-                button.question__yes-button="IYA"
-                button.question__no-button="TIDAK"
-    template#template-selection
-        .selection_box
-            .selection_text=''
+                button.question__yes-button='IYA'
+                button.question__no-button='TIDAK'
+    // 퀴즈 하단 템플릿
     template#template-submit
         .psycho__control
             .psycho__control-row
-                button.bt_submit#prev="Sebelumnya"
-                button.bt_submit#next="Selanjutnya"
+                button.bt_submit#prev='Sebelumnya'
+                button.bt_submit#next='Selanjutnya'
             .psycho__control-row
-                button.bt_submit#submit="Lihat Hasil"
+                button.bt_submit#submit='Lihat Hasil'
+    // 로딩 템플릿
     template#template-loading
         .psycho__question
-            .content-loading
-                .left
-                    .circle
-                .center
-                    .circle
-                    .circle
-                    .circle
-                .right
-                    .circle
-            .loading_text="결과를 불러오는중입니다."
+            .loading_text='memuat pertanyaan'
+    // 기본 타이틀
     .psycho__question
-        .content-header=contentHeader
+        .content-header=content.header
         .content-thumbnail
-            img.thumbnail__img(src="/public/img/indonesianTest/thumb.png")
-        .content-description=contentDescription
-        .content-notice="※ Ini hanya untuk bersenang-senang"
+            img.thumbnail__img(src=content.imgUrl)
+        .content-description
+            each para in content.description.split('\n')
+                p=para
+        .content-notice=content.notice
+    // 기본 컨트롤
     .psycho__control
-        button.bt_start.completed="Mulai"
-    //.questions(data-questions=`${JSON.stringify(contents)}`)
-    script(src="/public/js/psychotest.bundle.js")
+        button.bt_start.completed='Mulai'
+    script(src='/public/js/psychotest.bundle.js')

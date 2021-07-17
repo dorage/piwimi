@@ -1,26 +1,27 @@
 extends layout.pug 
 
 block head
-    title=`PIWIMI | ${content.type}`
-    meta(property="og:title" content=content.type)
-    meta(property="og:type" content="result")
-    meta(property="og:image" content=`/public/img/indonesianTest/results/${content.type.toLowerCase()}.png`)
-    meta(property="og:url" content="https://piwimi.id")
+    title=`PIWIMI | ${content.placeholder} ${content.type}`
+    meta(property='og:title' content=content.type)
+    meta(property='og:type' content='website')
+    meta(property='og:image' content=`https://piwimi.id${content.imgUrl}`)
+    meta(property='og:url' content='piwimi.id')
 
 block body_body
     .result__header
-        .header__placeholder="Kamu dari"
-        .header__type=`${content.type}`
+        .header__placeholder=content.placeholder
+        .header__type=content.type
     .result__body
-        //img(src="https://blog.kakaocdn.net/dn/bgjkAo/btq05oN26hy/veFKaVhPV2gozOCajDwd8K/img.png").body__img
         .body__circle(data-result=`${content.type}`)
-            img.body__circle__img(src=`/public/img/indonesianTest/results/${content.type.toLowerCase()}.png`)
-        .body__description=`${content.description}`
+            img.body__circle__img(src=content.imgUrl)
+        .body__description
+            each para in content.description.split('\n')
+                p=para
     .result__share
         .share__block
-        .share__title="share"
+        .share__title='share'
     .result__control
         .control__row
-            button.control__button-save-img="Simpan Gambar"
-            button.control__button-retry="Ulangi"
-    script(src="/public/js/result.bundle.js")
+            button.control__button-save-img='Simpan Gambar'
+            button.control__button-retry='Ulangi'
+    script(src='/public/js/result.bundle.js')

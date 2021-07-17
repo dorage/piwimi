@@ -3,8 +3,8 @@ import { getQuestion, getResult } from '../controllers/psy';
 
 const router = new Router();
 
-router.get('/1', getQuestion);
+router.get('/:qId', getQuestion);
 
-router.get('/1/:result/:id', getResult);
+router.get('/:qId/result/:aId', getResult);
 
 export default router;

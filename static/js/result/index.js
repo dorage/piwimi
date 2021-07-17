@@ -3,7 +3,7 @@ import dtoi from 'dom-to-image';
 
 const event = {
     onClickRetry: () => {
-        window.location.href = `${window.location.href.split('/results/')[0]}`;
+        window.location.href = `${window.location.href.split('/result/')[0]}`;
     },
     onClickSaveImage: async () => {
         const dataURL = await dtoi.toJpeg(

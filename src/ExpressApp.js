@@ -26,7 +26,6 @@ app.use(morgan('dev'));
 
 app.use('/public', express.static(path.join(__dirname, 'public')));
 app.use(favicon(path.join(__dirname, 'public', 'favicon.ico')));
-console.log(__dirname);
 app.use('/api', apiRouter);
 app.use('/psy', psyRouter);
 app.use('/', mainRouter);

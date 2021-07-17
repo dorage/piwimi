@@ -26,12 +26,17 @@
     ✔️ nginx 세팅 (http to https)
 -   애드센스 적용
 -   SEO 적용
--   favicon 적용
--   robots.txt
--   sitemap.xml
+    -   favicon 적용
+    -   robots.txt
+    -   sitemap.xml
 -   인스타그램/틱톡 광고 (10만원씩)
 -   직접 하는 영상 올리기 태그와 함께
 -   Febby 한테 번역 부탁하기
+-   본격적인 서비스
+    -   테스트 목록 작성
+        -   내가 키보드 두들기는 영상(?) gif(?) 넣기 / JPG 여러장으로 셀프 gif제작
+    -   회사 정보 작성
+    -   404 페이지 제작
 
 ## Install
 

@@ -70,11 +70,7 @@ const event = {
         draw();
     },
     onClickSubmit: async () => {
-        // TODO; 랜덤값으로 대체해서 발사
-        //const data = state.answer;
-        const data = Array(15)
-            .fill(0)
-            .map((elem) => Math.round(Math.random()));
+        const data = state.answer;
         const {
             data: { result },
         } = await fetchURL('question/1', {
@@ -84,7 +80,7 @@ const event = {
                 'Content-Type': 'application/json',
             },
         });
-        window.location.href = `${window.location.href}/results/${result}`;
+        window.location.href = `${window.location.href}/result/${result}`;
     },
 };
 

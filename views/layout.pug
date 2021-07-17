@@ -4,9 +4,10 @@ head
     link(rel="preconnect" href="https://fonts.gstatic.com")
     link(href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@100;300;400;500;700;900&display=swap" rel="stylesheet")
     script(src="/public/js/index.bundle.js")
+    // 오픈파라그래프 및 타이틀 설정
     block head
     // Global site tag (gtag.js) - Google Analytics
-    script(async=true, src="https://www.googletagmanager.com/gtag/js?id=G-ZCEBP6GGCY")
+    script(async=true, src="https://www.googletagmanager.com/gtag/js?id=UA-201599400-1")
     script(type="text/javascript").
         window.dataLayer = window.dataLayer || [];
         function gtag(){dataLayer.push(arguments);}
@@ -19,8 +20,6 @@ body
         #App
             .nav
                 img(src="/public/img/logo-main.png").header_logo_img
-                a="Memuat tes asal"
-                a="Info"
             .body
                 block body_body
             .footer 

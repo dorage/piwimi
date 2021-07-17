@@ -87,5 +87,5 @@ typings/
 .dynamodb/
 
 #webpack bundle
-public/js/
+src/public/js/
 build/

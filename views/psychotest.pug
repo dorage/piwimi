@@ -3,10 +3,9 @@ extends layout.pug
 block head
     title=`PIWIMI | ${content.header}`
     meta(property='og:title' content=`PIWIMI | ${content.header}`)
-    meta(property='og:type' content='website')
+    meta(property='og:description' content=`${content.description}`)
     meta(property='og:image' content=`https://piwimi.id${content.imgUrl}`)
-    meta(property='og:url' content='piwimi.id')
-    meta(property='og:locale' content='id_ID')
+    meta(property='og:image:alt' content=`${content.description}`)
 
 block body_body
     // 퀴즈 컨텐츠 템플릿 - 다중선택지

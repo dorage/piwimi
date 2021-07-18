@@ -2,10 +2,10 @@ extends layout.pug
 
 block head
     title=`PIWIMI | ${content.placeholder} ${content.type}`
-    meta(property='og:title' content=content.type)
-    meta(property='og:type' content='website')
+    meta(property='og:title' content=`${content.type}`)
+    meta(property='og:description' content=`${content.description}`)
     meta(property='og:image' content=`https://piwimi.id${content.imgUrl}`)
-    meta(property='og:url' content='piwimi.id')
+    meta(property='og:image:alt' content=`${content.type} | ${content.description}`)
 
 block body_body
     .result__header

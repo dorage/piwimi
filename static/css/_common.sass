@@ -6,21 +6,14 @@
     margin: 0
     color: vars.$text-color-normal
     font-family: 'Noto Sans KR', sans-serif
-
-button
-    min-width: 80px
-    min-height: 40px
-    padding: 5px 10px
-
-    font-weight: 700
-    color: vars.$text-color-normal
-    background-color: white
-    border: none
-    border-radius: 10px
-    box-shadow: 0px 0px 5px #999999
-    cursor: pointer
-    &:active
-        background-color: vars.$highlight-color1-pressed
+// root font size
+html
+    @media screen and (max-device-width: 768px)
+        font-size: 2px
+    @media screen and (min-device-width: 768px) and (max-device-width: 1024px)
+        font-size: 1.5px
+    @media screen and (min-device-width: 1024px)
+        font-size: 1px
 
 .background
     position: fixed
@@ -42,7 +35,8 @@ button
     @media screen and (min-device-width: 768px) and (max-device-width: 1024px)
         width: 80%
     @media screen and (min-device-width: 1024px)
-        max-width: 480px
+        min-width: 518px
+        max-width: 30%
 
 .body
     flex: 1
@@ -50,7 +44,6 @@ button
     flex-direction: column
     align-items: center
     width: 100%
-    height: 100%
     padding: 50px 10px
 
     border-radius: 20px
@@ -76,7 +69,24 @@ button
 
     color: vars.$text-color-gray
     text-align: center
-    font-size: 8px
+    font-size: 8rem
 
 // component
+
+button
+    min-width: 80px
+    min-height: 40px
+    padding: 5px 10px
+
+    font-weight: 700
+    font-size: 18rem
+    color: vars.$text-color-normal
+    background-color: white
+    border: none
+    border-radius: 10px
+    box-shadow: 0px 0px 5px #999999
+    cursor: pointer
+    &:active
+        background-color: vars.$highlight-color1-pressed
+
 .shadow

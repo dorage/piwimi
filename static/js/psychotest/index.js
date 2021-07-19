@@ -26,11 +26,9 @@ const event = {
         state.loadingQuery = false;
     },
     onClickStart: async () => {
-        console.log('start');
         const {
             data: { type, contents },
         } = await fetchURL('question/1');
-        console.log(type, contents);
 
         state.appState = APPSTATE.LOADING_Q;
         state.questions = contents;
@@ -88,9 +86,6 @@ const draw = () => {
     const { appState } = state;
 
     switch (appState) {
-        case APPSTATE.INTRO:
-            TestSubmit(state, event);
-            break;
         case APPSTATE.LOADING_Q:
             Question(state, event);
             TestSubmit(state, event);
@@ -109,3 +104,5 @@ const draw = () => {
 document
     .querySelector('.bt_start')
     .addEventListener('click', event.onClickStart);
+
+document.addEventListener('key');

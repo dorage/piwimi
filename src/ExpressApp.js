@@ -23,9 +23,10 @@ app.use(
     }),
 );
 app.use(morgan('dev'));
-
 app.use('/public', express.static(path.join(__dirname, 'public')));
 app.use(favicon(path.join(__dirname, 'public', 'favicon.ico')));
+
+// routers
 app.use('/api', apiRouter);
 app.use('/psy', psyRouter);
 app.use('/', mainRouter);

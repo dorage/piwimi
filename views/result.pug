@@ -2,11 +2,10 @@ extends layout.pug
 
 block head
     title=`PIWIMI | ${content.placeholder} ${content.type}`
-    meta(property='og:title' content=`${content.placeholder} ${content.type}`)
+    meta(property='og:title' content=`${content.placeholderShare} ${content.type}`)
     meta(property='og:description' content=`${content.description}`)
     meta(property='og:image' content=`https://piwimi.id${content.imgUrl}`)
     meta(property='og:image:alt' content=`${content.type} | ${content.description}`)
-
 block body_body
     .result__header
         .header__placeholder=content.placeholder
@@ -19,6 +18,17 @@ block body_body
                 p=para
     .result__share
         .share__block
+            //- FB
+            .fb-share-button(data-href=`https://piwimi.id/psy/${content.qId}/result/${content.aId}` data-layout="button" data-size="large")
+                a.fb-xfbml-parse-ignore(target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=https%3A%2F%2Fdevelopers.facebook.com%2Fdocs%2Fplugins%2F&amp;src=sdkpreparse")=Bagikan
+            //- Twt
+            a.twitter-share-button(
+                href=`https://twitter.com/intent/tweet`
+                data-text=`${content.placeholderShare} ${content.type}!`
+                data-hashtags=`PIWIMI`
+                data-url=`https://piwimi.id/psy/${content.qId}/result/${content.aId}`
+                data-size="large"
+                )="Tweet"
         .share__title='share'
     .result__control
         .control__row

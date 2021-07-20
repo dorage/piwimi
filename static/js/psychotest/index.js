@@ -104,5 +104,3 @@ const draw = () => {
 document
     .querySelector('.bt_start')
     .addEventListener('click', event.onClickStart);
-
-document.addEventListener('key');

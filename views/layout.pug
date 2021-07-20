@@ -4,22 +4,44 @@ head
     link(rel="preconnect" href="https://fonts.gstatic.com")
     link(href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@100;300;400;500;700;900&display=swap" rel="stylesheet")
     script(src="/public/js/index.bundle.js")
-    // 오픈파라그래프 및 타이틀 설정
-    block head
     meta(property='og:url' content='piwimi.id')
     meta(property='og:locale' content='id_ID')
-    // 페이스북 오픈그래프 앱ID
+    //- 페이스북 오픈그래프 앱ID
     meta(property='fb:app_id' content='2089044874583060')
-    // Global site tag (gtag.js) - Google Analytics
+    //- 트위터 오픈그래프
+    meta(property='twitter:card' content='summary_large_image')
+    //- 오픈파라그래프 및 타이틀 설정
+    block head
+    //- Global site tag (gtag.js) - Google Analytics
     script(async=true, src="https://www.googletagmanager.com/gtag/js?id=UA-201599400-1")
     script(type="text/javascript").
         window.dataLayer = window.dataLayer || [];
         function gtag(){dataLayer.push(arguments);}
         gtag('js', new Date());
         gtag('config', 'UA-201599400-1');
-    // Adsense
+    //- Adsense
     script(data-ad-client="ca-pub-6616061311166935" async=true src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js")
-body 
+body
+    //- FB JS
+    script(async defer crossorigin="anonymous" src="https://connect.facebook.net/id_ID/sdk.js#xfbml=1&version=v11.0&appId=2089044874583060&autoLogAppEvents=1" nonce="4eTqFxQx")
+    //- Twitter JS
+    script.
+        window.twttr = (function(d, s, id) {
+            var js, fjs = d.getElementsByTagName(s)[0],
+                t = window.twttr || {};
+            if (d.getElementById(id)) return t;
+            js = d.createElement(s);
+            js.id = id;
+            js.src = "https://platform.twitter.com/widgets.js";
+            fjs.parentNode.insertBefore(js, fjs);
+
+            t._e = [];
+            t.ready = function(f) {
+                t._e.push(f);
+            };
+
+            return t;
+        }(document, "script", "twitter-wjs"));
     .background 
         #App
             .nav

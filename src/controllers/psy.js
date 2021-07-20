@@ -1,4 +1,5 @@
 const getResultObject = (type, description) => ({
+    placeholderShare: 'Saya dari',
     placeholder: 'Kamu dari',
     type,
     description,

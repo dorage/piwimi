@@ -25,7 +25,7 @@
     -   아직 조건 충족이 되지 않음
 -   SEO 적용
     ✔️ favicon 적용
-    -   robots.txt
+    ✔️ robots.txt
 -   본격적인 서비스
     ✔️ Responsible CSS 적용하기
     -   공유 (인스타그램 사진 / 페이스북 공유 / 트위터 공유 / 왓츠앱 공유)

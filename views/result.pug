@@ -1,18 +1,18 @@
 extends layout.pug 
 
 block head
-    title=`PIWIMI | ${content.placeholder} ${content.type}`
-    meta(property='og:title' content=`${content.placeholderShare} ${content.type}`)
+    title=`PIWIMI | ${content.share.placeholder} ${content.type}`
+    meta(property='og:title' content=`${content.share.placeholder} ${content.type}`)
     meta(property='og:description' content=`${content.description}`)
-    meta(property='og:image' content=`https://piwimi.id${content.imgUrl}`)
+    meta(property='og:image' content=`${content.share.igPost}`)
     meta(property='og:image:alt' content=`${content.type} | ${content.description}`)
+
 block body_body
     .result__header
         .header__placeholder=content.placeholder
         .header__type=content.type
     .result__body
-        .body__circle(data-result=`${content.type}`)
-            img.body__circle__img(src=content.imgUrl)
+        img.body__circle__img(src=content.imgUrl)
         .body__description
             each para in content.description.split('\n')
                 p=para
@@ -24,7 +24,7 @@ block body_body
             //- Twt
             a.twitter-share-button(
                 href=`https://twitter.com/intent/tweet`
-                data-text=`${content.placeholderShare} ${content.type}!`
+                data-text=`${content.share.placeholder} ${content.type}!`
                 data-hashtags=`PIWIMI`
                 data-url=`https://piwimi.id/psy/${content.qId}/result/${content.aId}`
                 data-size="large"

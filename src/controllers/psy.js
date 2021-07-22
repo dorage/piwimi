@@ -1,9 +1,24 @@
+const getShareImgUrl = (qId, isPost, type) => {
+    if (isPost) {
+        return `https://storage.googleapis.com/pwm-res/test/${qId}/share/ig-post-description_${type.toLowerCase()}.jpg`;
+    } else {
+        return `https://storage.googleapis.com/pwm-res/test/${qId}/share/ig-story_${type.toLowerCase()}.jpg`;
+    }
+};
+const getResImgUrl = (qId, type, ext) => {
+    return `https://storage.googleapis.com/pwm-res/test/${qId}/res/${type.toLowerCase()}.${ext}`;
+};
+
 const getResultObject = (type, description) => ({
-    placeholderShare: 'Saya dari',
     placeholder: 'Kamu dari',
     type,
     description,
-    imgUrl: `/public/img/indonesianTest/results/${type.toLowerCase()}.png`,
+    imgUrl: getResImgUrl(1, type, 'png'),
+    share: {
+        placeholder: 'Saya dari',
+        igPost: [getShareImgUrl(1, true, type), getShareImgUrl(1, true, type)],
+        igStory: [getShareImgUrl(1, false, type)],
+    },
 });
 
 const results = [
@@ -31,7 +46,7 @@ const results = [
 
 const questionContent = {
     header: 'Dari pulau mana saya berasal?',
-    imgUrl: '/public/img/indonesianTest/thumb.png',
+    imgUrl: getResImgUrl(1, 'thumb', 'png'),
     description:
         'Mari temukan dari pulau mana kamu berasal!\nJawab 15 pertanyaan ini, kamu akan mengetahui dari pulau mana kamu berasal.\nIni hanya untuk bersenang senang',
     notice: '※ Ini hanya untuk bersenang-senang',

@@ -17,7 +17,7 @@ router.get('/robots.txt', (req, res) => {
         }
         res.send(fs.readFileSync(filePath, 'utf8'));
     } catch (err) {
-        res.send('');
+        res.send('error');
     }
 });
 //router.get('/sitemap.xml', (req, res) => {});

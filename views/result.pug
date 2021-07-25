@@ -19,47 +19,47 @@ block body_body
                 p=para
     .result__share
         .share__block
-            //- copy a link
-            .share__copy-link#cpy-link
-                img.share__icon
-                .share__name='copy a link'
-                input.share__input#cpy-link-input(value=`${resultLink}`)
             //- save post imgs
-            .share__copy-link#sv_ig-post(data-links=`${content.share.igPost}`)
-                img.share__icon
-                .share__name='Instagram Post'
+            -var postIdx = 1
+            -var postCnt = content.share.igPost.length
+            each link in content.share.igPost
+                .save__img(data-link=`${link}`)
+                    img.share__icon(src="https://storage.googleapis.com/pwm-res/web/result/result_download_ig-post.png")
+                    .share__name=`IG Post (${postIdx}/${postCnt})`
+                    -postIdx++
+            //- save story imgs
+            -var storyIdx = 1
+            -var storyCnt = content.share.igStory.length
+            each link in content.share.igStory
+                .save__img(data-link=`${link}`)
+                    img.share__icon(src="https://storage.googleapis.com/pwm-res/web/result/result_download_ig-story.png")
+                    .share__name=`IG Story (${storyIdx}/${storyCnt})`
+                    -storyIdx++
         .share__title='download'
     .result__share
         .share__block
             //- copy a link
-            .share__copy-link#cpy-link
-                img.share__icon
-                .share__name='copy a link'
+            .share__elem#cpy-link
+                img.share__icon(src="https://storage.googleapis.com/pwm-res/web/result/result_share_facebook.png")
+                .share__name='Copy a link'
                 input.share__input#cpy-link-input(value=`${resultLink}`)
-            //- save post imgs
-            .share__copy-link#sv_ig-post(data-links=`${content.share.igPost}`)
-                img.share__icon
-                .share__name='Instagram Post'
-            //- save story imgs
-            .share__copy-link#sv_ig-story(data-links=`${content.share.igStory}`)
-                img.share__icon
-                .share__name='Instagram Story'
             //- share on Facebook
             -var fbAppID = 2089044874583060;
-            a(href=`https://www.facebook.com/dialog/share?app_id=${fbAppID}&display=popup&href=${resultLink}&redirect_uri=${resultLink}`)
-                .share__copy-link#share_fb
-                    img.share__icon
+            -var fbHref=`https://www.facebook.com/dialog/share?app_id=${fbAppID}&display=popup&href=${resultLink}&redirect_uri=${resultLink}`
+            .share__elem#share_fb
+                a(href=`${fbHref}`)
+                    img.share__icon(src="https://storage.googleapis.com/pwm-res/web/result/result_share_facebook.png")
                     .share__name='Facebook'
             //- share on Twitter
             -var twtText = encodeURI(`${content.share.placeholder} ${content.type}!`)
             -var twtHashtag = encodeURI(`${content.type},PIWIMI`)
-            a(href=`https://twitter.com/intent/tweet?text=${twtText}&hashtags=${twtHashtag}&url=${resultLink}`)
-                .share__copy-link#sv_ig-story
-                    img.share__icon
+            -var twtHref=`https://twitter.com/intent/tweet?text=${twtText}&hashtags=${twtHashtag}&url=${resultLink}`
+            .share__elem#sv_ig-story
+                a(href=`${twtHref}`)
+                    img.share__icon(src="https://storage.googleapis.com/pwm-res/web/result/result_share_twitter.png")
                     .share__name='Twitter'
         .share__title='share'
     .result__control
         .control__row
-            button.control__button-save-img='coba test lainnya'
             button.control__button-retry='Ulangi'
     script(src='/public/js/result.bundle.js')

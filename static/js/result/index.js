@@ -17,12 +17,6 @@ const event = {
     onClickRetry: () => {
         window.location.href = `${window.location.href.split('/result/')[0]}`;
     },
-    onClickSaveImage: async () => {
-        const link = document.createElement('a');
-        link.download = 'my_image.jpg';
-        link.href = dataURL;
-        link.click();
-    },
     onClickShareCopyLink: (e) => {
         const { currentTarget } = e;
         const input = currentTarget.querySelector('#cpy-link-input');
@@ -32,21 +26,11 @@ const event = {
         input.style.display = 'none';
         window.alert('copied link');
     },
-    onClickSaveIGPost: async (e) => {
-        const links = e.currentTarget.dataset.links.split(',');
-        for (const link of links) {
-            await saveWithBlob(link);
-        }
+    onClickSave: async (e) => {
+        const { currentTarget } = e;
+        const link = currentTarget.dataset.link;
+        await saveWithBlob(link);
     },
-    onClickSaveIGStory: async (e) => {
-        const links = e.currentTarget.dataset.links.split(',');
-        for (const link of links) {
-            await saveWithBlob(link);
-        }
-    },
-    onClickShareFB: (e) => {},
-    onClickShareTwt: (e) => {},
-    onClickShareWA: (e) => {},
 };
 
 document
@@ -59,8 +43,5 @@ document
     .getElementById('cpy-link')
     .addEventListener('click', event.onClickShareCopyLink);
 document
-    .getElementById('sv_ig-post')
-    .addEventListener('click', event.onClickSaveIGPost);
-document
-    .getElementById('sv_ig-story')
-    .addEventListener('click', event.onClickSaveIGPost);
+    .querySelectorAll('.save__img')
+    .forEach((elem) => elem.addEventListener('click', event.onClickSave));

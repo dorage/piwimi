@@ -37,9 +37,6 @@ document
     .querySelector('.control__button-retry')
     .addEventListener('click', event.onClickRetry);
 document
-    .querySelector('.control__button-save-img')
-    .addEventListener('click', event.onClickSaveImage);
-document
     .getElementById('cpy-link')
     .addEventListener('click', event.onClickShareCopyLink);
 document

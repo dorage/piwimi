@@ -25,16 +25,29 @@ block body_body
                 .share__name='copy a link'
                 input.share__input#cpy-link-input(value=`${resultLink}`)
             //- save post imgs
-            .share__copy-link#sv_ig-post
+            .share__copy-link#sv_ig-post(data-links=`${content.share.igPost}`)
+                img.share__icon
+                .share__name='Instagram Post'
+        .share__title='download'
+    .result__share
+        .share__block
+            //- copy a link
+            .share__copy-link#cpy-link
+                img.share__icon
+                .share__name='copy a link'
+                input.share__input#cpy-link-input(value=`${resultLink}`)
+            //- save post imgs
+            .share__copy-link#sv_ig-post(data-links=`${content.share.igPost}`)
                 img.share__icon
                 .share__name='Instagram Post'
             //- save story imgs
-            .share__copy-link#sv_ig-story
+            .share__copy-link#sv_ig-story(data-links=`${content.share.igStory}`)
                 img.share__icon
                 .share__name='Instagram Story'
             //- share on Facebook
-            a(href=`https://www.facebook.com/dialog/share?app_id=2089044874583060&display=popup&href=${resultLink}&redirect_uri=${resultLink}`)
-                .share__copy-link#sv_ig-story
+            -var fbAppID = 2089044874583060;
+            a(href=`https://www.facebook.com/dialog/share?app_id=${fbAppID}&display=popup&href=${resultLink}&redirect_uri=${resultLink}`)
+                .share__copy-link#share_fb
                     img.share__icon
                     .share__name='Facebook'
             //- share on Twitter

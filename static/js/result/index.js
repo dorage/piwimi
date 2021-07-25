@@ -1,5 +1,18 @@
 import '../../css/result/index.sass';
 
+const saveWithBlob = async (link) => {
+    const res = await fetch(link);
+    const blob = await res.blob();
+    const url = window.URL || window.webkitURL;
+    const fileURL = url.createObjectURL(blob);
+    const a = document.createElement('a');
+    const fileName = link.split('/').pop();
+    a.download = fileName;
+    a.href = fileURL;
+    a.click();
+    a.remove();
+};
+
 const event = {
     onClickRetry: () => {
         window.location.href = `${window.location.href.split('/result/')[0]}`;
@@ -20,17 +33,17 @@ const event = {
         window.alert('copied link');
     },
     onClickSaveIGPost: async (e) => {
-        const { blob } = await fetch(
-            'https://storage.googleapis.com/pwm-res/test/1/share/ig-story_java.jpg',
-        );
-        console.log(blob);
-        const link = document.createElement('a');
-        link.download = 'bali.png';
-        link.href = blob;
-        link.click();
-        link.remove();
+        const links = e.currentTarget.dataset.links.split(',');
+        for (const link of links) {
+            await saveWithBlob(link);
+        }
     },
-    onClickSaveIGStory: (e) => {},
+    onClickSaveIGStory: async (e) => {
+        const links = e.currentTarget.dataset.links.split(',');
+        for (const link of links) {
+            await saveWithBlob(link);
+        }
+    },
     onClickShareFB: (e) => {},
     onClickShareTwt: (e) => {},
     onClickShareWA: (e) => {},
@@ -47,4 +60,7 @@ document
     .addEventListener('click', event.onClickShareCopyLink);
 document
     .getElementById('sv_ig-post')
+    .addEventListener('click', event.onClickSaveIGPost);
+document
+    .getElementById('sv_ig-story')
     .addEventListener('click', event.onClickSaveIGPost);

@@ -1,9 +1,10 @@
-const getShareImgUrl = (qId, isPost, type) => {
-    if (isPost) {
-        return `https://storage.googleapis.com/pwm-res/test/${qId}/share/ig-post-description_${type.toLowerCase()}.jpg`;
-    } else {
-        return `https://storage.googleapis.com/pwm-res/test/${qId}/share/ig-story_${type.toLowerCase()}.jpg`;
-    }
+const getPostImgUrl = (qId, type, isDsc = false) => {
+    return `https://storage.googleapis.com/pwm-res/test/${qId}/share/ig-post${
+        isDsc ? '-description' : ''
+    }_${type.toLowerCase()}.jpg`;
+};
+const getStoryImgURL = (qId, type) => {
+    return `https://storage.googleapis.com/pwm-res/test/${qId}/share/ig-story_${type.toLowerCase()}.jpg`;
 };
 const getResImgUrl = (qId, type, ext) => {
     return `https://storage.googleapis.com/pwm-res/test/${qId}/res/${type.toLowerCase()}.${ext}`;
@@ -16,8 +17,8 @@ const getResultObject = (type, description) => ({
     imgUrl: getResImgUrl(1, type, 'png'),
     share: {
         placeholder: 'Saya dari',
-        igPost: [getShareImgUrl(1, true, type), getShareImgUrl(1, true, type)],
-        igStory: [getShareImgUrl(1, false, type)],
+        igPost: [getPostImgUrl(1, type), getPostImgUrl(1, type, true)],
+        igStory: [getStoryImgURL(1, type)],
     },
 });
 

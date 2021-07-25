@@ -8,6 +8,7 @@ block head
     meta(property='og:image:alt' content=`${content.type} | ${content.description}`)
 
 block body_body
+    - var resultLink = `https://piwimi.id/psy/${content.qId}/result/${content.aId}`
     .result__header
         .header__placeholder=content.placeholder
         .header__type=content.type
@@ -18,20 +19,34 @@ block body_body
                 p=para
     .result__share
         .share__block
-            //- FB
-            .fb-share-button(data-href=`https://piwimi.id/psy/${content.qId}/result/${content.aId}` data-layout="button" data-size="large")
-                a.fb-xfbml-parse-ignore(target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=https%3A%2F%2Fdevelopers.facebook.com%2Fdocs%2Fplugins%2F&amp;src=sdkpreparse")=Bagikan
-            //- Twt
-            a.twitter-share-button(
-                href=`https://twitter.com/intent/tweet`
-                data-text=`${content.share.placeholder} ${content.type}!`
-                data-hashtags=`PIWIMI`
-                data-url=`https://piwimi.id/psy/${content.qId}/result/${content.aId}`
-                data-size="large"
-                )="Tweet"
+            //- copy a link
+            .share__copy-link#cpy-link
+                img.share__icon
+                .share__name='copy a link'
+                input.share__input#cpy-link-input(value=`${resultLink}`)
+            //- save post imgs
+            .share__copy-link#sv_ig-post
+                img.share__icon
+                .share__name='Instagram Post'
+            //- save story imgs
+            .share__copy-link#sv_ig-story
+                img.share__icon
+                .share__name='Instagram Story'
+            //- share on Facebook
+            a(href=`https://www.facebook.com/dialog/share?app_id=2089044874583060&display=popup&href=${resultLink}&redirect_uri=${resultLink}`)
+                .share__copy-link#sv_ig-story
+                    img.share__icon
+                    .share__name='Facebook'
+            //- share on Twitter
+            -var twtText = encodeURI(`${content.share.placeholder} ${content.type}!`)
+            -var twtHashtag = encodeURI(`${content.type},PIWIMI`)
+            a(href=`https://twitter.com/intent/tweet?text=${twtText}&hashtags=${twtHashtag}&url=${resultLink}`)
+                .share__copy-link#sv_ig-story
+                    img.share__icon
+                    .share__name='Twitter'
         .share__title='share'
     .result__control
         .control__row
-            button.control__button-save-img='Simpan Gambar'
+            button.control__button-save-img='coba test lainnya'
             button.control__button-retry='Ulangi'
     script(src='/public/js/result.bundle.js')

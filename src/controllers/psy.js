@@ -10,7 +10,7 @@ const getResImgUrl = (qId, type, ext) => {
     return `https://storage.googleapis.com/pwm-res/test/${qId}/res/${type.toLowerCase()}.${ext}`;
 };
 const getOGImage = (type) => {
-    return `https://storage.googleapis.com/pwm-res/test/1/res/opengraph_${type}.png`;
+    return `https://storage.googleapis.com/pwm-res/test/1/res/opengraph_${type.toLowerCase()}.png`;
 };
 
 const getResultObject = (type, description) => ({

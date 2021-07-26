@@ -9,12 +9,18 @@ const getStoryImgURL = (qId, type) => {
 const getResImgUrl = (qId, type, ext) => {
     return `https://storage.googleapis.com/pwm-res/test/${qId}/res/${type.toLowerCase()}.${ext}`;
 };
+const getOGImage = (type) => {
+    return `https://storage.googleapis.com/pwm-res/test/1/res/opengraph_${type}.png`;
+};
 
 const getResultObject = (type, description) => ({
     placeholder: 'Kamu dari',
     type,
     description,
     imgUrl: getResImgUrl(1, type, 'png'),
+    og: {
+        imgUrl: getOGImage(type),
+    },
     share: {
         placeholder: 'Saya dari',
         igPost: [getPostImgUrl(1, type), getPostImgUrl(1, type, true)],

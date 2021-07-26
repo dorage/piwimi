@@ -1,5 +1,5 @@
 import '../../css/psychotest/index.sass';
-import { fetchURL, setStateWrapper } from '../utils';
+import { fetchURL } from '../utils';
 import { Question } from './components/Question';
 import { TestSubmit } from './components/Submit';
 

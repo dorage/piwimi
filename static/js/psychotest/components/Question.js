@@ -16,8 +16,8 @@ const draw = (elem, state, event) => {
     const pQuery = elem.querySelector('.question__query > p');
     pQuery.textContent = `${questions[currentPage]['query']}`;
 
-    const btYes = elem.querySelector('.question__yes-button');
-    const btNo = elem.querySelector('.question__no-button');
+    const btYes = elem.querySelector('.question__button-yes');
+    const btNo = elem.querySelector('.question__button-no');
     btYes.addEventListener('click', onClickYes);
     btNo.addEventListener('click', onClickNo);
 

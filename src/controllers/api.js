@@ -6,7 +6,7 @@ const responseJSON = (json) => {
         data: json,
     };
 };
-const getQuestionObject = (query, answers) => ({ query, answers });
+const getQuestionObject = (query, answers) => ({ query, imgUrl: '', answers });
 const contents = [
     getQuestionObject('Saya selalu mendengar suara saya kecil'),
     getQuestionObject('Saya menyapa orang yang baru pertama kali bertemu'),

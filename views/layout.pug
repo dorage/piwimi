@@ -1,55 +1,45 @@
 html
-head 
-    meta(charset="utf-8")
-    link(rel="preconnect" href="https://fonts.gstatic.com")
-    link(href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@100;300;400;500;700;900&display=swap" rel="stylesheet")
-    script(src="/public/js/index.bundle.js")
-    meta(property='og:url' content='piwimi.id')
-    meta(property='og:locale' content='id_ID')
-    //- 페이스북 오픈그래프 앱ID
-    meta(property='fb:app_id' content='2089044874583060')
-    //- 트위터 오픈그래프
-    meta(property='twitter:card' content='summary_large_image')
-    //- 오픈파라그래프 및 타이틀 설정
-    block head
-    //- Global site tag (gtag.js) - Google Analytics
-    script(async=true, src="https://www.googletagmanager.com/gtag/js?id=UA-201599400-1")
-    script(type="text/javascript").
-        window.dataLayer = window.dataLayer || [];
-        function gtag(){dataLayer.push(arguments);}
-        gtag('js', new Date());
-        gtag('config', 'UA-201599400-1');
-    //- FontAwesome
-    <script src="https://kit.fontawesome.com/260b3e64a6.js" crossorigin="anonymous"></script>
-    //- Adsense
-    script(data-ad-client="ca-pub-6616061311166935" async=true src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js")
-body
-    //- FB JS
-    script(async defer crossorigin="anonymous" src="https://connect.facebook.net/id_ID/sdk.js#xfbml=1&version=v11.0&appId=2089044874583060&autoLogAppEvents=1" nonce="4eTqFxQx")
-    //- Twitter JS
-    script.
-        window.twttr = (function(d, s, id) {
-            var js, fjs = d.getElementsByTagName(s)[0],
-                t = window.twttr || {};
-            if (d.getElementById(id)) return t;
-            js = d.createElement(s);
-            js.id = id;
-            js.src = "https://platform.twitter.com/widgets.js";
-            fjs.parentNode.insertBefore(js, fjs);
-
-            t._e = [];
-            t.ready = function(f) {
-                t._e.push(f);
-            };
-
-            return t;
-        }(document, "script", "twitter-wjs"));
-    .background 
-        #App
-            .nav
-                img(src="/public/img/logo-main.png").header_logo_img
-            .body
-                block body_body
-            .footer 
-                //p.contact_partnership="제휴문의:baloonflower554@gmail.com"
-                p.contact_github="developed by @Sinsun_Dorage"
+    head 
+        meta(charset="utf-8")
+        link(rel="preconnect" href="https://fonts.gstatic.com")
+        link(href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@100;300;400;500;700;900&display=swap" rel="stylesheet")
+        script(src="/public/js/index.bundle.js")
+        meta(property='og:url' content='piwimi.id')
+        meta(property='og:locale' content='id_ID')
+        //- 페이스북 오픈그래프 앱ID
+        meta(property='fb:app_id' content='2089044874583060')
+        //- 트위터 오픈그래프
+        meta(property='twitter:card' content='summary_large_image')
+        //- 오픈파라그래프 및 타이틀 설정
+        block head
+        //- Global site tag (gtag.js) - Google Analytics
+        script(async=true, src="https://www.googletagmanager.com/gtag/js?id=UA-201599400-1")
+        script(type="text/javascript").
+            window.dataLayer = window.dataLayer || [];
+            function gtag(){dataLayer.push(arguments);}
+            gtag('js', new Date());
+            gtag('config', 'UA-201599400-1');
+        //- FontAwesome
+        <script src="https://kit.fontawesome.com/260b3e64a6.js" crossorigin="anonymous"></script>
+        //- Adsense
+        script(data-ad-client="ca-pub-6616061311166935" async=true src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js")
+        //- TagManager
+        script().
+            (function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+            new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+            j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+            'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+            })(window,document,'script','dataLayer','GTM-MS3MSF5');
+    body
+        //- TagManager noscript
+        noscript
+            iframe(src="https://www.googletagmanager.com/ns.html?id=GTM-MS3MSF5" height="0" width="0" style="display:none;visibility:hidden")
+        .background 
+            #App
+                .nav
+                    img(src="/public/img/logo-main.png").header_logo_img
+                .body
+                    block body_body
+                .footer 
+                    //p.contact_partnership="제휴문의:baloonflower554@gmail.com"
+                    p.contact_github="developed by @Sinsun_Dorage"

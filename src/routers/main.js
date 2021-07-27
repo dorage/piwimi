@@ -1,23 +1,18 @@
 import { Router } from 'express';
 import fs from 'fs';
+import { getHome } from '../controllers/main';
 
 const router = new Router();
 
-router.get('/', (req, res) => {
-    res.redirect('/psy/1');
-});
+router.get('/', getHome);
 router.get('/robots.txt', (req, res) => {
     res.header('Content-Type', 'text/palin');
     try {
         let filePath = '';
-        if (process.env.NODE_ENV === 'production') {
-            filePath = `https://piwimi.id/public/robots.txt`;
-        } else {
-            filePath = `${__dirname}/../public/robots.txt`;
-        }
+        filePath = `${__dirname}/../public/robots.txt`;
         res.send(fs.readFileSync(filePath, 'utf8'));
     } catch (err) {
-        res.send('error');
+        res.send(err);
     }
 });
 //router.get('/sitemap.xml', (req, res) => {});

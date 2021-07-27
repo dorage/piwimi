@@ -6,12 +6,12 @@ block head
     meta(property='og:description' content=`${content.description}`)
     meta(property='og:image' content=`${content.og.imgUrl}`)
     meta(property='og:image:alt' content=`${content.type} | ${content.description}`)
-
 block body_body
     - var resultLink = `https://piwimi.id/psy/${content.qId}/result/${content.aId}`
     .result__header
         .header__placeholder=content.placeholder
-        .header__type=content.type
+        .header__type
+            h1=content.type
     .result__body
         img.body__circle__img(src=content.imgUrl)
         .body__description

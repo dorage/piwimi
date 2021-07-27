@@ -24,16 +24,16 @@ block body_body
             -var postCnt = content.share.igPost.length
             each link in content.share.igPost
                 .save__img(data-link=`${link}`)
-                    img.share__icon(src="https://storage.googleapis.com/pwm-res/web/result/result_download_ig-post.png")
-                    .share__name=`IG Post (${postIdx}/${postCnt})`
+                    img.save__icon(src="https://storage.googleapis.com/pwm-res/web/result/result_download_ig-post.png")
+                    .save__name=`IG Post (${postIdx}/${postCnt})`
                     -postIdx++
             //- save story imgs
             -var storyIdx = 1
             -var storyCnt = content.share.igStory.length
             each link in content.share.igStory
                 .save__img(data-link=`${link}`)
-                    img.share__icon(src="https://storage.googleapis.com/pwm-res/web/result/result_download_ig-story.png")
-                    .share__name=`IG Story (${storyIdx}/${storyCnt})`
+                    img.save__icon(src="https://storage.googleapis.com/pwm-res/web/result/result_download_ig-story.png")
+                    .save__name=`IG Story (${storyIdx}/${storyCnt})`
                     -storyIdx++
         .share__title='download'
     .result__share

@@ -102,5 +102,6 @@ const draw = () => {
 };
 
 document
-    .querySelector('.bt_start')
+    .querySelector('.control__bt--start')
     .addEventListener('click', event.onClickStart);
+event.onClickStart();

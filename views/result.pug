@@ -8,22 +8,22 @@ block head
     meta(property='og:image:alt' content=`${content.type} | ${content.description}`)
 block body_body
     - var resultLink = `https://piwimi.id/psy/${content.qId}/result/${content.aId}`
-    .result__header
+    .result__header.flex__gap--col
         .header__placeholder=content.placeholder
         .header__type
             h1=content.type
     .result__body
-        img.body__circle__img(src=content.imgUrl)
-        .body__description
+        img.body__circle__img(src=content.imgUrl).flex__gap--col
+        .body__description.flex__gap--col
             each para in content.description.split('\n')
                 p=para
-    .result__share
+    .result__share.flex__gap--col
         .save__block
             //- save post imgs
             -var postIdx = 1
             -var postCnt = content.share.igPost.length
             each link in content.share.igPost
-                .save__img(data-link=`${link}`)
+                .save__img(id=`downIGPost${postIdx}` data-link=`${link}`)
                     img.save__icon(src="https://storage.googleapis.com/pwm-res/web/result/result_download_ig-post.png")
                     .save__name=`IG Post (${postIdx}/${postCnt})`
                     -postIdx++
@@ -31,22 +31,22 @@ block body_body
             -var storyIdx = 1
             -var storyCnt = content.share.igStory.length
             each link in content.share.igStory
-                .save__img(data-link=`${link}`)
+                .save__img(id=`downIGStory${storyIdx}` data-link=`${link}`)
                     img.save__icon(src="https://storage.googleapis.com/pwm-res/web/result/result_download_ig-story.png")
                     .save__name=`IG Story (${storyIdx}/${storyCnt})`
                     -storyIdx++
         .share__title='download'
-    .result__share
+    .result__share.flex__gap--col
         .share__block
             //- copy a link
-            .share__elem#cpy-link
+            .share__elem#copyLink
                 img.share__icon(src="https://storage.googleapis.com/pwm-res/web/result/result_share_link.png")
                 .share__name='Copy a link'
                 input.share__input#cpy-link-input(value=`${resultLink}`)
             //- share on Facebook
             -var fbAppID = 2089044874583060;
             -var fbHref=`https://www.facebook.com/dialog/share?app_id=${fbAppID}&display=popup&href=${resultLink}&redirect_uri=${resultLink}`
-            .share__elem#share_fb
+            .share__elem#shareFB
                 a(href=`${fbHref}`)
                     img.share__icon(src="https://storage.googleapis.com/pwm-res/web/result/result_share_facebook.png")
                     .share__name='Facebook'
@@ -54,12 +54,12 @@ block body_body
             -var twtText = encodeURI(`${content.share.placeholder} ${content.type}!`)
             -var twtHashtag = encodeURI(`${content.type},PIWIMI`)
             -var twtHref=`https://twitter.com/intent/tweet?text=${twtText}&hashtags=${twtHashtag}&url=${resultLink}`
-            .share__elem#sv_ig-story
+            .share__elem#shareTWT
                 a(href=`${twtHref}`)
                     img.share__icon(src="https://storage.googleapis.com/pwm-res/web/result/result_share_twitter.png")
                     .share__name='Twitter'
         .share__title='share'
-    .result__control
+    .result__control.flex__gap--col
         .control__row
             button.control__button-retry='Ulangi'
     script(src='/public/js/result.bundle.js')

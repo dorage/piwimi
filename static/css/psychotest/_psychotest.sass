@@ -1,89 +1,62 @@
 @use '../vars'
 
-.psycho__question
+// SECTIONS
+.psycho__section--content
     display: flex
     flex-direction: column
-    justify-content: center
     align-items: center
-    width: 100%
     padding-bottom: 20rem
     flex: 1
+.psycho__section--control
+    & > div > button
+        height: 1.25 * vars.$col
+
+// INTRO SCREEN
+.content-header
+    &>h1
+        font-weight: 700
+        font-size: 32rem
+.content-description
+    font-size: 18rem
+.content-notice
+    & > p
+        color: #666666
+        font-size: 14rem
+
+// PLAYING SCREEN
 .question__index
     font-size: 18rem
-    padding: 10px 0px
-    margin-bottom: 50rem
 .question__query
-    width: 80%
-    height: 150rem
-    margin-bottom: 50rem
+    height: 6 * 28rem
     &>p
         font-size: 28rem
         font-weight: 700
         text-align: center
-.question__yes-or-no
+.question__bt--yes-no
     display: flex
-    width: 70%
-    margin-bottom: 50rem
-    &>button
-        flex: 1
-        padding: 10px 20px
+    align-items: center
+    flex: 1
+    & > button
         font-size: 28rem
-        border: 1px solid vars.$border-color
-.question__button-yes
-    margin-right: 5px
+        height: 2 * vars.$col
+.question__bt--yes
     color: vars.$right-color
     border-top-right-radius: 0px
     border-bottom-right-radius: 0px
-.question__button-no
+.question__bt--no
     color: vars.$warning-color
     border-top-left-radius: 0px
     border-bottom-left-radius: 0px
 
 // content
-.content-header
-    text-align: center
-    font-weight: 700
-    font-size: 32rem
-    padding-bottom: 20px
-.content-description
-    text-align: center
-    font-size: 18rem
-    padding-bottom: 20px
-.content-notice
-    text-align: center
-    color: #666666
-    font-size: 14rem
-    padding-bottom: 20px
-
-.content-thumbnail
-    display: flex
-    justify-content: center
-    margin: 20px 0px
-.thumbnail__img
-    width: 100%
-
-.psycho__control
-    display: flex
-    flex-direction: column
-    align-items: center
-    width: 80%
 .psycho__control-row
     display: flex
     justify-content: space-between
-    width: 100%
+
     margin-bottom: 50px
 
 .bt_submit#submit
     flex: 1
-
-.content-selections
-    display: flex
-    flex-direction: column
-    align-items: center
-    width: 100%
-    margin: 40px 0
-    padding: 0 50px
-    text-align: center
 
 .bt_submit
     min-width: 13ch
@@ -91,20 +64,22 @@
 
     font-size: 20rem
 
-.bt_start
-    font-weight: 700
-    width: 50%
-    background-color: vars.$highlight-color2
-    &:active
-        background-color: vars.$highlight-color2-pressed
+.content-selections
+    display: flex
+    flex-direction: column
+    align-items: center
+
+    margin: 40px 0
+    padding: 0 50px
+    text-align: center
 
 .selection_box
     display: flex
     align-items: center
-    width: 100%
+
     margin: 5px 0
     padding: 0 20px
-    width: 100%
+
     height: 50px
 
     border-radius: 25px
@@ -118,30 +93,28 @@
         background-color: vars.$highlight-color1-pressed
         cursor: pointer
 
+// Additional classnames
 .deactivated
     background-color: vars.$highlight-color-deactivate
     &:active
         background-color: vars.$highlight-color-deactivate-pressed
-
 .completed
     background-color: vars.$highlight-color2
     font-weight: 700
     animation: completed 1s infinite
     &:active
         background-color: vars.$highlight-color2-pressed
-
 .selected
     cursor: default
 .unselected
     background-color: #eeeeee
     color: #999999
-
 .content-loading
     display: flex
-
 .hidden
     visibility: hidden
 
+// Animation
 @keyframes completed
     0%
         transform: scale(1,1)

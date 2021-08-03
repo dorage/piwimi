@@ -10,7 +10,7 @@ block head
 block body_body
     // 퀴즈 컨텐츠 템플릿 - 다중선택지
     template#template-question-multiple
-        .psycho__question
+        .psycho__section--content
             .content-header=``
             .content-selections
             .content-index
@@ -21,36 +21,43 @@ block body_body
             .selection_text=''
     // 퀴즈 컨텐츠 템플릿 - Yes Or No
     template#template-question-singular
-        .psycho__question
-            .question__index
+        .psycho__section--content
+            .question__index.flex__gap--col
                 p='placeholder_Index'
-            .question__query
+            .question__query.flex__gap--col
                 p='placeholder_Question'
-            .question__yes-or-no
-                button.question__button-yes='IYA'
-                button.question__button-no='TIDAK'
-    // 퀴즈 하단 템플릿
+            .question__bt--yes-no.flex__row
+                .flex__item--1
+                button.question__bt--yes.flex__item--1='IYA'
+                button.question__bt--no.flex__item--1='TIDAK'
+                .flex__item--1
+    // 퀴즈 하단 컨트롤 템플릿
     template#template-submit
-        .psycho__control
-            .psycho__control-row
-                button.bt_submit#prev='Sebelumnya'
-                button.bt_submit#next='Selanjutnya'
-            .psycho__control-row
-                button.bt_submit#submit='Lihat Hasil'
+        .psycho__section--control
+            .flex__row.flex__gap--col
+                button.flex__item--1#prev='Sebelumnya'
+                .flex__item--2
+                button.flex__item--1#next='Selanjutnya'
+            .flex__row.flex__gap--col
+                button.flex__item--4#submit='Lihat Hasil'
     // 로딩 템플릿
     template#template-loading
-        .psycho__question
+        .psycho__section--content
             .loading_text='memuat pertanyaan'
     // 기본 타이틀
-    .psycho__question
-        .content-header=content.header
-        .content-thumbnail
+    .psycho__section--content
+        .content-header.flex__gap--col
+            h1=content.header
+        .content-thumbnail.flex__gap--col
             img.thumbnail__img(src=content.imgUrl)
-        .content-description
+        .content-description.flex__gap--col
             each para in content.description.split('\n')
                 p=para
-        .content-notice=content.notice
+        .content-notice.flex__gap--col
+            p=content.notice
     // 기본 컨트롤
-    .psycho__control
-        button.bt_start.completed='Mulai'
+    .psycho__section--control.flex__row
+        .flex__item--1
+        button.control__bt--start.flex__item--2.completed='Mulai'
+        .flex__item--1
     script(src='/public/js/psychotest.bundle.js')

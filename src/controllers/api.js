@@ -1,3 +1,5 @@
+import { writeReviewOnGoogleSheet } from '../configs/googleAPI';
+
 const QUESTION_TYPE = {
     YES_OR_NO: 'YESORNO', // 양자택일 / 이지 선다형
 };
@@ -46,4 +48,15 @@ export const postQuestionApi = (req, res) => {
     const resultParam = score.findIndex((elem) => elem === maxValue);
 
     res.send(responseJSON({ result: resultParam }));
+};
+
+export const postReview = (req, res) => {
+    const { data: review } = req.body;
+    try {
+        writeReviewOnGoogleSheet(review);
+        res.send(200);
+    } catch (err) {
+        console.log(err);
+        res.send(500);
+    }
 };

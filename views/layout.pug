@@ -1,9 +1,13 @@
 html
     head 
         meta(charset="utf-8")
-        link(rel="preconnect" href="https://fonts.gstatic.com")
-        link(href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@100;300;400;500;700;900&display=swap" rel="stylesheet")
+        //- Google Font
+        link(rel="preconnect" href="https://fonts.googleapis.com")
+        link(rel="preconnect" href="https://fonts.gstatic.com" crossorigin)
+        link(href="https://fonts.googleapis.com/css2?family=Noto+Sans:ital,wght@0,400;0,700;1,400;1,700&display=swap" rel="stylesheet")
+        //- 기본 스크립트
         script(src="/public/js/index.bundle.js")
+        //- 공통 오픈그래프
         meta(property='og:url' content='piwimi.id')
         meta(property='og:type' content='website')
         meta(property='og:locale' content='id_ID')
@@ -20,8 +24,6 @@ html
             function gtag(){dataLayer.push(arguments);}
             gtag('js', new Date());
             gtag('config', 'UA-201599400-1');
-        //- FontAwesome
-        <script src="https://kit.fontawesome.com/260b3e64a6.js" crossorigin="anonymous"></script>
         //- Adsense
         script(data-ad-client="ca-pub-6616061311166935" async=true src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js")
         //- TagManager
@@ -35,12 +37,29 @@ html
         //- TagManager noscript
         noscript
             iframe(src="https://www.googletagmanager.com/ns.html?id=GTM-MS3MSF5" height="0" width="0" style="display:none;visibility:hidden")
-        .background 
+        #Background
             #App
-                .nav
-                    img(src="/public/img/logo-main.png").header_logo_img
-                .body
+                .app__nav.flex__row
+                    .flex__item--1
+                        a(href="/")
+                            img(src="/public/img/logo-main.png").nav__img--logo
+                    .flex__item--3
+                .app__body
                     block body_body
-                .footer 
-                    //p.contact_partnership="제휴문의:baloonflower554@gmail.com"
-                    p.contact_github="developed by @Sinsun_Dorage"
+                .app__footer
+                    .flex__row
+                        .flex__item--4
+                            p.contact_github="developed by @Sinsun_Dorage"
+                #Modal
+                    .modal__background
+                    .modal__section--window
+                        .window__review
+                            p.review__p--header.flex__gap--col="How was the test"
+                            //img.review__img--sorry.flex__gap--col(src="https://storage.googleapis.com/pwm-res/web/modal/review_sorry.png")
+                            p.review__p--placeholder.flex__gap--col="your opinion makes piwimi better"
+                            textarea.review__txt--input.flex__gap--col(rows="5" placeholder="write your review in here.")
+                            button.review__bt--submit.flex__gap--col="Submit"
+                            .flex__row
+                                .flex__item--1
+                                button.review__bt--skip.flex__item--2="skip this time"
+                                .flex__item--1

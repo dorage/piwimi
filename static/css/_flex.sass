@@ -1,0 +1,24 @@
+@use 'vars'
+
+.flex__row
+    display: flex
+    flex-direction: row
+    box-sizing: content-box
+.flex__col
+    display: flex
+    flex-direction: column
+    box-sizing: content-box
+
+.flex__item--1
+    flex: 1
+.flex__item--2
+    flex: 2
+.flex__item--3
+    flex: 3
+.flex__item--4
+    flex: 4
+
+.flex__gap--col
+    margin-bottom: vars.$col
+.flex__gap--row
+    margin-right: vars.$col

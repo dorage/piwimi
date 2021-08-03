@@ -31,7 +31,7 @@ const setButtons = (elem, state, event) => {
 
 export const TestSubmit = (state, event) => {
     const newElem = cloneTemplate('#template-submit');
-    const oldElem = document.querySelector('.psycho__control');
+    const oldElem = document.querySelector('.psycho__section--control');
 
     setButtons(newElem, state, event);
 

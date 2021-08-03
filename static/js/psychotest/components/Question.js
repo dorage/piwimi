@@ -16,8 +16,8 @@ const draw = (elem, state, event) => {
     const pQuery = elem.querySelector('.question__query > p');
     pQuery.textContent = `${questions[currentPage]['query']}`;
 
-    const btYes = elem.querySelector('.question__button-yes');
-    const btNo = elem.querySelector('.question__button-no');
+    const btYes = elem.querySelector('.question__bt--yes');
+    const btNo = elem.querySelector('.question__bt--no');
     btYes.addEventListener('click', onClickYes);
     btNo.addEventListener('click', onClickNo);
 
@@ -36,7 +36,7 @@ const draw = (elem, state, event) => {
 
 export const Question = (state, event) => {
     const newElem = cloneTemplate('#template-question-singular');
-    const oldElem = document.querySelector('.psycho__question');
+    const oldElem = document.querySelector('.psycho__section--content');
 
     draw(newElem, state, event);
 

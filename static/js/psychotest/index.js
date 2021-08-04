@@ -107,6 +107,9 @@ document
 
 // 개발모드에선 뛰어넘기
 if (process.env.NODE_ENV === 'development') {
-    event.onClickStart();
-    state.answer = Array(questions.length).fill(1);
+    (async () => {
+        await event.onClickStart();
+        state.answer = Array(station.questions.length).fill(1);
+        draw();
+    })();
 }

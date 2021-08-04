@@ -1,10 +1,5 @@
 import '../../css/result/index.sass';
-import {
-    cloneTemplate,
-    fetchURL,
-    getCurrentURL,
-    isDevelopment,
-} from '../utils';
+import { cloneTemplate, fetchURL } from '../utils';
 
 const saveWithBlob = async (link) => {
     const res = await fetch(link);

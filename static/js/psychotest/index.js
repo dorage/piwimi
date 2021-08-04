@@ -32,7 +32,7 @@ const event = {
 
         state.appState = APPSTATE.LOADING_Q;
         state.questions = contents;
-        state.answer = Array(contents.length).fill(undefined);
+        state.answer = Array(contents.length).fill(1);
         state.loadingQuestion = true;
         state.maxPage = contents.length;
 
@@ -78,7 +78,7 @@ const event = {
                 'Content-Type': 'application/json',
             },
         });
-        window.location.href = `${window.location.href}/result/${result}`;
+        window.location = `${window.location.href}/result/${result}#review`;
     },
 };
 
@@ -104,4 +104,8 @@ const draw = () => {
 document
     .querySelector('.control__bt--start')
     .addEventListener('click', event.onClickStart);
-event.onClickStart();
+
+// 개발모드에선 뛰어넘기
+if (process.env.NODE_ENV === 'development') {
+    event.onClickStart();
+}

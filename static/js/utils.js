@@ -1,3 +1,15 @@
+export const isDevelopment = process.env.NODE_ENV === 'development';
+
+/**
+ * parameter 및 hash를 제외한 URL을 반환합니다.
+ * @returns URL
+ */
+export const getCurrentURL = () => {
+    return `${isDevelopment ? 'http://' : 'https://'}${location.host}${
+        location.pathname
+    }`;
+};
+
 /**
  * query 의 해당하는 DOM의 첫번째 자손을 클론하여 반환
  * @param {*} query

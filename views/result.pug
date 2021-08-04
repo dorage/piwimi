@@ -17,7 +17,7 @@ block body_body
         .body__description.flex__gap--col
             each para in content.description.split('\n')
                 p=para
-    .result__share.flex__gap--col
+    .result__share
         .save__block
             //- save post imgs
             -var postIdx = 1
@@ -38,14 +38,16 @@ block body_body
         .share__title='download'
     .result__share.flex__gap--col
         .share__block
-            //- copy a link
-            .share__elem#copyLink
+            //- share with copied link
+            -var copyURL = `${resultLink}?shr=cpy`
+            .share__elem#shareLink
                 img.share__icon(src="https://storage.googleapis.com/pwm-res/web/result/result_share_link.png")
                 .share__name='Copy a link'
-                input.share__input#cpy-link-input(value=`${resultLink}`)
+                input.share__input#ipCopyLink(value=`${copyURL}`)
             //- share on Facebook
             -var fbAppID = 2089044874583060;
-            -var fbHref=`https://www.facebook.com/dialog/share?app_id=${fbAppID}&display=popup&href=${resultLink}&redirect_uri=${resultLink}`
+            -var fbShareURL = `${resultLink}?shr=fb`
+            -var fbHref=`https://www.facebook.com/dialog/share?app_id=${fbAppID}&display=popup&href=${fbShareURL}&redirect_uri=${resultLink}`
             .share__elem#shareFB
                 a(href=`${fbHref}`)
                     img.share__icon(src="https://storage.googleapis.com/pwm-res/web/result/result_share_facebook.png")
@@ -53,7 +55,8 @@ block body_body
             //- share on Twitter
             -var twtText = encodeURI(`${content.share.placeholder} ${content.type}!`)
             -var twtHashtag = encodeURI(`${content.type},PIWIMI`)
-            -var twtHref=`https://twitter.com/intent/tweet?text=${twtText}&hashtags=${twtHashtag}&url=${resultLink}`
+            -var twtShareURL = `${resultLink}?shr=twt`
+            -var twtHref=`https://twitter.com/intent/tweet?text=${twtText}&hashtags=${twtHashtag}&url=${twtShareURL}`
             .share__elem#shareTWT
                 a(href=`${twtHref}`)
                     img.share__icon(src="https://storage.googleapis.com/pwm-res/web/result/result_share_twitter.png")
@@ -62,4 +65,4 @@ block body_body
     .result__control.flex__gap--col
         .control__row
             button.control__button-retry='Ulangi'
-    script(src='/public/js/result.bundle.js')
+    script(defer src='/public/js/result.bundle.js')

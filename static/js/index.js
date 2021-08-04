@@ -1,6 +1,10 @@
 // style
 import '../css/index.sass';
 
+history.pushState(null, null, location.href);
+window.onpopstate = () => {
+    history.go(1);
+};
 /*
 // sentry setting
 import * as Sentry from '@sentry/browser';

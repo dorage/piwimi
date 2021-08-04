@@ -51,15 +51,19 @@ html
                         .flex__item--4
                             p.contact_github="developed by @Sinsun_Dorage"
                 #Modal
-                    .modal__background
-                    .modal__section--window
-                        .window__review
-                            p.review__p--header.flex__gap--col="How was the test"
-                            //img.review__img--sorry.flex__gap--col(src="https://storage.googleapis.com/pwm-res/web/modal/review_sorry.png")
-                            p.review__p--placeholder.flex__gap--col="your opinion makes piwimi better"
-                            textarea.review__txt--input.flex__gap--col(rows="5" placeholder="write your review in here.")
-                            button.review__bt--submit.flex__gap--col="Submit"
-                            .flex__row
-                                .flex__item--1
-                                button.review__bt--skip.flex__item--2="skip this time"
-                                .flex__item--1
+                template#template-modal-review
+                    #Modal
+                        .modal__background
+                        .modal__section--window
+                            .window__review
+                                p.review__p--header.flex__gap--col="Bagaimana dengan testnya?"
+                                //img.review__img--sorry.flex__gap--col(src="https://storage.googleapis.com/pwm-res/web/modal/review_sorry.png")
+                                .review__section--desc.flex__gap--col
+                                    p="pendapat anda membuat"
+                                    p="piwimi lebih baik!"
+                                textarea.review__txt--input.flex__gap--col(rows="5" placeholder="tulis review anda disini")
+                                button.review__bt--submit.flex__gap--col="Submit"
+                                .flex__row
+                                    .flex__item--1
+                                    button.review__bt--skip.flex__item--2="I'll do it later"
+                                    .flex__item--1

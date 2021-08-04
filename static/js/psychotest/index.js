@@ -32,7 +32,7 @@ const event = {
 
         state.appState = APPSTATE.LOADING_Q;
         state.questions = contents;
-        state.answer = Array(contents.length).fill(1);
+        state.answer = Array(contents.length).fill(undefined);
         state.loadingQuestion = true;
         state.maxPage = contents.length;
 
@@ -108,4 +108,5 @@ document
 // 개발모드에선 뛰어넘기
 if (process.env.NODE_ENV === 'development') {
     event.onClickStart();
+    state.answer = Array(questions.length).fill(1);
 }

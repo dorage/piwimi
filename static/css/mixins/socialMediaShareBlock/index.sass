@@ -1,0 +1,56 @@
+@use "../../vars"
+
+.addthis__section--promote-sharing
+    display: flex
+    margin-bottom: 10rem
+// chatbubble
+.promote-sharing__chatbubble
+    display: flex
+    align-items: flex-end
+    padding-bottom: 10rem
+.chatbubble__body
+    flex: 1
+    padding: 5rem 10rem
+
+    background-color: #eeeeee
+    border-radius: 5rem
+.chatbubble__body--text
+    margin-bottom: 5rem
+    & > p
+        font-size: 20rem
+        font-weight: 700
+.chatbubble__body--control
+    display: flex
+.chatbubble__button
+    cursor: pointer
+    font-size: 18rem
+    border: 2px solid
+    background-color: transparent
+#chatbubbleYes
+    border-color: vars.$right-color
+    color: vars.$right-color
+#chatbubbleNo
+    border-color: #999999
+    color: #999999
+.chatbubble__tail
+    width: 15rem
+    height: 10rem
+    margin-bottom: 10rem
+// character
+.promote-sharing__character
+    width: 100rem
+    margin-left: 10rem
+.addthis_section--share-toolbox
+    display: none
+    animation: 1s show
+// addthis
+.at-share-btn
+    box-shadow: 0px 0px 5px #999999
+// animation
+@keyframes show
+    0%
+        opacity: 0
+        transform: translateY(-50rem)
+    100%
+        opacity: 1
+        transform: translateY(0rem)

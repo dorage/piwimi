@@ -7,6 +7,8 @@ module.exports = {
         home: './static/js/home/index.js',
         psychotest: './static/js/psychotest/index.js',
         result: './static/js/result/index.js',
+        socialMediaShareBlock:
+            './static/js/mixins/socialMediaShareBlock/index.js',
     },
     output: {
         filename: '[name].bundle.js',

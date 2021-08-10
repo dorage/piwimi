@@ -92,6 +92,7 @@ const writeDataWrapper = (review) => {
         const resource = { values };
         sheets.spreadsheets.values.append(
             {
+                // TODO; 엑셀 파일을 변경할 수 있게 만들어야 할 것 같은데
                 spreadsheetId: '1_CL_Uzb1wLEuaMF35lNx_XtciYceie60JIDMbJv3c3s',
                 range: 'A1',
                 valueInputOption: 'RAW',

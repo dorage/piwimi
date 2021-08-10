@@ -17,52 +17,56 @@ block body_body
         .body__description.flex__gap--col
             each para in content.description.split('\n')
                 p=para
-    .result__share
-        .save__block
-            //- save post imgs
-            -var postIdx = 1
-            -var postCnt = content.share.igPost.length
-            each link in content.share.igPost
-                .save__img(id=`downIGPost${postIdx}` data-link=`${link}`)
-                    img.save__icon(src="https://storage.googleapis.com/pwm-res/web/result/result_download_ig-post.png")
-                    .save__name=`IG Post (${postIdx}/${postCnt})`
-                    -postIdx++
-            //- save story imgs
-            -var storyIdx = 1
-            -var storyCnt = content.share.igStory.length
-            each link in content.share.igStory
-                .save__img(id=`downIGStory${storyIdx}` data-link=`${link}`)
-                    img.save__icon(src="https://storage.googleapis.com/pwm-res/web/result/result_download_ig-story.png")
-                    .save__name=`IG Story (${storyIdx}/${storyCnt})`
-                    -storyIdx++
-        .share__title='download'
-    .result__share.flex__gap--col
-        .share__block
-            //- share with copied link
-            -var copyURL = `${resultLink}?shr=cpy`
-            .share__elem#shareLink
-                img.share__icon(src="https://storage.googleapis.com/pwm-res/web/result/result_share_link.png")
-                .share__name='Copy a link'
-                input.share__input#ipCopyLink(value=`${copyURL}`)
-            //- share on Facebook
-            -var fbAppID = 2089044874583060;
-            -var fbShareURL = `${resultLink}?shr=fb`
-            -var fbHref=`https://www.facebook.com/dialog/share?app_id=${fbAppID}&display=popup&href=${fbShareURL}&redirect_uri=${resultLink}`
-            .share__elem#shareFB
-                a(href=`${fbHref}`)
-                    img.share__icon(src="https://storage.googleapis.com/pwm-res/web/result/result_share_facebook.png")
-                    .share__name='Facebook'
-            //- share on Twitter
-            -var twtText = encodeURI(`${content.share.placeholder} ${content.type}!`)
-            -var twtHashtag = encodeURI(`${content.type},PIWIMI`)
-            -var twtShareURL = `${resultLink}?shr=twt`
-            -var twtHref=`https://twitter.com/intent/tweet?text=${twtText}&hashtags=${twtHashtag}&url=${twtShareURL}`
-            .share__elem#shareTWT
-                a(href=`${twtHref}`)
-                    img.share__icon(src="https://storage.googleapis.com/pwm-res/web/result/result_share_twitter.png")
-                    .share__name='Twitter'
-        .share__title='share'
+    //-
+        .result__share
+            .save__block
+                //- save post imgs
+                -var postIdx = 1
+                -var postCnt = content.share.igPost.length
+                each link in content.share.igPost
+                    .save__img(id=`downIGPost${postIdx}` data-link=`${link}`)
+                        img.save__icon(src="https://storage.googleapis.com/pwm-res/web/result/result_download_ig-post.png")
+                        .save__name=`IG Post (${postIdx}/${postCnt})`
+                        -postIdx++
+                //- save story imgs
+                -var storyIdx = 1
+                -var storyCnt = content.share.igStory.length
+                each link in content.share.igStory
+                    .save__img(id=`downIGStory${storyIdx}` data-link=`${link}`)
+                        img.save__icon(src="https://storage.googleapis.com/pwm-res/web/result/result_download_ig-story.png")
+                        .save__name=`IG Story (${storyIdx}/${storyCnt})`
+                        -storyIdx++
+            .share__title='download'
+    //-
+        .result__share.flex__gap--col
+            .share__block
+                //- share with copied link
+                -var copyURL = `${resultLink}?shr=cpy`
+                .share__elem#shareLink
+                    img.share__icon(src="https://storage.googleapis.com/pwm-res/web/result/result_share_link.png")
+                    .share__name='Copy a link'
+                    input.share__input#ipCopyLink(value=`${copyURL}`)
+                //- share on Facebook
+                -var fbAppID = 2089044874583060;
+                -var fbShareURL = `${resultLink}?shr=fb`
+                -var fbHref=`https://www.facebook.com/dialog/share?app_id=${fbAppID}&display=popup&href=${fbShareURL}&redirect_uri=${resultLink}`
+                .share__elem#shareFB
+                    a(href=`${fbHref}`)
+                        img.share__icon(src="https://storage.googleapis.com/pwm-res/web/result/result_share_facebook.png")
+                        .share__name='Facebook'
+                //- share on Twitter
+                -var twtText = encodeURI(`${content.share.placeholder} ${content.type}!`)
+                -var twtHashtag = encodeURI(`${content.type},PIWIMI`)
+                -var twtShareURL = `${resultLink}?shr=twt`
+                -var twtHref=`https://twitter.com/intent/tweet?text=${twtText}&hashtags=${twtHashtag}&url=${twtShareURL}`
+                .share__elem#shareTWT
+                    a(href=`${twtHref}`)
+                        img.share__icon(src="https://storage.googleapis.com/pwm-res/web/result/result_share_twitter.png")
+                        .share__name='Twitter'
+            .share__title='share'
+    include mixins/socialMediaShareBlock.pug
+    +socialMediaShareBlock()
     .result__control.flex__gap--col
         .control__row
-            button.control__button-retry='Ulangi'
+            button.styled_button.control__button-retry='Ulangi'
     script(defer src='/public/js/result.bundle.js')

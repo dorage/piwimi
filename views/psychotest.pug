@@ -28,18 +28,18 @@ block body_body
                 p='placeholder_Question'
             .question__bt--yes-no.flex__row
                 .flex__item--1
-                button.question__bt--yes.flex__item--1='IYA'
-                button.question__bt--no.flex__item--1='TIDAK'
+                button.styled_button.question__bt--yes.flex__item--1='IYA'
+                button.styled_button.question__bt--no.flex__item--1='TIDAK'
                 .flex__item--1
     // 퀴즈 하단 컨트롤 템플릿
     template#template-submit
         .psycho__section--control
             .flex__row.flex__gap--col
-                button.flex__item--1#prev='Sebelumnya'
+                button.styled_button.flex__item--1#prev='Sebelumnya'
                 .flex__item--2
-                button.flex__item--1#next='Selanjutnya'
+                button.styled_button.flex__item--1#next='Selanjutnya'
             .flex__row.flex__gap--col
-                button.flex__item--4#submit='Lihat Hasil'
+                button.styled_button.flex__item--4#submit='Lihat Hasil'
     // 로딩 템플릿
     template#template-loading
         .psycho__section--content
@@ -58,6 +58,6 @@ block body_body
     // 기본 컨트롤
     .psycho__section--control.flex__row
         .flex__item--1
-        button.control__bt--start.flex__item--2.completed='Mulai'
+        button.styled_button.control__bt--start.flex__item--2.completed='Mulai'
         .flex__item--1
     script(defer src='/public/js/psychotest.bundle.js')

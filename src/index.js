@@ -1,4 +1,5 @@
 import './configs';
+import './db';
 import app from './ExpressApp';
 import { configs } from './configs';
 

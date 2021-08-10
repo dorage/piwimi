@@ -73,9 +73,11 @@ const event = {
 document
     .querySelector('.control__button-retry')
     .addEventListener('click', event.onClickRetry);
+/*
 document
     .getElementById('shareLink')
     .addEventListener('click', event.onClickShareCopyLink);
+*/
 document
     .querySelectorAll('.save__img')
     .forEach((elem) => elem.addEventListener('click', event.onClickSave));

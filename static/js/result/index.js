@@ -37,9 +37,11 @@ const event = {
         document.getElementById('Background').style.overflowY = 'hidden';
         const oldElem = document.getElementById('Modal');
         const newElem = cloneTemplate('#template-modal-review');
+        /*
         newElem
             .querySelector('.review__bt--skip')
             .addEventListener('click', event.onHideReviewModal);
+        */
         newElem
             .querySelector('.review__bt--submit')
             .addEventListener('click', event.onSubmitReview);

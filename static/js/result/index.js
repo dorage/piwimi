@@ -53,8 +53,10 @@ const event = {
         const oldElem = document.getElementById('Modal');
         oldElem.innerHTML = '';
         // 링크 되돌리기
+        /* TODO; 배포전 주석해제
         const { host, pathname } = window.location;
         window.location.replace(`http://${host}${pathname}`);
+        */
     },
     onSubmitReview: (e) => {
         const textValue = document.querySelector('.review__txt--input').value;
@@ -75,6 +77,7 @@ const event = {
 document
     .querySelector('.control__button-retry')
     .addEventListener('click', event.onClickRetry);
+// TODO; CASE#3을 위해 잠시 삭제
 /*
 document
     .getElementById('shareLink')

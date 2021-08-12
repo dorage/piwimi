@@ -6,7 +6,7 @@
         "production": "npm run build && cross-env NODE_ENV=production babel-node src/index.js",
         "forever": "sudo forever start -c \"npm run production\" ./",
         "watch": "webpack --watch --mode development",
-        "dev-server": "nodemon --exec cross-env NODE_ENV=development babel-node src/index.js",
+        "dev-server": "nodemon --delay 500ms --exec cross-env NODE_ENV=development babel-node src/index.js",
         "start": "npm run dev-server"
     },
     "dependencies": {

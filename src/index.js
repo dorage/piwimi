@@ -2,7 +2,6 @@ import './configs';
 //import './db';
 import app from './ExpressApp';
 import { configs } from './configs';
-import { PrismaClient } from '@prisma/client';
 
 const port = configs.port;
 
@@ -10,16 +9,14 @@ const handleListen = () => {
     console.log(`Listening On : http://localhost:${port}`);
 };
 
-const prisma = new PrismaClient();
-prisma
-    .$connect()
-    .then(() => {
-        console.log('Pirsma is Connected!');
-    })
-    .catch((e) => {
-        console.log(e);
-        prisma.$disconnect();
-        throw e;
-    });
+// Nodemon 포트 충돌이슈
+process.once('SIGUSR2', function () {
+    process.kill(process.pid, 'SIGUSR2');
+});
+
+process.on('SIGINT', function () {
+    // this is only called on ctrl+c, not restart
+    process.kill(process.pid, 'SIGINT');
+});
 
 app.listen(port, handleListen);

@@ -12,20 +12,17 @@ generator client {
 }
 
 model PsyReview {
-  id         String   @id @default(dbgenerated()) @map("_id") @db.ObjectId
-  review     String
-  createdAt  DateTime @default(now())
-  psyQuery   PsyQuery @relation(fields: [psyQueryId], references: [id])
-  psyQueryId String   @db.ObjectId
+  id        String   @id @default(dbgenerated()) @map("_id") @db.ObjectId
+  review    String
+  createdAt DateTime @default(now())
 }
 
 model PsyQuery {
-  id        String      @id @default(dbgenerated()) @map("_id") @db.ObjectId
-  psy       PsyYesNo?   @relation(fields: [psyId], references: [id])
-  psyId     String?     @db.ObjectId
-  query     String
-  imgUrl    String
-  PsyReview PsyReview[]
+  id     String    @id @default(dbgenerated()) @map("_id") @db.ObjectId
+  psy    PsyYesNo? @relation(fields: [psyId], references: [id])
+  psyId  String?   @db.ObjectId
+  query  String
+  imgUrl String
 }
 
 model PsyYesNo {

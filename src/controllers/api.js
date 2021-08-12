@@ -1,5 +1,5 @@
-import { prisma } from '../configs/prisma';
-//import { writeReviewOnGoogleSheet } from '../configs/googleAPI';
+import prisma from '../configs/prisma';
+import { writeReviewOnGoogleSheet } from '../configs/googleAPI';
 
 const QUESTION_TYPE = {
     YES_OR_NO: 'YESORNO', // 양자택일 / 이지 선다형
@@ -54,11 +54,17 @@ export const postQuestionApi = (req, res) => {
 export const postReview = async (req, res) => {
     const { data: review } = req.body;
     try {
-        //writeReviewOnGoogleSheet(review);
-        await prisma.psy_review.findMany();
-        res.send(200);
+        writeReviewOnGoogleSheet(review);
+        /*
+        await prisma.psyReview.create({
+            data: {
+                review,
+            },
+        });
+        */
+        res.sendStatus(200);
     } catch (err) {
         console.log(err);
-        res.send(500);
+        res.sendStatus(500);
     }
 };

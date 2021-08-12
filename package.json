@@ -6,7 +6,7 @@
         "production": "npm run build && cross-env NODE_ENV=production babel-node src/index.js",
         "forever": "sudo forever start -c \"npm run production\" ./",
         "watch": "webpack --watch --mode development",
-        "dev-server": "nodemon --delay 500ms --exec cross-env NODE_ENV=development babel-node src/index.js",
+        "dev-server": "nodemon --delay 300ms --exec cross-env NODE_ENV=development babel-node src/index.js",
         "start": "npm run dev-server"
     },
     "dependencies": {
@@ -27,6 +27,7 @@
         "style-loader": "^2.0.0"
     },
     "devDependencies": {
+        "kill-port": "^1.6.1",
         "@babel/cli": "^7.14.5",
         "@babel/core": "^7.10.1",
         "@babel/node": "^7.10.1",

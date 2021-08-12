@@ -2,5 +2,9 @@
     "verbose": true,
     "ignore": ["node_modules/*", "static/*"],
     "watch": ["src/"],
+    "events": {
+        "restart": "kill-port 4000",
+        "crash": "kill-port 4000"
+    },
     "ext": "js"
 }

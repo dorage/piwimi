@@ -1,0 +1,26 @@
+extends layout.pug 
+
+block head
+    -var ogLink = `https://piwimi.id/`
+    -var ogTitle = `psikotes lucu`
+    title=`PIWIMI — ${ogTitle}`
+    //- Open Graph / Facebook
+    meta(property='og:url' content=`${ogLink}`)
+    meta(property='og:title' content=`PIWIMI — ${ogTitle}`)
+    meta(property='og:description' content=``)
+    meta(property='og:image' content=``)
+    meta(property='og:image:alt' content=``)
+    //- Twitter Open Graph
+    meta(property='twitter:url' content=`${ogLink}`)
+    meta(property='twitter:title' content=`PIWIMI — ${ogTitle}`)
+    meta(property='twitter:description' content=``)
+    meta(property='twitter:image' content=``)
+
+block body
+    .content__404
+        img(src="https://storage.googleapis.com/pwm-res/web/404/404.png" alt="404, Page not found")
+        .back-to-main.f-r
+            .f-1
+            a.bt-stroke.f-3(href='/')='< back to main'
+            .f-1
+    script(src='/public/js/404.bundle.js')

@@ -1,18 +1,28 @@
 extends layout.pug 
 
 block head
-    title=`PIWIMI | psikotes lucu`
-    meta(property='og:title' content=`PIWIMI`)
+    -var ogLink = `https://piwimi.id/`
+    -var ogTitle = `psikotes lucu`
+    title=`PIWIMI — ${ogTitle}`
+    //- Open Graph / Facebook
+    meta(property='og:url' content=`${ogLink}`)
+    meta(property='og:title' content=`PIWIMI — ${ogTitle}`)
     meta(property='og:description' content=``)
     meta(property='og:image' content=``)
     meta(property='og:image:alt' content=``)
+    //- Twitter Open Graph
+    meta(property="twitter:url" content=`${ogLink}`)
+    meta(property="twitter:title" content=`PIWIMI — ${ogTitle}`)
+    meta(property="twitter:description" content=``)
+    meta(property="twitter:image" content=``)
 
-block body_body
-    ul.body__test-section
-        .test__conetnt
-            img.content__img--thumb(src="")
-            p.title(src="")
-            // 몇명이 플레이했는지
-            .users
-        img.body__img--working(src='https://storage.googleapis.com/pwm-res/web/home/working_0.jpg')
+block body
+    .body__test-section
+        each psy in content.psys
+            a.test__conetnt(href=`/psy/${psy.psy_id}`)
+                img.content__img--thumb(src=`${psy.img_url}`)
+                p.title=`${psy.title}`
+                p.description=`${psy.description.replace('\\n',' ')}`
+                p.views=`${psy.view}`
+                // 몇명이 플레이했는지
     script(src='/public/js/home.bundle.js')

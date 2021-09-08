@@ -57,9 +57,11 @@ const event = {
         window.location.replace(`http://${host}${pathname}`);
     },
     onSubmitReview: (e) => {
+        const tokens = location.pathname.split('#')[0].split('/')
         const textValue = document.querySelector('.review__txt--input').value;
+        console.log(tokens);
         if (textValue.length < 1) return;
-        fetchURL('review', {
+        fetchURL(`review/${tokens[2]}`, {
             method: 'POST',
             body: JSON.stringify({ data: textValue }),
             headers: {
@@ -75,12 +77,6 @@ const event = {
 document
     .querySelector('.control__button-retry')
     .addEventListener('click', event.onClickRetry);
-document
-    .getElementById('shareLink')
-    .addEventListener('click', event.onClickShareCopyLink);
-document
-    .querySelectorAll('.save__img')
-    .forEach((elem) => elem.addEventListener('click', event.onClickSave));
 
 if (document.location.hash.includes('review')) {
     event.onShowReviewModal();

@@ -1,20 +1,41 @@
 extends layout.pug 
 
 block head
-    title=`PIWIMI | ${content.share.placeholder} ${content.type}`
-    meta(property='og:title' content=`${content.share.placeholder} ${content.type}`)
+    -var ogLink = `https://piwimi.id/psy/${content.qId}/result/${content.aId}`
+    -var ogTitle = `${content.share.prefix} ${content.type} ${content.share.surfix}`
+    title=`PIWIMI — ${ogTitle}`
+    //- Open Graph / Facebook
+    meta(property='og:url' content=`${ogLink}`)
+    meta(property='og:title' content=`${ogTitle}`)
     meta(property='og:description' content=`${content.description}`)
     meta(property='og:image' content=`${content.og.imgUrl}`)
     meta(property='og:image:alt' content=`${content.type} | ${content.description}`)
-block body_body
+    //- Twitter Open Graph
+    meta(property="twitter:url" content=`${ogLink}`)
+    meta(property="twitter:title" content=`PIWIMI — ${ogTitle}`)
+    meta(property="twitter:description" content=`${content.description}`)
+    meta(property="twitter:image" content=`${content.og.imgUrl}`)
+    //- AddThis reimplement Twitter
+    script(type="text/javascript").
+        var addthis_share = addthis_share || {};
+        addthis_share = {
+            passthrough : {
+                twitter: {
+                    via: "piwimi_id",
+                    hashtags: "psikotes,mbti"
+                }
+            }
+        };
+
+block body
     - var resultLink = `https://piwimi.id/psy/${content.qId}/result/${content.aId}`
-    .result__header.flex__gap--col
-        .header__placeholder=content.placeholder
+    .result__header.f-gap-c
+        .header__placeholder=content.prefix
         .header__type
             h1=content.type
     .result__body
-        img.body__circle__img(src=content.imgUrl).flex__gap--col
-        .body__description.flex__gap--col
+        img.body__circle__img(src=content.imgUrl).f-gap-c
+        .body__description.f-gap-c
             each para in content.description.split('\n')
                 p=para
     //-
@@ -38,7 +59,7 @@ block body_body
                         -storyIdx++
             .share__title='download'
     //-
-        .result__share.flex__gap--col
+        .result__share.f-gap-c
             .share__block
                 //- share with copied link
                 -var copyURL = `${resultLink}?shr=cpy`
@@ -55,7 +76,7 @@ block body_body
                         img.share__icon(src="https://storage.googleapis.com/pwm-res/web/result/result_share_facebook.png")
                         .share__name='Facebook'
                 //- share on Twitter
-                -var twtText = encodeURI(`${content.share.placeholder} ${content.type}!`)
+                -var twtText = encodeURI(`${content.share.prefix} ${content.type}!`)
                 -var twtHashtag = encodeURI(`${content.type},PIWIMI`)
                 -var twtShareURL = `${resultLink}?shr=twt`
                 -var twtHref=`https://twitter.com/intent/tweet?text=${twtText}&hashtags=${twtHashtag}&url=${twtShareURL}`
@@ -66,7 +87,7 @@ block body_body
             .share__title='share'
     include mixins/socialMediaShareBlock.pug
     +socialMediaShareBlock()
-    .result__control.flex__gap--col
+    .result__control.f-gap-c
         .control__row
-            button.styled_button.control__button-retry='Ulangi'
+            button.bt-solid.control__button-retry='Ulangi'
     script(defer src='/public/js/result.bundle.js')

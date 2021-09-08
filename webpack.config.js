@@ -3,6 +3,7 @@ const path = require('path');
 
 module.exports = {
     entry: {
+        404: './static/js/404/index.js',
         index: './static/js/index.js',
         home: './static/js/home/index.js',
         psychotest: './static/js/psychotest/index.js',

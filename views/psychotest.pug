@@ -1,13 +1,33 @@
 extends layout.pug 
 
 block head
-    title=`PIWIMI | ${content.header}`
-    meta(property='og:title' content=`PIWIMI | ${content.header}`)
+    -var ogLink = `https://piwimi.id/psy/${common.qId}`
+    -var ogTitle = `${content.title}`
+    title=`PIWIMI — ${ogTitle}`
+    //- Open Graph / Facebook
+    meta(property='og:url' content=`${ogLink}`)
+    meta(property='og:title' content=`PIWIMI — ${ogTitle}`)
     meta(property='og:description' content=`${content.description}`)
     meta(property='og:image' content=`${content.imgUrl}`)
     meta(property='og:image:alt' content=`${content.description}`)
+    //- Twitter Open Graph
+    meta(property="twitter:url" content=`${ogLink}`)
+    meta(property="twitter:title" content=`PIWIMI — ${ogTitle}`)
+    meta(property="twitter:description" content=`${content.description}`)
+    meta(property="twitter:image" content=`${content.description}`)
+    //- AddThis reimplement Twitter
+    script(type="text/javascript").
+        var addthis_share = addthis_share || {};
+        addthis_share = {
+            passthrough : {
+                twitter: {
+                    via: "piwimi_id",
+                    hashtags: "psikotes,mbti"
+                }
+            }
+        };
 
-block body_body
+block body
     // 퀴즈 컨텐츠 템플릿 - 다중선택지
     template#template-question-multiple
         .psycho__section--content
@@ -22,42 +42,41 @@ block body_body
     // 퀴즈 컨텐츠 템플릿 - Yes Or No
     template#template-question-singular
         .psycho__section--content
-            .question__index.flex__gap--col
-                p='placeholder_Index'
-            .question__query.flex__gap--col
+            .question__index.f-gap-c
+                p='0/1'
+            .question__query.f-gap-c
                 p='placeholder_Question'
-            .question__bt--yes-no.flex__row
-                .flex__item--1
-                button.styled_button.question__bt--yes.flex__item--1='IYA'
-                button.styled_button.question__bt--no.flex__item--1='TIDAK'
-                .flex__item--1
+            .question__bt--yes-no.f-r
+                .f-1
+                button.question__bt--yes.f-1.bt-solid='IYA'
+                button.question__bt--no.f-1.bt-solid='TIDAK'
+                .f-1
     // 퀴즈 하단 컨트롤 템플릿
     template#template-submit
         .psycho__section--control
-            .flex__row.flex__gap--col
-                button.styled_button.flex__item--1#prev='Sebelumnya'
-                .flex__item--2
-                button.styled_button.flex__item--1#next='Selanjutnya'
-            .flex__row.flex__gap--col
-                button.styled_button.flex__item--4#submit='Lihat Hasil'
+            .f-r.f-gap-c
+                button.bt-solid.f-1#prev='Sebelumnya'
+                .f-1
+                button.bt-solid.f-1#next='Selanjutnya'
+            .f-r.f-gap-c
+                button.bt-solid.f-4#submit='Lihat Hasil'
     // 로딩 템플릿
     template#template-loading
         .psycho__section--content
             .loading_text='memuat pertanyaan'
     // 기본 타이틀
     .psycho__section--content
-        .content-header.flex__gap--col
-            h1=content.header
-        .content-thumbnail.flex__gap--col
+        .content-thumbnail.f-gap-c
             img.thumbnail__img(src=content.imgUrl)
-        .content-description.flex__gap--col
-            each para in content.description.split('\n')
+        .content-header.f-gap-c
+            h1=content.title
+        .content-description.f-gap-c
+            each para in content.description.split('\\n')
                 p=para
-        .content-notice.flex__gap--col
             p=content.notice
     // 기본 컨트롤
-    .psycho__section--control.flex__row
-        .flex__item--1
-        button.styled_button.control__bt--start.flex__item--2.completed='Mulai'
-        .flex__item--1
+    .psycho__section--control.f-r
+        .f-1
+        .bt-solid.control__bt--start.f-2.anim-bounce="Mulai"
+        .f-1
     script(defer src='/public/js/psychotest.bundle.js')

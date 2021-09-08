@@ -21,8 +21,8 @@ export const cloneTemplate = (query) => {
 };
 
 /**
- * fetch 와 동일하게 사용하며 json을 리턴합니다.
- * @param {*} url
+ * /api/ 서버로 fetch 합니다
+ * @param {*} url /api/ 이후 라우트를 연결하세요
  * @param {*} options
  * @returns
  */

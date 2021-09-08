@@ -1,5 +1,5 @@
-html
-    head 
+html(lang="id")
+    head
         //- Global site tag (gtag.js) - Google Analytics
         script(async src="https://www.googletagmanager.com/gtag/js?id=UA-201599400-1")
         script(type="text/javascript").
@@ -32,7 +32,6 @@ html
         //- 기본 스크립트
         script(src="/public/js/index.bundle.js")
         //- 공통 오픈그래프
-        meta(property='og:url' content='piwimi.id')
         meta(property='og:type' content='website')
         meta(property='og:locale' content='id_ID')
         //- 페이스북 오픈그래프 앱ID
@@ -53,38 +52,39 @@ html
         //- ADDTHIS - install a social media inline share button
         //- Go to www.addthis.com/dashboard to customize your tools
         script(type="text/javascript" src="//s7.addthis.com/js/300/addthis_widget.js#pubid=ra-610d3227058b910e")
+        //- AddThis Configuration
+        script(type="text/javascript").
+            var addthis_config = addthis_config||{};
+            addthis_config.lang = 'id';
     body
+        //- Mixins
+        include mixins/navbar.pug
+        include mixins/footer.pug
         //- TagManager noscript
         noscript
             iframe(src="https://www.googletagmanager.com/ns.html?id=GTM-MS3MSF5" height="0" width="0" style="display:none;visibility:hidden")
-        #Background
-            #App
-                .app__nav.flex__row
-                    .flex__item--1
-                        a(href="/")
-                            img(src="/public/img/logo-main.png").nav__img--logo
-                    .flex__item--3
-                .app__body
-                    block body_body
-                .app__footer
-                    .flex__row
-                        .flex__item--4
-                            p.contact_github="developed by @Sinsun_Dorage"
+        //- APP
+        #Background.bg-cl-4.cl-1
+            #App.bd
+                +navbar()
+                .body.bg-cl-6.bd-rd
+                    block body
+                +footer()
                 #Modal
                 template#template-modal-review
                     #Modal
                         .modal__background
                         .modal__section--window
                             .window__review
-                                p.review__p--header.flex__gap--col="Bagaimana dengan testnya?"
-                                //img.review__img--sorry.flex__gap--col(src="https://storage.googleapis.com/pwm-res/web/modal/review_sorry.png")
-                                .review__section--desc.flex__gap--col
+                                p.review__p--header.f-gap-c="Bagaimana dengan testnya?"
+                                //img.review__img--sorry.f-gap-c(src="https://storage.googleapis.com/pwm-res/web/modal/review_sorry.png")
+                                .review__section--desc.f-gap-c
                                     p="pendapat anda membuat"
                                     p="piwimi lebih baik!"
-                                textarea.review__txt--input.flex__gap--col(rows="5" placeholder="tulis review anda disini")
-                                button.styled_button.review__bt--submit.flex__gap--col="Lihat Hasil"
+                                textarea.review__txt--input.f-gap-c(rows="5" placeholder="tulis review anda disini")
+                                button.bt-solid.review__bt--submit.f-gap-c="Lihat Hasil"
                                 //-
-                                    .flex__row
-                                        .flex__item--1
-                                        button.styled_button.review__bt--skip.flex__item--2="saya akan melakukan nanti"
-                                        .flex__item--1
+                                    .f-r
+                                        .f-1
+                                        button.styled_button.review__bt--skip.f-2="saya akan melakukan nanti"
+                                        .f-1

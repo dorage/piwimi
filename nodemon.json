@@ -1,6 +1,6 @@
 {
     "verbose": true,
-    "ignore": ["node_modules/*", "static/*"],
+    "ignore": ["node_modules/*", "static/*", "src/public/*", "*.sass"],
     "watch": ["src/"],
     "events": {
         "restart": "kill-port 4000",

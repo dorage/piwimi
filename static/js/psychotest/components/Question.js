@@ -26,11 +26,11 @@ const draw = (elem, state, event) => {
         return;
     }
     if (currAnswer) {
-        btYes.classList.add('selected');
-        btNo.classList.add('unselected');
+        btYes.classList.replace('bt-solid-da', 'bt-solid');
+        btNo.classList.replace('bt-solid', 'bt-solid-da');
     } else {
-        btYes.classList.add('unselected');
-        btNo.classList.add('selected');
+        btYes.classList.replace('bt-solid', 'bt-solid-da');
+        btNo.classList.replace('bt-solid-da', 'bt-solid');
     }
 };
 

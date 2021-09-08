@@ -5,7 +5,6 @@
     width: 100%
     padding: 0
     margin: 0
-    color: vars.$text-color-normal
     font-family: 'Noto Sans', sans-serif
     text-align: center
 
@@ -24,7 +23,6 @@ html
     justify-content: center
     width: 100vw
     height: 100%
-    background-color: vars.$background-color
     overflow-y: auto
 
 #App
@@ -35,55 +33,26 @@ html
     min-height: 100vh
 
     @media screen and (max-device-width: 768px)
-        padding: 0rem vars.$pad
     @media screen and (min-device-width: 768px) and (max-device-width: 1024px)
-        padding: 0rem 2 * vars.$pad
     @media screen and (min-device-width: 1024px)
         width: 480rem
 
 // APP
-.app__nav
-    height: vars.$col
-    padding: 0.5* vars.$col 0
+.navbar
+    height: vars.$col*2
+    padding: 0.5* vars.$col 0.5*vars.$pad
 
-.app__body
+.body
     display: flex
     flex-direction: column
     align-items: center
     padding: vars.$pad vars.$pad
+    margin-top: 0.5 * vars.$pad
+    margin-bottom: 0.5 * vars.$pad
     flex: 1
 
-    border-radius: 20rem
-    background: #ffffff
-
-.app__footer
-    display: flex
-    flex-direction: column
-    justify-content: center
-    align-items: center
+.footer
     padding-top: 0.5 * vars.$col
     padding-bottom: vars.$col
-
-    color: vars.$text-color-gray
     text-align: center
     font-size: 8rem
-
-// component
-
-a
-    text-decoration: none
-
-.styled_button
-    height: vars.$col
-
-    font-weight: 700
-    font-size: 18rem
-
-    color: vars.$text-color-normal
-    background-color: white
-    border: none
-    border-radius: 10rem
-    box-shadow: 0px 0px 5px #999999
-    cursor: pointer
-    &:active
-        background-color: vars.$highlight-color1-pressed

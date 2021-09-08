@@ -1,37 +1,43 @@
-// This is your Prisma schema file,
-// learn more about it in the docs: https://pris.ly/d/prisma-schema
-
-datasource db {
-  provider = "mongodb"
-  url      = env("DATABASE_URL")
-}
-
 generator client {
   provider        = "prisma-client-js"
   previewFeatures = ["mongoDb"]
 }
 
-model PsyReview {
-  id        String   @id @default(dbgenerated()) @map("_id") @db.ObjectId
-  review    String
-  createdAt DateTime @default(now())
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
 }
 
-model PsyQuery {
-  id     String    @id @default(dbgenerated()) @map("_id") @db.ObjectId
-  psy    PsyYesNo? @relation(fields: [psyId], references: [id])
-  psyId  String?   @db.ObjectId
-  query  String
-  imgUrl String
+model psy {
+  psy_id      Int          @id @default(autoincrement())
+  title       String
+  description String
+  img_url     String?
+  type_id     Int          @default(autoincrement())
+  questions   Json?        @db.Json
+  view        Int?         @default(0)
+  psy_type    psy_type     @relation(fields: [type_id], references: [type_id])
+  psy_result  psy_result[]
+  psy_review  psy_review[]
 }
 
-model PsyYesNo {
-  id      String     @id @default(dbgenerated()) @map("_id") @db.ObjectId
-  quries  PsyQuery[]
-  weights Int[]
+model psy_result {
+  result_id Int   @id @default(autoincrement())
+  psy_id    Int   @default(autoincrement())
+  answers   Json? @db.Json
+  psy       psy   @relation(fields: [psy_id], references: [psy_id])
 }
 
-model PsyType {
-  id   String @id @default(dbgenerated()) @map("_id") @db.ObjectId
-  type String
+model psy_review {
+  review_id      Int       @id @default(autoincrement())
+  psy_id         Int       @default(autoincrement())
+  review_content String
+  date           DateTime? @db.Timestamptz(6)
+  psy            psy       @relation(fields: [psy_id], references: [psy_id])
+}
+
+model psy_type {
+  type_id Int    @id @default(autoincrement())
+  type    String @unique
+  psy     psy[]
 }

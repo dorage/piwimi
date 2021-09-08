@@ -7,10 +7,10 @@ import {
 
 const router = new Router();
 
-router.get('/question/1', getQuestionApi);
+router.get('/question/:qId', getQuestionApi);
 
-router.post('/question/1', postQuestionApi);
+router.post('/question/:qId', postQuestionApi);
 
-router.post('/review', postReview);
+router.post('/review/:qId', postReview);
 
 export default router;

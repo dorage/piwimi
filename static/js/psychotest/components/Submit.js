@@ -13,7 +13,7 @@ const setButtons = (elem, state, event) => {
         prevBt.addEventListener('click', event.onClickPrev);
     }
     if (isNaN(answer[currentPage])) {
-        nextBt.classList.add('unselected');
+        nextBt.classList.replace('bt-solid', 'bt-solid-da');
     } else {
         nextBt.addEventListener('click', event.onClickNext);
     }
@@ -22,10 +22,10 @@ const setButtons = (elem, state, event) => {
     }
 
     if (answer.every((elem) => !isNaN(elem))) {
-        submitBt.classList.add('completed');
+        submitBt.classList.add('anim-bounce');
         submitBt.addEventListener('click', event.onClickSubmit);
     } else {
-        submitBt.classList.add('unselected');
+        submitBt.classList.replace('bt-solid', 'bt-solid-da');
     }
 };
 

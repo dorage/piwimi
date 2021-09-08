@@ -26,15 +26,16 @@ const event = {
         state.loadingQuery = false;
     },
     onClickStart: async () => {
+        const tokens = location.pathname.split('#')[0].split('/');
         const {
-            data: { type, contents },
-        } = await fetchURL('question/1');
+            data: { type, questions },
+        } = await fetchURL(`question/${tokens[tokens.length - 1]}`);
 
         state.appState = APPSTATE.LOADING_Q;
-        state.questions = contents;
-        state.answer = Array(contents.length).fill(undefined);
+        state.questions = questions;
+        state.answer = Array(questions.length).fill(undefined);
         state.loadingQuestion = true;
-        state.maxPage = contents.length;
+        state.maxPage = questions.length;
 
         draw();
     },
@@ -68,10 +69,11 @@ const event = {
         draw();
     },
     onClickSubmit: async () => {
+        const tokens = location.pathname.split('#')[0].split('/');
         const data = state.answer;
         const {
             data: { result },
-        } = await fetchURL('question/1', {
+        } = await fetchURL(`question/${tokens[tokens.length - 1]}`, {
             method: 'POST',
             body: JSON.stringify({ data }),
             headers: {
@@ -107,9 +109,10 @@ document
 
 // 개발모드에선 뛰어넘기
 if (process.env.NODE_ENV === 'development') {
+    /*
     (async () => {
         await event.onClickStart();
-        state.answer = Array(station.questions.length).fill(1);
+        state.answer = Array(state.questions.length).fill(1);
         draw();
-    })();
+    })();*/
 }

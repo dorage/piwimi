@@ -56,6 +56,8 @@ html(lang="id")
         script(type="text/javascript").
             var addthis_config = addthis_config||{};
             addthis_config.lang = 'id';
+        //- Import Font Awesome
+        link(href="/public/fontawesome/css/all.css" rel="stylesheet")
     body
         //- Mixins
         include mixins/navbar.pug
@@ -67,8 +69,7 @@ html(lang="id")
         #Background.bg-cl-4.cl-1
             #App.bd
                 +navbar()
-                .body.bg-cl-6.bd-rd
-                    block body
+                block body
                 +footer()
                 #Modal
                 template#template-modal-review
@@ -84,7 +85,7 @@ html(lang="id")
                                 textarea.review__txt--input.f-gap-c(rows="5" placeholder="tulis review anda disini")
                                 button.bt-solid.review__bt--submit.f-gap-c="Lihat Hasil"
                                 //-
-                                    .f-r
+                                    .d-flex.f-r
                                         .f-1
                                         button.styled_button.review__bt--skip.f-2="saya akan melakukan nanti"
                                         .f-1

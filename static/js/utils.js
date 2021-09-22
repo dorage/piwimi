@@ -28,10 +28,10 @@ export const cloneTemplate = (query) => {
  */
 export const fetchURL = async (url, options) => {
     try {
-        const data = await fetch(
-            `${window.location.origin}/api/${url}`,
-            options,
-        );
+        const data = await fetch(`${window.location.origin}/api/${url}`, {
+            credentials: 'include',
+            ...options,
+        });
         return data.json();
     } catch (err) {
         console.log(err);

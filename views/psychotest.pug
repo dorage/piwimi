@@ -28,55 +28,59 @@ block head
         };
 
 block body
-    // 퀴즈 컨텐츠 템플릿 - 다중선택지
-    template#template-question-multiple
+    .body.bg-cl-6.bd-rd
+        //- 퀴즈 컨텐츠 템플릿 - 다중선택지
+        template#template-question-multiple
+            .psycho__section--content
+                .content-header=``
+                .content-selections
+                .content-index
+                    p=''
+        //- 다중선택지 셀렉션 템플릿
+        template#template-selection
+            .selection_box
+                .selection_text=''
+        //- 퀴즈 컨텐츠 템플릿 - Yes Or No
+        template#template-question-singular
+            .psycho__section--content
+                .question__index.f-gap-c
+                    p='0/1'
+                .question__image
+                    img(src="https://storage.googleapis.com/pwm-res/web/common/image-800_500.jpg")
+                .question__query.f-gap-c
+                    p='placeholder_Question'
+                .question__bt--yes-no.d-flex.f-r
+                    .f-1
+                    button.question__bt--yes.f-1.bt-solid='IYA'
+                    button.question__bt--no.f-1.bt-solid='TIDAK'
+                    .f-1
+        //- 퀴즈 하단 컨트롤 템플릿
+        template#template-submit
+            .psycho__section--control
+                .d-flex.f-r.f-gap-c
+                    button.bt-solid.f-1#prev='Sebelumnya'
+                    .f-1
+                    button.bt-solid.f-1#next='Selanjutnya'
+                .d-flex.f-r.f-gap-c
+                    button.bt-solid.f-4#submit='Lihat Hasil'
+        //- 로딩 템플릿
+        template#template-loading
+            .psycho__section--content
+                .loading_text='memuat pertanyaan'
+        //- 기본 타이틀
         .psycho__section--content
-            .content-header=``
-            .content-selections
-            .content-index
-                p=''
-    // 다중선택지 셀렉션 템플릿
-    template#template-selection
-        .selection_box
-            .selection_text=''
-    // 퀴즈 컨텐츠 템플릿 - Yes Or No
-    template#template-question-singular
-        .psycho__section--content
-            .question__index.f-gap-c
-                p='0/1'
-            .question__query.f-gap-c
-                p='placeholder_Question'
-            .question__bt--yes-no.f-r
-                .f-1
-                button.question__bt--yes.f-1.bt-solid='IYA'
-                button.question__bt--no.f-1.bt-solid='TIDAK'
-                .f-1
-    // 퀴즈 하단 컨트롤 템플릿
-    template#template-submit
-        .psycho__section--control
-            .f-r.f-gap-c
-                button.bt-solid.f-1#prev='Sebelumnya'
-                .f-1
-                button.bt-solid.f-1#next='Selanjutnya'
-            .f-r.f-gap-c
-                button.bt-solid.f-4#submit='Lihat Hasil'
-    // 로딩 템플릿
-    template#template-loading
-        .psycho__section--content
-            .loading_text='memuat pertanyaan'
-    // 기본 타이틀
-    .psycho__section--content
-        .content-thumbnail.f-gap-c
-            img.thumbnail__img(src=content.imgUrl)
-        .content-header.f-gap-c
-            h1=content.title
-        .content-description.f-gap-c
-            each para in content.description.split('\\n')
-                p=para
-            p=content.notice
-    // 기본 컨트롤
-    .psycho__section--control.f-r
-        .f-1
-        .bt-solid.control__bt--start.f-2.anim-bounce="Mulai"
-        .f-1
+            .content-thumbnail.f-gap-c
+                img.thumbnail__img(src=content.imgUrl)
+            .content-header.f-gap-c.ta-c
+                h1=content.title
+            .content-description.f-gap-c.ta-c.fs-1
+                each para in content.description.split('\\n')
+                    p=para
+                br.mb-4
+                p.cl-2.fs-2.mb-4=content.notice
+        //- 기본 컨트롤
+        .psycho__section--control.d-flex.f-r
+            .f-1
+            .bt-solid.control__bt--start.f-2.anim-bounce="Mulai"
+            .f-1
     script(defer src='/public/js/psychotest.bundle.js')

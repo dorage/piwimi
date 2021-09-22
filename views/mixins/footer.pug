@@ -1,6 +1,17 @@
+mixin icon(icon, link)
+    a(href=link target="_")
+        h3
+            i.fab.cl-6(class=`fa-${icon}`)
+
 mixin footer()
     footer.footer.bd-rd-t.bg-cl-1.cl-6
-        .f-r
+        .d-flex
             .f-4
-                p.contact_github="developed by @Sinsun_Dorage"
-        
+                h6.contact_github.cl-6="Kami Piwimi"
+        //-
+            .d-flex.f-center.mt-4
+                .d-flex.w-40
+                    +icon('instagram','https://www.instagram.com')
+                    +icon('facebook','https://www.facebook.com')
+                    +icon('whatsapp','https://www.whatsapp.com')
+                    +icon('twitter','https://www.twitter.com')

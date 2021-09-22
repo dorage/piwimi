@@ -1,5 +1,6 @@
-import prisma from '../configs/prisma';
 import { writeReviewOnGoogleSheet } from '../configs/googleAPI';
+import { resultCalculatorHelper } from '../calculators';
+import { insertReview, selectPsyById, updateView } from '../db/query';
 
 const responseJSON = (json) => {
     return {
@@ -7,55 +8,96 @@ const responseJSON = (json) => {
     };
 };
 
+const notSame = (a, b, v) => {
+    if (a !== b) v();
+};
+const same = (a, b, v) => {
+    if (a === b) v();
+};
+
+/*--------------------------------------------------------
+
+GET
+
+/api/question/:qId
+
+--------------------------------------------------------*/
+
 export const getQuestionApi = async (req, res) => {
-    try{
-        const {qId} = req.params;
-        const {questions} = await prisma.psy.findUnique({where:{psy_id:Number(qId)}});
+    const { qId } = req.params;
+    try {
+        const { questions } = await selectPsyById(qId);
         res.send(responseJSON({ questions }));
-    }catch(err){
+    } catch (err) {
         console.log(err);
         res.sendStatus(503);
     }
+};
+
+/*--------------------------------------------------------
+
+POST
+
+/api/question/:qId
+
+--------------------------------------------------------*/
+
+/**
+ * 결과를 도출해 req.result 에 id 필드에 담아 넘겨줍니다.
+ */
+export const gradePsychotest = async (req, res, next) => {
+    const { qId } = req.params;
+    const { data } = req.body;
+    try {
+        req.result = {};
+        req.result.aId = await resultCalculatorHelper(qId, data);
+        next();
+    } catch (err) {
+        console.log(err);
+        res.sendStatus(503);
+    }
+};
+
+/**
+ * 플레이를 했는지 세션을 이용해 체크합니다.
+ * 테스트 제출을 했을때 체크합니다.
+ *
+ * @param {*} req
+ * @param {*} res
+ * @param {*} next
+ */
+export const checkPlayed = async (req, res, next) => {
+    const { qId } = req.params;
+    const { aId } = req.result;
+    console.log(aId);
+    await updateView(qId, aId);
+    next();
 };
 
 export const postQuestionApi = async (req, res) => {
-    const {qId} = req.params;
-    const { data } = req.body;
-    try{
-        const { questions } = await prisma.psy.findUnique({where:{psy_id:Number(qId)}});
-        const {answers} = await prisma.psy_result.findFirst({where:{psy_id:Number(qId)}});
-
-        if(questions.length !== data.length) throw Error("데이터 개수가 일치하지 않음");
-
-        const scores = Array(answers.length).fill(0);
-        data.forEach((elem,idx)=>{
-            const {aId, weight} = questions[idx];
-            scores[Number(aId)] += data ? Number(weight) : Number(-weight);
-        });
-    
-        // 가장 많은 득점을 한 첫번째 인덱스를 찾아서 반환
-        const maxValue = Math.max(...scores);
-        const resultParam = scores.findIndex((elem) => elem === maxValue);
-        console.log(scores, resultParam);
-    
-        res.send(responseJSON({ result: resultParam }));
-    }catch(err){
+    const { aId } = req.result;
+    try {
+        res.send(responseJSON({ result: aId }));
+    } catch (err) {
         console.log(err);
         res.sendStatus(503);
     }
 };
 
+/*--------------------------------------------------------
+
+POST
+
+/api/review/:qId
+
+--------------------------------------------------------*/
+
 export const postReview = async (req, res) => {
-    const {qId} = req.params;
-    const { data: review_content } = req.body;
+    const { qId } = req.params;
+    const { data: review } = req.body;
     try {
-        writeReviewOnGoogleSheet(review_content);
-        await prisma.psy_review.create({
-            data: {
-                psy_id:Number(qId),
-                review_content,
-            },
-        });
+        //writeReviewOnGoogleSheet(review);
+        insertReview(qId, review);
         res.sendStatus(200);
     } catch (err) {
         console.log(err);

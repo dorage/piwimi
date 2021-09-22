@@ -9,6 +9,8 @@ import psyRouter from './routers/psy';
 import apiRouter from './routers/api';
 import { configs } from './configs';
 import morgan from 'morgan';
+import connectPgSimple from 'connect-pg-simple';
+import pool from './db';
 
 const app = express();
 app.set('view engine', 'pug');
@@ -17,9 +19,16 @@ app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
 app.use(
     session({
+        cookie: {
+            secure: true,
+            maxAge: 90 * 24 * 60 * 60 * 1000,
+        },
         secret: configs.cookieSecret,
         resave: true,
-        saveUninitialized: false,
+        saveUninitialized: true,
+        store: new (connectPgSimple(session))({
+            pool: pool,
+        }),
     }),
 );
 app.use(morgan('dev'));

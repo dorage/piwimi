@@ -1,4 +1,28 @@
-.body__test-section
+@use '../vars'
 
-.body__img--working
-    width: 100%
+.home__header--common
+
+.card
+    padding: vars.$pad
+    border-radius: vars.$br-rd
+    background-color: vars.$color6
+    transition: 0.2s
+    &:hover
+        transform: translate(-5rem, -5rem)
+        box-shadow: 10rem 10rem 1rem vars.$color2
+    &:active
+        background-color: vars.$color3
+
+.card-small
+    height: 120rem
+
+.card-working
+    justify-content: start
+    align-items: center
+    background-image: url('https://storage.googleapis.com/pwm-res/web/home/working_edit.gif')
+    background-position: bottom
+    background-size: cover
+    background-repeat: no-repeat
+
+.content__info
+    padding: 0.5 * vars.$pad

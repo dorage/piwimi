@@ -1,36 +1,40 @@
-import prisma from '../configs/prisma';
+import { selectPsyById, selectResultByIdWithView } from '../db/query';
+
+/*--------------------------------------------------------
+
+GET
+
+/psy/:qId
+
+--------------------------------------------------------*/
 
 export const getQuestion = async (req, res) => {
     const { qId } = req.params;
     try {
-        const {
-            title,
-            description,
-            img_url: imgUrl,
-        } = await prisma.psy.findUnique({ where: { psy_id: Number(qId) } });
-        console.log(description.split('\\n'));
+        const psy = await selectPsyById(qId);
         res.render('psychotest', {
             common: {
                 qId,
             },
-            content: {
-                title,
-                description,
-                imgUrl,
-                notice: '※ Ini hanya untuk bersenang-senang',
-            },
+            content: psy,
         });
     } catch (err) {
         console.log(err);
     }
 };
 
+/*--------------------------------------------------------
+
+GET
+
+/psy/:qId/result/:aId
+
+--------------------------------------------------------*/
+
 export const getResult = async (req, res) => {
     const { qId, aId } = req.params;
     try {
-        const { answers } = await prisma.psy_result.findFirst({
-            where: { psy_id: Number(qId) },
-        });
+        const { answers, views } = await selectResultByIdWithView(qId);
         res.render('result', {
             common: {
                 qId: qId,
@@ -38,6 +42,7 @@ export const getResult = async (req, res) => {
             },
             content: {
                 ...answers[aId],
+                view: views[aId],
             },
         });
     } catch (err) {

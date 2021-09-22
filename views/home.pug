@@ -16,13 +16,28 @@ block head
     meta(property="twitter:description" content=``)
     meta(property="twitter:image" content=``)
 
+mixin sectionHeader(icon, text)
+    .home__header--common.mb-3
+        h3
+            i.fas.d-inline(class=`fa-${icon}`)=`    ${text}`
+
 block body
-    .body__test-section
-        each psy in content.psys
-            a.test__conetnt(href=`/psy/${psy.psy_id}`)
-                img.content__img--thumb(src=`${psy.img_url}`)
-                p.title=`${psy.title}`
-                p.description=`${psy.description.replace('\\n',' ')}`
-                p.views=`${psy.view}`
-                // 몇명이 플레이했는지
+    include mixins/card.pug
+    .body
+        //- BEST 심리테스트
+        .home__section.mb-3
+            +sectionHeader('crown', 'TERBAIK')
+            .best__content
+                each best in content.best
+                    +bigCard(best)
+        //- 최신 심리테스트
+        .home__section.mb-3
+            +sectionHeader('star', 'BARU')
+            each psy in content.psys
+                +smallCard(psy)
+            .card.card-small.card-working.d-flex.bg-cl-1
+                a.d-flex.f-c(href=``)
+                    .cl-6.fs-1.fw-bold.ta-r='We are making hard now...'
+                    .cl-6.fs-1.fw-bold.ta-r
+                        | Who are we?
     script(src='/public/js/home.bundle.js')

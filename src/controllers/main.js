@@ -1,5 +1,13 @@
 import fs from 'fs';
-import prisma from '../configs/prisma';
+import { selectBestWithView, selectPsyWithView } from '../db/query';
+
+/*--------------------------------------------------------
+
+GET
+
+/
+
+--------------------------------------------------------*/
 
 export const getHome = async (req, res) => {
     if (process.env.NODE_ENV === 'production') {
@@ -7,15 +15,25 @@ export const getHome = async (req, res) => {
         return;
     }
     try {
-        const psys = await prisma.psy.findMany({
-            take: 10,
+        const best = await selectBestWithView();
+        const psys = await selectPsyWithView();
+        res.render('home', {
+            common: {},
+            content: { best, psys },
         });
-        console.log(psys);
-        res.render('home', { common: {}, content: { psys } });
     } catch (err) {
+        console.log(err);
         res.redirect('/404');
     }
 };
+
+/*--------------------------------------------------------
+
+GET
+
+/robots.txt
+
+--------------------------------------------------------*/
 
 export const getRobotTxt = (req, res) => {
     res.header('Content-Type', 'text/palin');
@@ -28,9 +46,25 @@ export const getRobotTxt = (req, res) => {
     }
 };
 
+/*--------------------------------------------------------
+
+GET
+
+/404
+
+--------------------------------------------------------*/
+
 export const get404 = (req, res) => {
     res.render('404');
 };
+
+/*--------------------------------------------------------
+
+GET
+
+/*
+
+--------------------------------------------------------*/
 
 export const getAny = (req, res) => {
     res.redirect('/404');

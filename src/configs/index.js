@@ -1,5 +1,4 @@
 import './googleAPI';
-import './prisma';
 import dotenv from 'dotenv';
 import path from 'path';
 

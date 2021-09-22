@@ -39,6 +39,7 @@ const refineShareButtonLabelCSS = (shareButton) => {
     shareButtonLabel.style.margin = 'initial';
     shareButtonLabel.style.padding = 'initial';
     shareButtonLabel.style.fontSize = '16rem';
+    shareButtonLabel.classList.add('ta-c');
 };
 
 // CSS 를 재정의합니다.

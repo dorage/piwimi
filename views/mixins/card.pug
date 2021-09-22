@@ -1,0 +1,16 @@
+mixin bigCard(psy)
+    .card
+        a(href=`/psy/${psy.psyId}`)
+            p.fw-bold.fs-2.cl-1='psikotes'
+            img.mb-3(src=`${psy.imgUrl}`)
+            h3.fw-bold.mb-4=`${psy.title}`
+            i.fas.fa-smile.fs-2=` ${psy.view}`
+
+mixin smallCard(psy)
+    .card.card-small.mb-4
+        a.test__conetnt.d-flex(href=`/psy/${psy.psyId}`)
+            .content__thumbnail.f-1
+                img.content__img--thumb(src=`${psy.imgUrl}`)
+            .content__info.f-3
+                h5.fw-bold.mb-4=`${psy.title}`
+                i.fas.fa-smile.fs-2=` ${psy.view}`

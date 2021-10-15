@@ -1,7 +1,9 @@
 import '../../css/psychotest/index.sass';
 import { fetchURL } from '../utils';
-import { Question } from './components/Question';
-import { TestSubmit } from './components/Submit';
+import { QuestionQuery } from './components/QuestionQuery';
+import { SelectionMultiple } from './components/SelectionMultiple';
+import { SelectionSingular } from './components/SelectionSingular';
+import { Submit } from './components/Submit';
 
 export const APPSTATE = {
     INTRO: 'INTRO',
@@ -39,34 +41,29 @@ const event = {
 
         draw();
     },
-    // 셀력션 선택
-    onClickSelection: (event, idx) => {
-        state.answer[state.currentPage] = idx;
-        draw();
-    },
-    // YES 버튼
-    onClickYes: () => {
+    /**
+     * 선택지 기록
+     * @param {Number} idx
+     * @returns
+     */
+    onClickSelection: (idx) => {
         const { answer, currentPage } = state;
-        answer[currentPage] = 1;
-        draw();
+        return () => {
+            answer[currentPage] = idx;
+            draw();
+        };
     },
-    // NO 버튼
-    onClickNo: () => {
-        const { answer, currentPage } = state;
-        answer[currentPage] = 0;
-        draw();
-    },
-    // 이전 버튼
-    onClickPrev: () => {
-        state.currentPage--;
-        state.loadingQuery = true;
-        draw();
-    },
-    // 다음 버튼
-    onClickNext: () => {
-        state.currentPage++;
-        state.loadingQuery = true;
-        draw();
+    /**
+     * 질문 페이지네이션
+     * @param {Boolean} isNext
+     * @returns
+     */
+    onClickPagination: (isNext) => {
+        return () => {
+            state.currentPage += isNext ? 1 : -1;
+            state.loadingQuery = true;
+            draw();
+        };
     },
     onClickSubmit: async () => {
         const tokens = location.pathname.split('#')[0].split('/');
@@ -85,22 +82,15 @@ const event = {
 };
 
 const draw = () => {
-    const { appState } = state;
+    const { appState, questions, currentPage } = state;
 
-    switch (appState) {
-        case APPSTATE.LOADING_Q:
-            Question(state, event);
-            TestSubmit(state, event);
-            break;
-        case APPSTATE.PLAYING:
-            Question(state, event);
-            TestSubmit(state, event);
-            break;
-        case APPSTATE.LOADING_A:
-            Question(state, event);
-            TestSubmit(state, event);
-            break;
+    QuestionQuery(state, event);
+    if (questions[currentPage].answers) {
+        SelectionMultiple(state, event);
+    } else {
+        SelectionSingular(state, event);
     }
+    Submit(state, event);
 };
 
 document
@@ -108,6 +98,7 @@ document
     .addEventListener('click', event.onClickStart);
 
 // 개발모드에선 뛰어넘기
+/*
 if (process.env.NODE_ENV === 'development') {
     (async () => {
         await event.onClickStart();
@@ -115,3 +106,4 @@ if (process.env.NODE_ENV === 'development') {
         draw();
     })();
 }
+*/

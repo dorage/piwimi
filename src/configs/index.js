@@ -54,12 +54,5 @@ const cast = (key, type, defaultValue) => {
 
 export const configs = {
     port: cast('PORT', 'number', '4000'),
-    mongoUrl: cast(
-        'MONGO_URL',
-        'string',
-        'mongodb://127.0.0.1:27017/psychotest',
-    ),
     cookieSecret: cast('COOKIE_SECRET', 'string', 'psychotest'),
-    clientURL: cast('CLIENT_URL', 'string', 'http://localhost:4000'),
-    serverURL: cast('CLIENT_URL', 'string', 'http://localhost:3000'),
 };

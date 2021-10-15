@@ -2,21 +2,17 @@ import { cloneTemplate } from '../../utils';
 
 const setButtons = (elem, state, event) => {
     const { currentPage, maxPage, answer } = state;
+    const { onClickPagination } = event;
 
-    const prevBt = elem.querySelector('#prev');
     const nextBt = elem.querySelector('#next');
     const submitBt = elem.querySelector('#submit');
 
-    if (currentPage === 0) {
-        prevBt.classList.add('hidden');
+    if (answer[currentPage] === undefined) {
+        nextBt.classList.replace('bt-solid', 'bt-solid-deactivate');
     } else {
-        prevBt.addEventListener('click', event.onClickPrev);
+        nextBt.addEventListener('click', event.onClickPagination(true));
     }
-    if (isNaN(answer[currentPage])) {
-        nextBt.classList.replace('bt-solid', 'bt-solid-da');
-    } else {
-        nextBt.addEventListener('click', event.onClickNext);
-    }
+
     if (currentPage === maxPage - 1) {
         nextBt.classList.add('hidden');
     }
@@ -25,11 +21,11 @@ const setButtons = (elem, state, event) => {
         submitBt.classList.add('anim-bounce');
         submitBt.addEventListener('click', event.onClickSubmit);
     } else {
-        submitBt.classList.replace('bt-solid', 'bt-solid-da');
+        submitBt.classList.replace('bt-solid', 'bt-solid-deactivate');
     }
 };
 
-export const TestSubmit = (state, event) => {
+export const Submit = (state, event) => {
     const newElem = cloneTemplate('#template-submit');
     const oldElem = document.querySelector('.psycho__section--control');
 

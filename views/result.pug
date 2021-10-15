@@ -1,45 +1,25 @@
 extends layout.pug 
 
 block head
-    -var ogLink = `https://piwimi.id/psy/${content.qId}/result/${content.aId}`
-    -var ogTitle = `${content.share.prefix} ${content.type} ${content.share.surfix}`
-    title=`PIWIMI — ${ogTitle}`
-    //- Open Graph / Facebook
-    meta(property='og:url' content=`${ogLink}`)
-    meta(property='og:title' content=`${ogTitle}`)
-    meta(property='og:description' content=`${content.description}`)
-    meta(property='og:image' content=`${content.og.imgUrl}`)
-    meta(property='og:image:alt' content=`${content.type} | ${content.description}`)
-    //- Twitter Open Graph
-    meta(property="twitter:url" content=`${ogLink}`)
-    meta(property="twitter:title" content=`PIWIMI — ${ogTitle}`)
-    meta(property="twitter:description" content=`${content.description}`)
-    meta(property="twitter:image" content=`${content.og.imgUrl}`)
-    //- AddThis reimplement Twitter
-    script(type="text/javascript").
-        var addthis_share = addthis_share || {};
-        addthis_share = {
-            passthrough : {
-                twitter: {
-                    via: "piwimi_id",
-                    hashtags: "psikotes,mbti"
-                }
-            }
-        };
+    include mixins/og.pug
+    +og(content.opengraph)
 
 block body
+    include mixins/socialMediaShareBlock.pug
+    -var answer = content.answer 
+    -var resultLink = `https://piwimi.id/psy/${content.qId}/result/${content.aId}`
+
     .body.bg-cl-6.bd-rd
-        - var resultLink = `https://piwimi.id/psy/${content.qId}/result/${content.aId}`
-        .result__header.f-gap-c
-            .header__placeholder=content.prefix
+        .result__header.f-gap-c.mt-2
+            if answer.prefix
+                .header__placeholder=`${answer.prefix}`
             .header__type
-                h1=content.type
+                h1=`${answer.type}`
         .result__body
-            img.body__circle__img(src=content.imgUrl).f-gap-c
+            img.body__circle__img(src=`${answer.imgUrl}`).f-gap-c
             .body__description.f-gap-c
-                each para in content.description.split('\n')
-                    p=para
-        include mixins/socialMediaShareBlock.pug
+                each para in answer.description.split('\n')
+                    p=`${para}`
         +socialMediaShareBlock()
         .result__control.f-gap-c
             .control__row

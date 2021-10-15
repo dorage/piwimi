@@ -1,4 +1,3 @@
-import { writeReviewOnGoogleSheet } from '../configs/googleAPI';
 import { resultCalculatorHelper } from '../calculators';
 import { insertReview, selectPsyById, updateView } from '../db/query';
 
@@ -6,13 +5,6 @@ const responseJSON = (json) => {
     return {
         data: json,
     };
-};
-
-const notSame = (a, b, v) => {
-    if (a !== b) v();
-};
-const same = (a, b, v) => {
-    if (a === b) v();
 };
 
 /*--------------------------------------------------------
@@ -30,7 +22,7 @@ export const getQuestionApi = async (req, res) => {
         res.send(responseJSON({ questions }));
     } catch (err) {
         console.log(err);
-        res.sendStatus(503);
+        res.redirect('/404');
     }
 };
 
@@ -54,7 +46,7 @@ export const gradePsychotest = async (req, res, next) => {
         next();
     } catch (err) {
         console.log(err);
-        res.sendStatus(503);
+        res.redirect('/404');
     }
 };
 
@@ -69,8 +61,7 @@ export const gradePsychotest = async (req, res, next) => {
 export const checkPlayed = async (req, res, next) => {
     const { qId } = req.params;
     const { aId } = req.result;
-    console.log(aId);
-    await updateView(qId, aId);
+    if (process.env.NODE_ENV === 'production') await updateView(qId, aId);
     next();
 };
 
@@ -80,7 +71,7 @@ export const postQuestionApi = async (req, res) => {
         res.send(responseJSON({ result: aId }));
     } catch (err) {
         console.log(err);
-        res.sendStatus(503);
+        res.redirect('/404');
     }
 };
 
@@ -101,6 +92,6 @@ export const postReview = async (req, res) => {
         res.sendStatus(200);
     } catch (err) {
         console.log(err);
-        res.sendStatus(503);
+        res.redirect('/404');
     }
 };

@@ -21,14 +21,14 @@ export const selectBestWithView = async () => {
         SELECT *
         FROM (
             SELECT *
-            FROM psy
-            WHERE psy_id = (SELECT best FROM psy_best)
+            FROM admin.psy
+            WHERE psy_id = (SELECT best FROM admin.psy_best)
         ) AS best_psy, (
             select psy_id, sum(view) AS view
             FROM (
                 SELECT psy_id, unnest(views) AS view
                 FROM psy_view
-                WHERE psy_id = (SELECT best FROM psy_best)
+                WHERE psy_id = (SELECT best FROM admin.psy_best)
             ) as view_table
             GROUP BY psy_id
         ) AS best_view
@@ -46,7 +46,7 @@ export const selectPsyWithView = async (limit = 10) => {
         SELECT *
         FROM (
             SELECT *
-            FROM psy
+            FROM admin.psy
             ORDER BY psy_id DESC
             LIMIT 10
         ) AS psy_table
@@ -57,7 +57,7 @@ export const selectPsyWithView = async (limit = 10) => {
                 SELECT psy_table.psy_id, unnest(views) AS view
                 FROM (
                     SELECT *
-                    FROM psy
+                    FROM admin.psy
                     ORDER BY psy_id DESC
                     LIMIT 10
                 ) as psy_table,
@@ -79,7 +79,7 @@ export const selectPsyWithView = async (limit = 10) => {
 export const selectPsyById = async (qId) => {
     const queryString = `
         SELECT *
-        FROM psy
+        FROM admin.psy
         WHERE psy_id=${qId}
     `;
     return (await QUERY(queryString))[0];
@@ -93,9 +93,9 @@ export const selectPsyById = async (qId) => {
  */
 export const selectResultByIdWithView = async (qId) => {
     const queryString = `
-        SELECT psy_result.psy_id, answers, views
-        FROM psy_result, psy_view
-        WHERE psy_result.psy_id=${qId} AND psy_result.psy_id=psy_view.psy_id
+        SELECT admin.psy_result.psy_id, answers, views, opengraphs
+        FROM admin.psy_result, psy_view
+        WHERE admin.psy_result.psy_id=${qId} AND admin.psy_result.psy_id=psy_view.psy_id
     `;
     return (await QUERY(queryString))[0];
 };

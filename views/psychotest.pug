@@ -1,55 +1,33 @@
 extends layout.pug 
 
 block head
-    -var ogLink = `https://piwimi.id/psy/${common.qId}`
-    -var ogTitle = `${content.title}`
-    title=`PIWIMI — ${ogTitle}`
-    //- Open Graph / Facebook
-    meta(property='og:url' content=`${ogLink}`)
-    meta(property='og:title' content=`PIWIMI — ${ogTitle}`)
-    meta(property='og:description' content=`${content.description}`)
-    meta(property='og:image' content=`${content.imgUrl}`)
-    meta(property='og:image:alt' content=`${content.description}`)
-    //- Twitter Open Graph
-    meta(property="twitter:url" content=`${ogLink}`)
-    meta(property="twitter:title" content=`PIWIMI — ${ogTitle}`)
-    meta(property="twitter:description" content=`${content.description}`)
-    meta(property="twitter:image" content=`${content.description}`)
-    //- AddThis reimplement Twitter
-    script(type="text/javascript").
-        var addthis_share = addthis_share || {};
-        addthis_share = {
-            passthrough : {
-                twitter: {
-                    via: "piwimi_id",
-                    hashtags: "psikotes,mbti"
-                }
-            }
-        };
+    include mixins/og.pug
+    if content.opengraph
+        +og(content.opengraph)
 
 block body
     .body.bg-cl-6.bd-rd
-        //- 퀴즈 컨텐츠 템플릿 - 다중선택지
-        template#template-question-multiple
+        //- 퀴즈 컨텐츠 템플릿 - 상단
+        template#template-question-query 
             .psycho__section--content
-                .content-header=``
-                .content-selections
-                .content-index
-                    p=''
-        //- 다중선택지 셀렉션 템플릿
-        template#template-selection
-            .selection_box
-                .selection_text=''
-        //- 퀴즈 컨텐츠 템플릿 - Yes Or No
-        template#template-question-singular
-            .psycho__section--content
-                .question__index.f-gap-c
+                .question__index.f-gap-c.fs-1
                     p='0/1'
-                .question__image
+                .question__image.mb-4
                     img(src="https://storage.googleapis.com/pwm-res/web/common/image-800_500.jpg")
                 .question__query.f-gap-c
-                    p='placeholder_Question'
-                .question__bt--yes-no.d-flex.f-r
+                    h2.fw-bold.ta-c='placeholder_Question'
+        //- 다중선택지 셀렉션 템플릿 - 다중선택지
+        template#template-question-multiple
+            .psycho__section--selection.mb-3
+                .selection__multiple.d-flex.f-c
+        //- 다중선택지 요소 템플릿
+        template#template-selection
+            .selection_box.bt-solid.f-2.mb-4.pl-3
+                .selection_text=''
+        //- 이중선택지 셀렉션 템플릿 - Yes Or No
+        template#template-question-singular
+            .psycho__section--selection.mb-3
+                .selection__singular.d-flex.f-r
                     .f-1
                     button.question__bt--yes.f-1.bt-solid='IYA'
                     button.question__bt--no.f-1.bt-solid='TIDAK'
@@ -58,8 +36,7 @@ block body
         template#template-submit
             .psycho__section--control
                 .d-flex.f-r.f-gap-c
-                    button.bt-solid.f-1#prev='Sebelumnya'
-                    .f-1
+                    .f-2
                     button.bt-solid.f-1#next='Selanjutnya'
                 .d-flex.f-r.f-gap-c
                     button.bt-solid.f-4#submit='Lihat Hasil'
@@ -67,18 +44,20 @@ block body
         template#template-loading
             .psycho__section--content
                 .loading_text='memuat pertanyaan'
-        //- 기본 타이틀
+        //- 문제
         .psycho__section--content
             .content-thumbnail.f-gap-c
                 img.thumbnail__img(src=content.imgUrl)
             .content-header.f-gap-c.ta-c
-                h1=content.title
+                h1.h1.fw-bold=content.title
             .content-description.f-gap-c.ta-c.fs-1
                 each para in content.description.split('\\n')
                     p=para
                 br.mb-4
                 p.cl-2.fs-2.mb-4=content.notice
-        //- 기본 컨트롤
+        //- 선택지
+        .psycho__section--selection
+        //- 컨트롤
         .psycho__section--control.d-flex.f-r
             .f-1
             .bt-solid.control__bt--start.f-2.anim-bounce="Mulai"

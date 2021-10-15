@@ -1,18 +1,4 @@
-/*
-    Psychotest
-    - title : string
-    - description : string
-    - thumb_url : string
-    - questions : stringify JSON list
-    - calc_key : key of calculators object
-    - page_key : key of renders object
-*/
-
 import { selectPsyById } from '../db/query';
-
-const getCalculator = (qId, v) => {
-    return v;
-};
 
 // 채점
 const gradeResult = async (qId, data) => {
@@ -20,7 +6,7 @@ const gradeResult = async (qId, data) => {
     const scores = Array(data.length).fill(0);
     data.forEach((_, idx) => {
         const { aId, weight } = questions[idx];
-        scores[Number(aId)] += data ? Number(weight) : Number(-weight);
+        scores[Number(aId)] += data ? 1 * weight : -1 * weight;
     });
     return scores;
 };

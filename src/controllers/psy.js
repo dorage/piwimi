@@ -20,6 +20,7 @@ export const getQuestion = async (req, res) => {
         });
     } catch (err) {
         console.log(err);
+        res.redirect('/404');
     }
 };
 
@@ -34,18 +35,26 @@ GET
 export const getResult = async (req, res) => {
     const { qId, aId } = req.params;
     try {
-        const { answers, views } = await selectResultByIdWithView(qId);
+        const { answers, opengraphs, views } = await selectResultByIdWithView(
+            qId,
+        );
+        if (aId >= answers.length) {
+            res.redirect('/404');
+            return;
+        }
         res.render('result', {
             common: {
                 qId: qId,
                 aId: aId,
             },
             content: {
-                ...answers[aId],
+                answer: answers[aId],
+                opengraph: opengraphs[aId],
                 view: views[aId],
             },
         });
     } catch (err) {
         console.log(err);
+        res.redirect('/404');
     }
 };

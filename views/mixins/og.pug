@@ -1,0 +1,26 @@
+mixin og(opengraph)
+    -var og = opengraph.og
+    -var twt = opengraph.twitter
+    title=`PIWIMI — ${og.title}`
+    //- Open Graph / Facebook
+    meta(property='og:url' content=`${og.url}`)
+    meta(property='og:title' content=`PIWIMI - ${og.title}`)
+    meta(property='og:description' content=`${og.description}`)
+    meta(property='og:image' content=`${og.image}`)
+    meta(property='og:image:alt' content=`${og.description}`)
+    //- Twitter Open Graph
+    meta(property="twitter:url" content=`${twt.url}`)
+    meta(property="twitter:title" content=`PIWIMI — ${twt.title}`)
+    meta(property="twitter:description" content=`${twt.description}`)
+    meta(property="twitter:image" content=`${twt.image}`)
+    //- AddThis reimplement Twitter
+    script(type="text/javascript").
+        var addthis_share = addthis_share || {};
+        addthis_share = {
+            passthrough : {
+                twitter: {
+                    via: "piwimi_id",
+                    hashtags: twt.hashtag
+                }
+            }
+        };

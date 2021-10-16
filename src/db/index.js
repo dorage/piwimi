@@ -1,7 +1,7 @@
 import { Pool } from 'pg';
+import { ENV } from '../configs';
 
-const connectionString =
-    'postgresql://postgres:admin@localhost:5432/piwimi_local';
+const connectionString = ENV.databaseURL;
 
 const pool = new Pool({
     connectionString,

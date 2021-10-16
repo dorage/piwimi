@@ -1,27 +1,6 @@
 import './googleAPI';
-import dotenv from 'dotenv';
-import path from 'path';
-
-// dotenv setting
-let loadedDotEnv;
-
-switch (process.env.NODE_ENV) {
-    case 'development':
-        loadedDotEnv = dotenv.config({
-            path: path.join(__dirname, '../../.env.development'),
-        });
-        break;
-    case 'production':
-        loadedDotEnv = dotenv.config({
-            path: path.join(__dirname, '../../.env.production'),
-        });
-        break;
-    default:
-        throw new Error('process.env.NODE_ENV 가 설정되지 않았습니다.');
-}
-if (loadedDotEnv.error) {
-    throw loadedDotEnv.error;
-}
+import './dotenv';
+import { MODE } from './enum';
 
 // type casting fns
 const number = (value) => {
@@ -43,7 +22,7 @@ const cast = (key, type, defaultValue) => {
             `process.env.${key}에 적절한 값이 설정되지 않았습니다.`,
         );
     }
-    if (process.env.NODE_ENV === 'production') {
+    if (process.env.NODE_ENV === MODE.PRODUCTION) {
         throw new Error(`process.env.${key}에 값이 설정되지 않았습니다.`);
     }
     if (defaultValue !== undefined) {
@@ -52,7 +31,13 @@ const cast = (key, type, defaultValue) => {
     throw new Error(`process.env.${key}에 할당할 값이 없습니다.`);
 };
 
-export const configs = {
+export const ENV = {
+    nodeEnv: cast('NODE_ENV', 'string', MODE.DEVELOPMENT),
     port: cast('PORT', 'number', '4000'),
     cookieSecret: cast('COOKIE_SECRET', 'string', 'psychotest'),
+    databaseURL: cast(
+        'DATABASE_URL',
+        'string',
+        'postgresql://postgres:admin@localhost:5432/piwimi_local',
+    ),
 };

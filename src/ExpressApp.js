@@ -7,10 +7,10 @@ import favicon from 'serve-favicon';
 import mainRouter from './routers/main';
 import psyRouter from './routers/psy';
 import apiRouter from './routers/api';
-import { configs } from './configs';
 import morgan from 'morgan';
 import connectPgSimple from 'connect-pg-simple';
 import pool from './db';
+import { ENV } from './configs';
 
 const app = express();
 app.set('view engine', 'pug');
@@ -23,7 +23,7 @@ app.use(
             secure: true,
             maxAge: 90 * 24 * 60 * 60 * 1000,
         },
-        secret: configs.cookieSecret,
+        secret: ENV.cookieSecret,
         resave: true,
         saveUninitialized: true,
         store: new (connectPgSimple(session))({

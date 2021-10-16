@@ -1,4 +1,6 @@
-export const isDevelopment = process.env.NODE_ENV === 'development';
+import { MODE } from '../../src/configs/enum';
+
+export const isDevelopment = process.env.NODE_ENV === MODE.DEVELOPMENT;
 
 /**
  * parameter 및 hash를 제외한 URL을 반환합니다.

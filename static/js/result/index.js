@@ -1,3 +1,4 @@
+import { MODE } from '../../../src/configs/enum';
 import '../../css/result/index.sass';
 import { cloneTemplate, fetchURL } from '../utils';
 
@@ -57,7 +58,7 @@ const event = {
         window.location.replace(`http://${host}${pathname}`);
     },
     onSubmitReview: (e) => {
-        const tokens = location.pathname.split('#')[0].split('/')
+        const tokens = location.pathname.split('#')[0].split('/');
         const textValue = document.querySelector('.review__txt--input').value;
         console.log(tokens);
         if (textValue.length < 1) return;
@@ -83,5 +84,5 @@ if (document.location.hash.includes('review')) {
 }
 
 // 개발단계에서 사용
-if (process.env.NODE_ENV == 'development') {
+if (process.env.NODE_ENV == MODE.DEVELOPMENT) {
 }

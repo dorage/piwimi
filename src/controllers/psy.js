@@ -1,3 +1,4 @@
+import { captureExceptionByMode } from '../configs/sentry';
 import { selectPsyById, selectResultByIdWithView } from '../db/query';
 
 /*--------------------------------------------------------
@@ -19,7 +20,7 @@ export const getQuestion = async (req, res) => {
             content: psy,
         });
     } catch (err) {
-        console.log(err);
+        captureExceptionByMode(err);
         res.redirect('/404');
     }
 };
@@ -54,7 +55,7 @@ export const getResult = async (req, res) => {
             },
         });
     } catch (err) {
-        console.log(err);
+        captureExceptionByMode(err);
         res.redirect('/404');
     }
 };

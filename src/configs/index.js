@@ -1,5 +1,6 @@
-import './googleAPI';
 import './dotenv';
+import './sentry';
+import './googleAPI';
 import { MODE } from './enum';
 
 // type casting fns

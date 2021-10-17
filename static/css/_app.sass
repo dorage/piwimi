@@ -20,11 +20,13 @@ html
     position: fixed
     display: flex
     justify-content: center
-    width: 100vw
+    width: 100%
     height: 100%
     overflow-y: auto
-
+    margin: 0
+    padding: 0
 #App
+    overflow-x: hidden
     display: flex
     flex-direction: column
     align-items: center
@@ -38,13 +40,17 @@ html
 
 // APP
 .navbar
+    overflow-x: visible
     height: vars.$col*2
-    padding: 0.5* vars.$col 0.5*vars.$pad
+    padding-top: 0.5* vars.$col
+    padding-left: 0.5*vars.$pad
 
 .body
     display: flex
     flex-direction: column
     align-items: center
+    max-width: 100vw
+
     padding: vars.$pad vars.$pad
     margin-top: 0.5 * vars.$pad
     margin-bottom: 0.5 * vars.$pad

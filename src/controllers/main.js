@@ -1,4 +1,5 @@
 import fs from 'fs';
+import { captureExceptionByMode } from '../configs/sentry';
 import { selectBestWithView, selectPsyWithView } from '../db/query';
 
 /*--------------------------------------------------------
@@ -22,7 +23,27 @@ export const getHome = async (req, res) => {
             content: { best, psys },
         });
     } catch (err) {
-        console.log(err);
+        captureExceptionByMode(err);
+        res.redirect('/404');
+    }
+};
+
+/*--------------------------------------------------------
+
+GET
+
+/about-us
+
+--------------------------------------------------------*/
+
+export const getAboutUs = async (req, res) => {
+    try {
+        res.render('aboutUs', {
+            common: {},
+            content: {},
+        });
+    } catch (err) {
+        captureExceptionByMode(err);
         res.redirect('/404');
     }
 };
@@ -42,6 +63,7 @@ export const getRobotTxt = (req, res) => {
         filePath = `${__dirname}/../public/robots.txt`;
         res.send(fs.readFileSync(filePath, 'utf8'));
     } catch (err) {
+        captureExceptionByMode(err);
         res.send(err);
     }
 };

@@ -1,6 +1,7 @@
 import fs, { write } from 'fs';
 import readline from 'readline';
 import { google } from 'googleapis';
+import { captureExceptionByMode } from './sentry';
 
 // If modifying these scopes, delete token.json.
 const SCOPES = ['https://www.googleapis.com/auth/spreadsheets'];
@@ -100,7 +101,7 @@ const writeDataWrapper = (review) => {
             },
             (err, result) => {
                 if (err) {
-                    console.log(err);
+                    captureExceptionByMode(err);
                 } else {
                     console.log('Done!');
                 }

@@ -1,4 +1,5 @@
 User-agent: *
 Allow: /
 Disallow: /psy/*/result/
+Disallow: /about-us
 Disallow: /404

@@ -28,13 +28,13 @@ app.use(
         saveUninitialized: true,
         store: new (connectPgSimple(session))({
             pool: pool,
+            conString: ENV.databaseURL,
         }),
     }),
 );
 app.use(morgan('dev'));
 app.use('/public', express.static(path.join(__dirname, 'public')));
 app.use(favicon(path.join(__dirname, 'public', 'favicon.ico')));
-
 // routers
 app.use('/api', apiRouter);
 app.use('/psy', psyRouter);

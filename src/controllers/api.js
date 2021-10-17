@@ -1,3 +1,4 @@
+import { captureException } from '@sentry/minimal';
 import { resultCalculatorHelper } from '../calculators';
 import { insertReview, selectPsyById, updateView } from '../db/query';
 
@@ -21,7 +22,7 @@ export const getQuestionApi = async (req, res) => {
         const { questions } = await selectPsyById(qId);
         res.send(responseJSON({ questions }));
     } catch (err) {
-        console.log(err);
+        captureException(err);
         res.redirect('/404');
     }
 };
@@ -45,7 +46,7 @@ export const gradePsychotest = async (req, res, next) => {
         req.result.aId = await resultCalculatorHelper(qId, data);
         next();
     } catch (err) {
-        console.log(err);
+        captureExceptionByMode(err);
         res.redirect('/404');
     }
 };
@@ -70,7 +71,7 @@ export const postQuestionApi = async (req, res) => {
     try {
         res.send(responseJSON({ result: aId }));
     } catch (err) {
-        console.log(err);
+        captureExceptionByMode(err);
         res.redirect('/404');
     }
 };
@@ -91,7 +92,7 @@ export const postReview = async (req, res) => {
         insertReview(qId, review);
         res.sendStatus(200);
     } catch (err) {
-        console.log(err);
+        captureExceptionByMode(err);
         res.redirect('/404');
     }
 };

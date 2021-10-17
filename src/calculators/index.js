@@ -1,4 +1,5 @@
 import { selectPsyById } from '../db/query';
+import { SeberapaSukaAndaDenganKorea } from './2';
 
 // 채점
 const gradeResult = async (qId, data) => {
@@ -26,34 +27,13 @@ const getLargestScore = async (qId, data) => {
 };
 
 /**
- * 점수 따라 등급이 정해집니다
- * @param {*} qId
- * @param {*} data
- */
-const gradeSingular = async (qId, data) => {
-    const score = await gradeResult(qId, data)[0];
-    switch (score) {
-        case score >= 12:
-            return 4;
-        case score >= 8:
-            return 3;
-        case score >= 5:
-            return 2;
-        case score >= 2:
-            return 1;
-        default:
-            return 0;
-    }
-};
-
-/**
  * key가 qId로 구성되어있음.
  */
 const resultCalculator = {
     // which island did you come from
     1: getLargestScore,
     // korean-boo test
-    2: gradeSingular,
+    2: SeberapaSukaAndaDenganKorea,
 };
 
 export const resultCalculatorHelper = (qId, data) =>

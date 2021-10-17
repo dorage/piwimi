@@ -1,24 +1,44 @@
+import '../src/configs/index';
 import { testDB } from './db';
 import { resultCalculatorHelper } from '../src/calculators/index';
 
 async function main() {
     console.log('=== START TEST ===');
-    await testDB();
+    //await testDB();
     // test TEST
-    const answer = {};
-
-    await resultCalculatorHelper(2, data);
+    await testPsy(2, [4, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2]);
     console.log('=== DONE TEST ===');
 }
 
-async function testPsy() {}
-function recordResult(result) {}
-// 모든 케이스를 만듭니다
-function makeAllCase(list, n, data) {
-    if (n >= list.length) {
+async function testPsy(qId, dataRange = []) {
+    const answer = {};
+    const cases = [];
+    const promises = [];
+    // 모든 케이스를 만듭니다
+    function makeAllCase(n = 0, data = []) {
+        if (n >= dataRange.length) {
+            cases.push(data);
+            return;
+        }
+        for (let i = 0; i < dataRange[n]; i++) {
+            makeAllCase(n + 1, [...data, i]);
+        }
     }
-    for (let i = 0; i < list[n]; i++) {
-        makeAllCase(list, n + 1, [...data, i]);
+    try {
+        makeAllCase();
+        console.log(cases.length);
+
+        cases.forEach((e) => promises.push(resultCalculatorHelper(qId, e)));
+        console.log(promises.length);
+        const values = await Promise.all(promises);
+        values.forEach((e) =>
+            answer[e] !== undefined ? (answer[e] += 1) : (answer[e] = 0),
+        );
+
+        console.log(`qId : ${qId} / RESULT`);
+        console.log(answer);
+    } catch (err) {
+        console.log(err);
     }
 }
 

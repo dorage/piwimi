@@ -2,7 +2,7 @@
     "name": "psychotest",
     "private": true,
     "scripts": {
-        "test": "babel-node test/index.js",
+        "test": "cross-env NODE_ENV=development babel-node test/index.js",
         "build": "webpack --mode production",
         "production": "npm run build && cross-env NODE_ENV=production babel-node src/index.js",
         "forever": "sudo forever start -c \"npm run production\" ./",

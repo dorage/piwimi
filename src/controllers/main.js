@@ -10,13 +10,30 @@ GET
 
 --------------------------------------------------------*/
 
+const homeOG = (psys) => ({
+    og: {
+        url: 'https://piwimi.id/',
+        title: 'Piwimi - psikotes lucu',
+        description: psys.map((psy) => psy.title).join(' | '),
+        image: 'https://storage.googleapis.com/pwm-res/web/common/og_common.jpg',
+        imageAlt: 'Piwimi | psikotes lucu',
+    },
+    twitter: {
+        url: 'https://piwimi.id/',
+        title: 'Piwimi - psikotes lucu',
+        description: psys.map((psy) => psy.title).join(' | '),
+        image: 'https://storage.googleapis.com/pwm-res/web/common/og_common.jpg',
+        hashtag: 'PIWIMI,mbti,psikotes,ulangan',
+    },
+});
+
 export const getHome = async (req, res) => {
     try {
         const best = await selectBestWithView();
         const psys = await selectPsyWithView();
         res.render('home', {
             common: {},
-            content: { best, psys },
+            content: { best, psys, opengraph: homeOG(psys) },
         });
     } catch (err) {
         captureExceptionByMode(err);
@@ -32,11 +49,28 @@ GET
 
 --------------------------------------------------------*/
 
+const aboutusOG = (psys) => ({
+    og: {
+        url: 'https://piwimi.id/',
+        title: 'Piwimi - Siapa kami?',
+        description: 'Kami piwimi',
+        image: 'https://storage.googleapis.com/pwm-res/web/common/og_common.jpg',
+        imageAlt: 'Piwimi - Siapa kami?',
+    },
+    twitter: {
+        url: 'https://piwimi.id/',
+        title: 'Piwimi - Siapa kami?',
+        description: 'Kami piwimi',
+        image: 'https://storage.googleapis.com/pwm-res/web/common/og_common.jpg',
+        hashtag: 'PIWIMI,mbti,psikotes,ulangan',
+    },
+});
+
 export const getAboutUs = async (req, res) => {
     try {
         res.render('aboutUs', {
             common: {},
-            content: {},
+            content: { opengraph: aboutusOG() },
         });
     } catch (err) {
         captureExceptionByMode(err);

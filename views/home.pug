@@ -4,17 +4,9 @@ block head
     -var ogLink = `https://piwimi.id/`
     -var ogTitle = `psikotes lucu`
     title=`PIWIMI — ${ogTitle}`
-    //- Open Graph / Facebook
-    meta(property='og:url' content=`${ogLink}`)
-    meta(property='og:title' content=`PIWIMI — ${ogTitle}`)
-    meta(property='og:description' content=``)
-    meta(property='og:image' content=``)
-    meta(property='og:image:alt' content=``)
-    //- Twitter Open Graph
-    meta(property="twitter:url" content=`${ogLink}`)
-    meta(property="twitter:title" content=`PIWIMI — ${ogTitle}`)
-    meta(property="twitter:description" content=``)
-    meta(property="twitter:image" content=``)
+    include mixins/opengraph.pug
+    if content.opengraph
+        +og(content.opengraph)
 
 mixin sectionHeader(icon, text)
     .home__header--common.mb-3

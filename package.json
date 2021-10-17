@@ -4,11 +4,13 @@
     "scripts": {
         "test": "cross-env NODE_ENV=development babel-node test/index.js",
         "build": "webpack --mode production",
-        "production": "npm run build && cross-env NODE_ENV=production babel-node src/index.js",
-        "forever": "sudo forever start -c \"npm run production\" ./",
         "watch": "webpack --watch --mode development",
         "dev-server": "nodemon --delay 300ms --exec cross-env NODE_ENV=development babel-node src/index.js",
-        "start": "npm run dev-server"
+        "start": "npm run dev-server",
+        "on8080": "sudo \\cp -f /root/8080/.env.production /root/you_i_psy/.env.production && sudo \\cp -f /root/8080/nginx.conf /etc/nginx/nginx.conf && sudo systemctl restart nginx",
+        "on8081": "sudo \\cp -f /root/8081/.env.production /root/you_i_psy/.env.production && sudo \\cp -f /root/8081/nginx.conf /etc/nginx/nginx.conf && sudo systemctl restart nginx",
+        "production": "npm run build && cross-env NODE_ENV=production babel-node src/index.js",
+        "forever": "sudo forever start -c \"npm run production\" ./"
     },
     "dependencies": {
         "connect-pg-simple": "^7.0.0",

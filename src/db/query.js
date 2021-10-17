@@ -47,7 +47,6 @@ export const selectPsyWithView = async (limit = 10) => {
         FROM (
             SELECT *
             FROM admin.psy
-            ORDER BY psy_id DESC
             LIMIT 10
         ) AS psy_table
         JOIN (
@@ -58,7 +57,6 @@ export const selectPsyWithView = async (limit = 10) => {
                 FROM (
                     SELECT *
                     FROM admin.psy
-                    ORDER BY psy_id DESC
                     LIMIT 10
                 ) as psy_table,
                 psy_view
@@ -66,7 +64,8 @@ export const selectPsyWithView = async (limit = 10) => {
             ) AS view_table
             GROUP BY psy_id
         ) AS view_table
-        ON psy_table.psy_id = view_table.psy_id;
+        ON psy_table.psy_id = view_table.psy_id
+        ORDER BY psy_table.psy_id DESC;
     `;
     return QUERY(queryString);
 };

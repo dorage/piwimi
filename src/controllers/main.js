@@ -11,10 +11,6 @@ GET
 --------------------------------------------------------*/
 
 export const getHome = async (req, res) => {
-    if (process.env.NODE_ENV === 'production') {
-        res.redirect('/psy/1');
-        return;
-    }
     try {
         const best = await selectBestWithView();
         const psys = await selectPsyWithView();

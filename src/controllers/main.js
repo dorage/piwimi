@@ -23,7 +23,7 @@ const ogHome = (psys) => ({
         title: 'Psikotes dengan kami',
         description: 'Bermain psikotes dengan kami. MBTI. Menguji. Trend',
         image: 'https://storage.googleapis.com/pwm-res/web/common/og_common.jpg',
-        hashtag: 'PIWIMI,mbti,psikotes,ulangan',
+        hashtag: 'mbti,psikotes,menguji',
     },
 });
 
@@ -62,7 +62,7 @@ const ogAboutUs = () => ({
         title: 'Tentang kita',
         description: 'Kami PIWIMI, Kami membuat PIWIMI',
         image: 'https://storage.googleapis.com/pwm-res/web/common/og_common.jpg',
-        hashtag: 'mbti,psikotes,ulangan',
+        hashtag: 'mbti,psikotes,menguji',
     },
 });
 

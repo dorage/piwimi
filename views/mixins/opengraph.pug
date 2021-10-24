@@ -21,7 +21,7 @@ mixin og(opengraph)
             passthrough : {
                 twitter: {
                     via: "piwimi_id",
-                    hashtags: `PIWIMI,${twt.hashtag}`
+                    hashtags: "PIWIMI,!{twt.hashtag}",
                 }
             }
         };
@@ -49,7 +49,7 @@ mixin ogHome(opengraph)
             passthrough : {
                 twitter: {
                     via: "piwimi_id",
-                    hashtags: `PIWIMI,${twt.hashtag}`
+                    hashtags: "PIWIMI,!{twt.hashtag}",
                 }
             }
         };

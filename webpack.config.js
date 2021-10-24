@@ -8,6 +8,7 @@ module.exports = {
         home: './static/js/home/index.js',
         psychotest: './static/js/psychotest/index.js',
         result: './static/js/result/index.js',
+        snsShare: './static/js/mixins/snsShare/normal.js',
         snsShareWithAsk: './static/js/mixins/snsShare/ask.js',
     },
     output: {

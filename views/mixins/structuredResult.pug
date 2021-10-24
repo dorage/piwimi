@@ -1,0 +1,36 @@
+mixin breadcrumb(psys)
+    script(type='application/ld+json').
+        {
+            "@context": "https://schema.org",
+            "@type": "BreadcrumbList",
+            "itemListElement": 
+                !{JSON.stringify(psys.map((psy,idx)=>({"@type": "ListItem", "position": `${idx+1}`, "name": `${psy.title}`, "item": `https://piwimi.id/psy/${psy.psyId}`})))}
+        }
+
+//- 이미지가 다채롭게 필요함
+//- https://developers.google.com/search/docs/advanced/structured-data/article#non-amp
+//- 최상의 결과를 위해서는 가로세로 비율이 16x9, 4x3, 1x1인 여러 개의 고해상도 이미지
+//- (너비와 높이의 곱이 최소 300,000픽셀)를 제공하세요.
+mixin article(psys)
+    script(type='application/ld+json').
+        {
+            "@context": "https://schema.org",
+            "@type": "NewsArticle",
+            "headline": "Article headline",
+            "image": [
+                "https://example.com/photos/1x1/photo.jpg",
+                "https://example.com/photos/4x3/photo.jpg",
+                "https://example.com/photos/16x9/photo.jpg"
+            ],
+            "datePublished": "2015-02-05T08:00:00+08:00",
+            "dateModified": "2015-02-05T09:20:00+08:00",
+            "author": [{
+                "@type": "Person",
+                "name": "Jane Doe",
+                "url": "http://example.com/profile/janedoe123"
+            },{
+                "@type": "Person",
+                "name": "John Doe",
+                "url": "http://example.com/profile/johndoe123"
+            }]
+        }

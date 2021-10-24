@@ -2,6 +2,8 @@ extends layout.pug
 
 block head
     include mixins/opengraph.pug
+    include mixins/structuredResult.pug
+    +breadcrumb(content.psys)
     if content.opengraph
         +ogHome(content.opengraph)
 

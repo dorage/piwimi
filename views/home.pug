@@ -1,12 +1,9 @@
 extends layout.pug 
 
 block head
-    -var ogLink = `https://piwimi.id/`
-    -var ogTitle = `psikotes lucu`
-    title=`PIWIMI — ${ogTitle}`
     include mixins/opengraph.pug
     if content.opengraph
-        +og(content.opengraph)
+        +ogHome(content.opengraph)
 
 mixin sectionHeader(icon, text)
     .home__header--common.mb-3
@@ -29,7 +26,7 @@ block body
                 +smallCard(psy)
             .card.card-small.card-working.d-flex.bg-cl-1
                 a.d-flex.f-c(href=`/about-us`)
-                    .cl-6.fs-1.fw-bold.ta-r='We are making hard now...'
+                    .cl-6.fs-1.fw-bold.ta-r='Kami membuat PIWIMI'
                     .cl-6.fs-1.fw-bold.ta-r
-                        | Who are we?
+                        | Siapa Kami?
     script(src='/public/js/home.bundle.js')

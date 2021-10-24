@@ -10,18 +10,18 @@ GET
 
 --------------------------------------------------------*/
 
-const homeOG = (psys) => ({
+const ogHome = (psys) => ({
     og: {
         url: 'https://piwimi.id/',
-        title: 'Piwimi - psikotes lucu',
-        description: psys.map((psy) => psy.title).join(' | '),
+        title: 'Psikotes dengan kami',
+        description: 'Bermain psikotes dengan kami. MBTI. Menguji. Trend',
         image: 'https://storage.googleapis.com/pwm-res/web/common/og_common.jpg',
         imageAlt: 'Piwimi | psikotes lucu',
     },
     twitter: {
         url: 'https://piwimi.id/',
-        title: 'Piwimi - psikotes lucu',
-        description: psys.map((psy) => psy.title).join(' | '),
+        title: 'Psikotes dengan kami',
+        description: 'Bermain psikotes dengan kami. MBTI. Menguji. Trend',
         image: 'https://storage.googleapis.com/pwm-res/web/common/og_common.jpg',
         hashtag: 'PIWIMI,mbti,psikotes,ulangan',
     },
@@ -33,7 +33,7 @@ export const getHome = async (req, res) => {
         const psys = await selectPsyWithView();
         res.render('home', {
             common: {},
-            content: { best, psys, opengraph: homeOG(psys) },
+            content: { best, psys, opengraph: ogHome(psys) },
         });
     } catch (err) {
         captureExceptionByMode(err);
@@ -49,20 +49,20 @@ GET
 
 --------------------------------------------------------*/
 
-const aboutusOG = (psys) => ({
+const ogAboutUs = () => ({
     og: {
         url: 'https://piwimi.id/',
-        title: 'Piwimi - Siapa kami?',
-        description: 'Kami piwimi',
+        title: 'Tentang kita',
+        description: 'Kami PIWIMI, Kami membuat PIWIMI',
         image: 'https://storage.googleapis.com/pwm-res/web/common/og_common.jpg',
         imageAlt: 'Piwimi - Siapa kami?',
     },
     twitter: {
         url: 'https://piwimi.id/',
-        title: 'Piwimi - Siapa kami?',
-        description: 'Kami piwimi',
+        title: 'Tentang kita',
+        description: 'Kami PIWIMI, Kami membuat PIWIMI',
         image: 'https://storage.googleapis.com/pwm-res/web/common/og_common.jpg',
-        hashtag: 'PIWIMI,mbti,psikotes,ulangan',
+        hashtag: 'mbti,psikotes,ulangan',
     },
 });
 
@@ -70,7 +70,7 @@ export const getAboutUs = async (req, res) => {
     try {
         res.render('aboutUs', {
             common: {},
-            content: { opengraph: aboutusOG() },
+            content: { opengraph: ogAboutUs() },
         });
     } catch (err) {
         captureExceptionByMode(err);

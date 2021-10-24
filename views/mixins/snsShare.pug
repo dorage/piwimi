@@ -1,6 +1,6 @@
 // Go to www.addthis.com/dashboard to customize your tools
-mixin socialMediaShareBlock()
-    .social-media__block--addthis.f-gap-c
+mixin snsShareWithAsk()
+    .d-flex.f-c.f-center.f-gap-c
         .addthis__section--promote-sharing
             .promote-sharing__chatbubble
                 .chatbubble__body
@@ -14,6 +14,12 @@ mixin socialMediaShareBlock()
                     img(src="https://storage.googleapis.com/pwm-res/web/result/result_promote_share_bubble_tail.png")
             .promote-sharing__character
                 img(src="https://storage.googleapis.com/pwm-res/web/result/result_promote_share_character_before.png")
-        .addthis_section--share-toolbox
-            .addthis_inline_share_toolbox_ry3o
-    script(defer src='/public/js/socialMediaShareBlock.bundle.js')
+        .addthis_section--share-with-ask
+            .addthis_inline_share_toolbox_ry3o.pr-4
+    script(defer src='/public/js/snsShareWithAsk.bundle.js')
+
+
+mixin snsShare()
+    .addthis_section--share-normal
+        .addthis_inline_share_toolbox_ry3o_bdar
+    script(defer src='/public/js/snsShareWithAsk.bundle.js')

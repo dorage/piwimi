@@ -5,7 +5,7 @@ block head
     +og(content.opengraph)
 
 block body
-    include mixins/socialMediaShareBlock.pug
+    include mixins/snsShare.pug
     -var answer = content.answer 
     -var resultLink = `https://piwimi.id/psy/${content.qId}/result/${content.aId}`
 
@@ -20,8 +20,9 @@ block body
             .body__description.f-gap-c
                 each para in answer.description.split('\n')
                     p=`${para}`
-        +socialMediaShareBlock()
+        +snsShareWithAsk()
         .result__control.f-gap-c
-            .control__row
-                button.bt-solid.control__button-retry='Ulangi'
+            .control__row.d-flex
+                button.mr-4.f-1.bt-solid.control__button-retry='Ulangi'
+                button.f-3.bt-solid.control__button-home='Psikotes Lain'
     script(defer src='/public/js/result.bundle.js')

@@ -1,16 +1,17 @@
 mixin og(opengraph)
     -var og = opengraph.og
     -var twt = opengraph.twitter
-    title=`PIWIMI — ${og.title}`
+    title=`${og.title} | PIWIMI`
+    meta(name="Description" CONTENT=`${og.description}`)
     //- Open Graph / Facebook
     meta(property='og:url' content=`${og.url}`)
-    meta(property='og:title' content=`PIWIMI - ${og.title}`)
+    meta(property='og:title' content=`${og.title} | PIWIMI`)
     meta(property='og:description' content=`${og.description}`)
     meta(property='og:image' content=`${og.image}`)
     meta(property='og:image:alt' content=`${og.description}`)
     //- Twitter Open Graph
     meta(property="twitter:url" content=`${twt.url}`)
-    meta(property="twitter:title" content=`PIWIMI — ${twt.title}`)
+    meta(property="twitter:title" content=`${twt.title} | PIWIMI`)
     meta(property="twitter:description" content=`${twt.description}`)
     meta(property="twitter:image" content=`${twt.image}`)
     //- AddThis reimplement Twitter
@@ -20,7 +21,35 @@ mixin og(opengraph)
             passthrough : {
                 twitter: {
                     via: "piwimi_id",
-                    hashtags: twt.hashtag
+                    hashtags: `PIWIMI,${twt.hashtag}`
+                }
+            }
+        };
+
+mixin ogHome(opengraph)
+    -var og = opengraph.og
+    -var twt = opengraph.twitter
+    title=`PIWIMI`
+    meta(name="Description" CONTENT=`${og.description}`)
+    //- Open Graph / Facebook
+    meta(property='og:url' content=`${og.url}`)
+    meta(property='og:title' content=`PIWIMI | ${og.title}`)
+    meta(property='og:description' content=`${og.description}`)
+    meta(property='og:image' content=`${og.image}`)
+    meta(property='og:image:alt' content=`${og.description}`)
+    //- Twitter Open Graph
+    meta(property="twitter:url" content=`${twt.url}`)
+    meta(property="twitter:title" content=`PIWIMI | ${twt.title}`)
+    meta(property="twitter:description" content=`${twt.description}`)
+    meta(property="twitter:image" content=`${twt.image}`)
+    //- AddThis reimplement Twitter
+    script(type="text/javascript").
+        var addthis_share = addthis_share || {};
+        addthis_share = {
+            passthrough : {
+                twitter: {
+                    via: "piwimi_id",
+                    hashtags: `PIWIMI,${twt.hashtag}`
                 }
             }
         };

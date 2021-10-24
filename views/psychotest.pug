@@ -6,6 +6,7 @@ block head
         +og(content.opengraph)
 
 block body
+    include mixins/snsShare.pug
     .body.bg-cl-6.bd-rd
         //- 퀴즈 컨텐츠 템플릿 - 상단
         template#template-question-query 
@@ -45,7 +46,7 @@ block body
             .psycho__section--content
                 .loading_text='memuat pertanyaan'
         //- 문제
-        .psycho__section--content
+        .psycho__section--content.f-gap-c
             .content-thumbnail.f-gap-c
                 img.thumbnail__img(src=content.imgUrl)
             .content-header.f-gap-c.ta-c
@@ -55,6 +56,9 @@ block body
                     p=para
                 br.mb-4
                 p.cl-2.fs-2.mb-4=content.notice
+            .d-f.f-c.f-center.w-80
+                .fs-1.fw-bold.ta-c.mb-4='share'
+                +snsShare()
         //- 선택지
         .psycho__section--selection
         //- 컨트롤

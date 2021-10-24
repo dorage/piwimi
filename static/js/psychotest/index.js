@@ -3,6 +3,7 @@ import { fetchURL } from '../utils';
 import { QuestionQuery } from './components/QuestionQuery';
 import { SelectionMultiple } from './components/SelectionMultiple';
 import { SelectionSingular } from './components/SelectionSingular';
+import { Share } from './components/Share';
 import { Submit } from './components/Submit';
 
 export const APPSTATE = {
@@ -91,6 +92,8 @@ const draw = () => {
         SelectionSingular(state, event);
     }
     Submit(state, event);
+    // 문제 화면에서만 보이면 됨
+    Share(state, event);
 };
 
 document

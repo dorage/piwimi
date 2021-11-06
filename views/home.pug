@@ -15,20 +15,22 @@ mixin sectionHeader(icon, text)
 block body
     include mixins/card.pug
     .body
-        //- BEST 심리테스트
+        //- Newest 심리테스트
         .home__section.mb-3
-            +sectionHeader('crown', 'TERBAIK')
+            +sectionHeader('grin-stars', 'Terbaik')
             .best__content
-                each best in content.best
-                    +bigCard(best)
-        //- 최신 심리테스트
+                each newest in content.newest
+                    +bigCard(newest)
+        //- 심리테스트 리스트
         .home__section.mb-3
-            +sectionHeader('star', 'BARU')
+            +sectionHeader('list-ul', 'Psikotes')
             each psy in content.psys
                 +smallCard(psy)
+        .home__section.mb-3
+            +sectionHeader('users', 'Siapa Kami')
             .card.card-small.card-working.d-flex.bg-cl-1
                 a.d-flex.f-c(href=`/about-us`)
                     .cl-6.fs-1.fw-bold.ta-r='Kami membuat PIWIMI'
                     .cl-6.fs-1.fw-bold.ta-r
-                        | Siapa Kami?
+                        | Tentang Kami
     script(src='/public/js/home.bundle.js')

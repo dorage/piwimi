@@ -7,7 +7,6 @@ block head
 block body
     include mixins/snsShare.pug
     -var answer = content.answer 
-    -var resultLink = `https://piwimi.id/psy/${content.qId}/result/${content.aId}`
 
     .body.bg-cl-6.bd-rd
         .result__header.f-gap-c.mt-2
@@ -23,6 +22,6 @@ block body
         +snsShareWithAsk()
         .result__control.f-gap-c
             .control__row.d-flex
-                button.mr-4.f-1.bt-solid.control__button-retry='Ulangi'
-                button.f-3.bt-solid.control__button-home='Psikotes Lain'
+                a.mr-4.f-1.bt-solid(href=`/psy/${common.qId}`)='Ulangi'
+                a.f-3.bt-solid(href='/')='Psikotes Lain'
     script(defer src='/public/js/result.bundle.js')

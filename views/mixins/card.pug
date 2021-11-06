@@ -1,10 +1,12 @@
 mixin bigCard(psy)
-    .card
-        a(href=`/psy/${psy.psyId}`)
+    a.card(href=`/psy/${psy.psyId}`)
+        .card-header
             p.fw-bold.fs-2.cl-1='psikotes'
+        .card-body
             img.mb-3(src=`${psy.imgUrl}`)
             h3.fw-bold.mb-4=`${psy.title}`
-            i.fas.fa-smile.fs-2=` ${psy.view}`
+        .card-footer
+            i.fas.fa-play-circle.fs-2=` ${psy.view}`
 
 mixin smallCard(psy)
     .card.card-small.mb-4
@@ -13,4 +15,4 @@ mixin smallCard(psy)
                 img.content__img--thumb(src=`${psy.imgUrl}`)
             .content__info.f-3
                 h5.fw-bold.mb-4=`${psy.title}`
-                i.fas.fa-smile.fs-2=` ${psy.view}`
+                i.fas.fa-play-circle.fs-2.bd-t-5.pt-4.pl-4=` ${psy.view}`

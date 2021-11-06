@@ -1,6 +1,10 @@
 import fs from 'fs';
 import { captureExceptionByMode } from '../configs/sentry';
-import { selectBestWithView, selectPsyWithView } from '../db/query';
+import {
+    selectBestWithView,
+    selectNewestPsyWithView,
+    selectPsyWithView,
+} from '../db/query';
 
 /*--------------------------------------------------------
 
@@ -29,11 +33,12 @@ const ogHome = (psys) => ({
 
 export const getHome = async (req, res) => {
     try {
-        const best = await selectBestWithView();
+        //const best = await selectBestWithView();
+        const newest = await selectNewestPsyWithView();
         const psys = await selectPsyWithView();
         res.render('home', {
             common: {},
-            content: { best, psys, opengraph: ogHome(psys) },
+            content: { newest, psys, opengraph: ogHome(psys) },
         });
     } catch (err) {
         captureExceptionByMode(err);

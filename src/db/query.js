@@ -36,6 +36,38 @@ export const selectBestWithView = async () => {
     return QUERY(queryString);
 };
 
+export const selectNewestPsyWithView = async () => {
+    const queryString = `
+        SELECT *
+        FROM (
+            SELECT *
+            FROM admin.psy
+            WHERE status=true
+            ORDER BY psy_id DESC
+            LIMIT 1
+        ) AS psy_table
+        JOIN (
+            SELECT psy_id, sum(view) AS view
+            FROM
+            (
+                SELECT psy_table.psy_id, unnest(views) AS view
+                FROM (
+                    SELECT *
+                    FROM admin.psy
+                    WHERE status=true
+                    ORDER BY psy_id DESC
+                    LIMIT 1
+                ) as psy_table,
+                psy_view
+                WHERE psy_table.psy_id = psy_view.psy_id
+            ) AS view_table
+            GROUP BY psy_id
+        ) AS view_table
+        ON psy_table.psy_id = view_table.psy_id
+    `;
+    return QUERY(queryString);
+};
+
 /**
  * 심리테스트를 최신순으로 limit개수만큼 플레이된 횟수와 함게 가져옵니다
  * @param {*} limit default 10
@@ -47,6 +79,8 @@ export const selectPsyWithView = async (limit = 10) => {
         FROM (
             SELECT *
             FROM admin.psy
+            WHERE status=true
+            ORDER BY psy_id DESC
             LIMIT 10
         ) AS psy_table
         JOIN (
@@ -57,6 +91,8 @@ export const selectPsyWithView = async (limit = 10) => {
                 FROM (
                     SELECT *
                     FROM admin.psy
+                    WHERE status=true
+                    ORDER BY psy_id DESC
                     LIMIT 10
                 ) as psy_table,
                 psy_view
@@ -65,7 +101,6 @@ export const selectPsyWithView = async (limit = 10) => {
             GROUP BY psy_id
         ) AS view_table
         ON psy_table.psy_id = view_table.psy_id
-        ORDER BY psy_table.psy_id DESC;
     `;
     return QUERY(queryString);
 };

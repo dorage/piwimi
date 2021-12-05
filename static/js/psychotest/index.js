@@ -24,9 +24,26 @@ const state = {
     maxPage: 0,
 };
 
+/**
+ * state를 업데이트하고 업데이트 된 경우에만 뷰를 업데이트합니다.
+ * @param {*} obj
+ */
+export const setState = function (obj) {
+    let changed = false;
+    for (const key of Object.keys(obj)) {
+        if (Object.keys(state).includes(key)) {
+            state[key] = key;
+            changed = true;
+        }
+    }
+    if (changed) draw();
+};
+
 const event = {
     turnOffLoadingQuery: () => {
-        state.loadingQuery = false;
+        setState({
+            loadingQuery: false,
+        });
     },
     onClickStart: async () => {
         const tokens = location.pathname.split('#')[0].split('/');
@@ -34,13 +51,13 @@ const event = {
             data: { type, questions },
         } = await fetchURL(`question/${tokens[tokens.length - 1]}`);
 
-        state.appState = APPSTATE.LOADING_Q;
-        state.questions = questions;
-        state.answer = Array(questions.length).fill(undefined);
-        state.loadingQuestion = true;
-        state.maxPage = questions.length;
-
-        draw();
+        setState({
+            appState: APPSTATE.LOADING_Q,
+            questions: questions,
+            answer: Array(questions.length).fill(undefined),
+            loadingQuestion: true,
+            maxPage: questions.length,
+        });
     },
     /**
      * 선택지 기록
@@ -50,8 +67,14 @@ const event = {
     onClickSelection: (idx) => {
         const { answer, currentPage } = state;
         return () => {
+            // TODO;
+            // 추후에 해결해야할 부분
+            // 오브젝트이기 때문에 state내부값이 그냥 변경이되어
+            // setState의 의미가 없어진다
             answer[currentPage] = idx;
-            draw();
+            setState({
+                answer,
+            });
         };
     },
     /**
@@ -61,11 +84,13 @@ const event = {
      */
     onClickPagination: (isNext) => {
         return () => {
-            state.currentPage += isNext ? 1 : -1;
-            state.loadingQuery = true;
-            draw();
+            setState({
+                currentPage: currentPage + isNext ? 1 : -1,
+                loadingQuery: true,
+            });
         };
     },
+
     onClickSubmit: async () => {
         const tokens = location.pathname.split('#')[0].split('/');
         const data = state.answer;
@@ -83,7 +108,7 @@ const event = {
 };
 
 const draw = () => {
-    const { appState, questions, currentPage } = state;
+    const { questions, currentPage } = state;
 
     QuestionQuery(state, event);
     if (questions[currentPage].answers) {

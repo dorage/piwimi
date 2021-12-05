@@ -24,10 +24,12 @@ const draw = (elem, state, event) => {
 };
 
 export const QuestionQuery = (state, event) => {
-    const newElem = cloneTemplate('#template-question-query ');
+    const virtualNode = cloneTemplate('#template-question-query ');
     const oldElem = document.querySelector('.psycho__section--content');
 
-    draw(newElem, state, event);
+    draw(virtualNode, state, event);
 
-    oldElem.replaceWith(newElem);
+    oldElem.replaceWith(virtualNode);
+
+    return virtualNode;
 };

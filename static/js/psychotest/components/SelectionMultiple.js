@@ -18,10 +18,12 @@ const draw = (elem, state, event) => {
 };
 
 export const SelectionMultiple = (state, event) => {
-    const newElem = cloneTemplate('#template-question-multiple');
+    const virtualNode = cloneTemplate('#template-question-multiple');
     const oldElem = document.querySelector('.psycho__section--selection');
 
-    draw(newElem, state, event);
+    draw(virtualNode, state, event);
 
-    oldElem.replaceWith(newElem);
+    oldElem.replaceWith(virtualNode);
+
+    return virtualNode;
 };

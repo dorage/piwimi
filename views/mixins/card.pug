@@ -9,8 +9,8 @@ mixin bigCard(psy)
             i.fas.fa-play-circle.fs-2=` ${psy.view}`
 
 mixin smallCard(psy)
-    .card.card-small.mb-4
-        a.test__conetnt.d-flex(href=`/psy/${psy.psyId}`)
+    a.card.card-small.mb-4(href=`/psy/${psy.psyId}`)
+        .test__conetnt.d-flex
             .content__thumbnail.f-1
                 img.content__img--thumb(src=`${psy.imgUrl}`)
             .content__info.f-3

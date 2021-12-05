@@ -1,18 +1,17 @@
 mixin bigCard(psy)
-    a.card(href=`/psy/${psy.psyId}`)
-        .card-header
-            p.fw-bold.fs-2.cl-1='psikotes'
-        .card-body
-            img.mb-3(src=`${psy.imgUrl}`)
-            h3.fw-bold.mb-4=`${psy.title}`
-        .card-footer
-            i.fas.fa-play-circle.fs-2=` ${psy.view}`
+    a.card.card-big(href=`/psy/${psy.psyId}`)
+        .d-flex.f-c.h-100
+            .card__thumbnail.f-2(style=`background-image:url(${psy.imgUrl});`)
+            .card__body.f-1
+                p.fs-2.cl-1='psikotes'
+                h3.mb-4=`${psy.title}`
+                .division
+                i.fas.fa-play-circle.fs-2=` ${psy.view}`
 
 mixin smallCard(psy)
     a.card.card-small.mb-4(href=`/psy/${psy.psyId}`)
-        .test__conetnt.d-flex
-            .content__thumbnail.f-1
-                img.content__img--thumb(src=`${psy.imgUrl}`)
-            .content__info.f-3
-                h5.fw-bold.mb-4=`${psy.title}`
+        .d-flex
+            .card__thumbnail.f-1(style=`background-image:url(${psy.imgUrl});`)
+            .card__body.f-2
+                h5.mb-4=`${psy.title}`
                 i.fas.fa-play-circle.fs-2.bd-t-5.pt-4.pl-4=` ${psy.view}`

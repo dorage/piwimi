@@ -1,0 +1,39 @@
+@use '../vars'
+
+.card
+    display: block
+    border-radius: vars.$br-rd
+    background-color: vars.$color6
+    box-shadow: 1rem 1rem 10rem vars.$color4
+    transition: 0.2s
+    overflow: hidden
+    &:hover
+        transform: translate(-3rem, -3rem)
+    &:active
+        background-color: vars.$color3
+
+.card-big
+    height: 360rem
+.card-small
+    height: 120rem
+
+.card-working
+    justify-content: start
+    align-items: center
+    background-image: url('https://storage.googleapis.com/pwm-res/web/home/working_edit.gif')
+    background-position: bottom
+    background-size: cover
+    background-repeat: no-repeat
+
+.card__thumbnail
+    background-repeat: no-repeat
+    background-size: cover
+    background-position: center
+
+.card__body
+    padding: vars.$pad
+    font-weight: 700
+
+.card__footer
+    border-top: 1px solid vars.$color5
+    padding-top: vars.$pad

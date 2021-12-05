@@ -7,13 +7,10 @@ block head
     if content.opengraph
         +ogHome(content.opengraph)
 
-mixin sectionHeader(icon, text)
-    .home__header--common.mb-3
-        h3
-            i.fas.d-inline(class=`fa-${icon}`)=`    ${text}`
 
 block body
     include mixins/card.pug
+    include mixins/sectionHeader.pug
     .body
         //- Newest 심리테스트
         .home__section.mb-3

@@ -63,7 +63,8 @@ block body
             .f-1
             .bt-solid.control__bt--start.f-2.anim-bounce="Mulai"
             .f-1
-        .psycho__section--share.d-f.f-c.f-center.w-80
-            .fs-1.fw-bold.ta-c.mb-4='Membagikan'
+        include mixins/sectionHeader.pug
+        .psycho__section--share.d-f.f-c.f-center
+            +sectionHeader('share', 'Membagikan')
             +snsShare()
     script(defer src='/public/js/psychotest.bundle.js')

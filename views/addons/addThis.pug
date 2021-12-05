@@ -1,0 +1,9 @@
+//- ADDTHIS - install a social media inline share button
+//- Go to www.addthis.com/dashboard to customize your tools
+
+mixin addThis__Init__head(addThisId)
+    script(type="text/javascript" src=`//s7.addthis.com/js/300/addthis_widget.js#pubid=${addThisId}`)
+    //- AddThis Configuration
+    script(type="text/javascript").
+        var addthis_config = addthis_config||{};
+        addthis_config.lang = 'id';

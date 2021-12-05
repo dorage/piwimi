@@ -1,7 +1,7 @@
 extends layout.pug 
 
 block head
-    include mixins/opengraph.pug
+    include addons/opengraph.pug
     if content.opengraph
         +og(content.opengraph)
 

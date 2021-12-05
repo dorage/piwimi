@@ -1,4 +1,5 @@
 import '../../css/psychotest/index.sass';
+import { replaceNode } from '../DSPA/utils';
 import { fetchURL } from '../utils';
 import { QuestionQuery } from './components/QuestionQuery';
 import { SelectionMultiple } from './components/SelectionMultiple';
@@ -110,7 +111,10 @@ const event = {
 const draw = () => {
     const { questions, currentPage } = state;
 
-    QuestionQuery(state, event);
+    replaceNode(
+        document.querySelector('.psycho__section--content'),
+        QuestionQuery(state, event),
+    );
     if (questions[currentPage].answers) {
         SelectionMultiple(state, event);
     } else {

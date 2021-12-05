@@ -1,73 +1,72 @@
 html(lang="id")
     head
         meta(name='viewport')
-        //- Global site tag (gtag.js) - Google Analytics
-        script(async src="https://www.googletagmanager.com/gtag/js?id=UA-201599400-1")
-        script(type="text/javascript").
-            window.dataLayer = window.dataLayer || [];
-            function gtag(){dataLayer.push(arguments);}
-            gtag('js', new Date());
-            gtag('config', 'UA-201599400-1');
-        //- Yandex.Metrika counter
-        script(type="text/javascript").
-            (function(m,e,t,r,i,k,a){m[i]=m[i]||function(){(m[i].a=m[i].a||[]).push(arguments)};
-            m[i].l=1*new Date();k=e.createElement(t),a=e.getElementsByTagName(t)[0],k.async=1,k.src=r,a.parentNode.insertBefore(k,a)})
-            (window, document, "script", "https://mc.yandex.ru/metrika/tag.js", "ym");
-
-            ym(83789176, "init", {
-                    clickmap:true,
-                    trackLinks:true,
-                    accurateTrackBounce:true,
-                    webvisor:true
-            });
-        noscript
-            div
-                img(src="https://mc.yandex.ru/watch/83789176" style="position:absolute; left:-9999px;" alt="")
         //- charset
         meta(charset="utf-8")
         //- Favicon
         link(rel="shortcut icon" href="/favicon.ico")
-        //- Google Font
-        link(rel="preconnect" href="https://fonts.googleapis.com")
-        link(rel="preconnect" href="https://fonts.gstatic.com" crossorigin)
-        link(href="https://fonts.googleapis.com/css2?family=Noto+Sans:ital,wght@0,400;0,700;1,400;1,700&display=swap" rel="stylesheet")
-        //- 기본 스크립트
-        script(src="/public/js/index.bundle.js")
-        //- 공통 오픈그래프
-        meta(property='og:type' content='website')
-        meta(property='og:locale' content='id_ID')
-        //- 페이스북 오픈그래프 앱ID
-        meta(property='fb:app_id' content='2089044874583060')
-        //- 트위터 오픈그래프
-        meta(property='twitter:card' content='summary_large_image')
-        //- 오픈파라그래프 및 타이틀 설정
+        //- ▩▩▩▩▩▩▩▩▩▩▩▩▩▩▩▩▩▩▩▩▩▩▩▩▩▩▩▩▩▩▩▩▩▩▩▩▩▩▩▩▩▩▩▩▩▩▩▩▩
+        //- ▩                                               ▩
+        //- ▩                    ADD-ONS                    ▩
+        //- ▩                                               ▩
+        //- ▩▩▩▩▩▩▩▩▩▩▩▩▩▩▩▩▩▩▩▩▩▩▩▩▩▩▩▩▩▩▩▩▩▩▩▩▩▩▩▩▩▩▩▩▩▩▩▩▩
+        //- ▩ ADDONS - Global site tag (gtag.js) - Google Analytics
+        include addons/googleAnalytics.pug
+        +googleAnalytics__GlobalSiteTag__head("UA-201599400-1")
+        //- ▩ ADDONS - Google Font
+        include addons/googleFonts.pug
+        +googleFonts__Init__head()
+        //- ▩ ADDONS - Adsense
+        include addons/googleAdSense.pug
+        +googleAdSense__Init__head('ca-pub-6616061311166935')
+        //- ▩ ADDONS - Opengraph
+        include addons/opengraph.pug
+        +opengraph__Common__head('id_ID')
+        +opengraph__Facebook__head('2089044874583060')
+        +opengraph__Twitter__head('summary_large_image')
+        //- ▩ ADDONS - TagManager
+        include addons/googleTagManager.pug
+        +googleTagManager__Init__head('GTM-MS3MSF5')
+        //- ▩ ADDONS - AddThis
+        include addons/addThis.pug
+        +addThis__Init__head('ra-610d3227058b910e')
+        //- ▩▩▩▩▩▩▩▩▩▩▩▩▩▩▩▩▩▩▩▩▩▩▩▩▩▩▩▩▩▩▩▩▩▩▩▩▩▩▩▩▩▩▩▩▩▩▩▩▩
+        //- ▩                                               ▩
+        //- ▩                    BLOCK                      ▩
+        //- ▩                                               ▩
+        //- ▩▩▩▩▩▩▩▩▩▩▩▩▩▩▩▩▩▩▩▩▩▩▩▩▩▩▩▩▩▩▩▩▩▩▩▩▩▩▩▩▩▩▩▩▩▩▩▩▩
         block head
-        //- Adsense
-        script(data-ad-client="ca-pub-6616061311166935" async=true src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js")
-        //- TagManager
-        script(type="text/javascript").
-            (function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
-            new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
-            j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
-            'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
-            })(window,document,'script','dataLayer','GTM-MS3MSF5');
-        //- ADDTHIS - install a social media inline share button
-        //- Go to www.addthis.com/dashboard to customize your tools
-        script(type="text/javascript" src="//s7.addthis.com/js/300/addthis_widget.js#pubid=ra-610d3227058b910e")
-        //- AddThis Configuration
-        script(type="text/javascript").
-            var addthis_config = addthis_config||{};
-            addthis_config.lang = 'id';
-        //- Import Font Awesome
+        //- ▩▩▩▩▩▩▩▩▩▩▩▩▩▩▩▩▩▩▩▩▩▩▩▩▩▩▩▩▩▩▩▩▩▩▩▩▩▩▩▩▩▩▩▩▩▩▩▩▩
+        //- ▩                                               ▩
+        //- ▩                   /PUBLIC                     ▩
+        //- ▩                                               ▩
+        //- ▩▩▩▩▩▩▩▩▩▩▩▩▩▩▩▩▩▩▩▩▩▩▩▩▩▩▩▩▩▩▩▩▩▩▩▩▩▩▩▩▩▩▩▩▩▩▩▩▩
+        //- ▩ 임포트 - 기본 스크립트
+        script(src="/public/js/index.bundle.js")
+        //- ▩ 임포트 - 폰트어썸
         link(href="/public/fontawesome/css/all.css" rel="stylesheet")
     body
+        //- ▩▩▩▩▩▩▩▩▩▩▩▩▩▩▩▩▩▩▩▩▩▩▩▩▩▩▩▩▩▩▩▩▩▩▩▩▩▩▩▩▩▩▩▩▩▩▩▩▩
+        //- ▩                                               ▩
+        //- ▩                CUSTOM MIXINS                  ▩
+        //- ▩                                               ▩
+        //- ▩▩▩▩▩▩▩▩▩▩▩▩▩▩▩▩▩▩▩▩▩▩▩▩▩▩▩▩▩▩▩▩▩▩▩▩▩▩▩▩▩▩▩▩▩▩▩▩▩
         //- Mixins
         include mixins/navbar.pug
         include mixins/footer.pug
-        //- TagManager noscript
-        noscript
-            iframe(src="https://www.googletagmanager.com/ns.html?id=GTM-MS3MSF5" height="0" width="0" style="display:none;visibility:hidden")
-        //- APP
+        //- ▩▩▩▩▩▩▩▩▩▩▩▩▩▩▩▩▩▩▩▩▩▩▩▩▩▩▩▩▩▩▩▩▩▩▩▩▩▩▩▩▩▩▩▩▩▩▩▩▩
+        //- ▩                                               ▩
+        //- ▩                    ADD-ONS                    ▩
+        //- ▩                                               ▩
+        //- ▩▩▩▩▩▩▩▩▩▩▩▩▩▩▩▩▩▩▩▩▩▩▩▩▩▩▩▩▩▩▩▩▩▩▩▩▩▩▩▩▩▩▩▩▩▩▩▩▩
+        //- ▩ ADDONS - TagManager
+        include addons/googleTagManager.pug
+        +googleTagManager__NoScript__body('GTM-MS3MSF5')
+        //- ▩▩▩▩▩▩▩▩▩▩▩▩▩▩▩▩▩▩▩▩▩▩▩▩▩▩▩▩▩▩▩▩▩▩▩▩▩▩▩▩▩▩▩▩▩▩▩▩▩
+        //- ▩                                               ▩
+        //- ▩                  APPLICATION                  ▩
+        //- ▩                                               ▩
+        //- ▩▩▩▩▩▩▩▩▩▩▩▩▩▩▩▩▩▩▩▩▩▩▩▩▩▩▩▩▩▩▩▩▩▩▩▩▩▩▩▩▩▩▩▩▩▩▩▩▩
         #Background.bg-cl-4.cl-1
             #App.bd
                 +navbar()

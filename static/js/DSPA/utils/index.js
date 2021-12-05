@@ -1,29 +1,54 @@
 // html to js parser 가 필요하다.
 // html내에서 template을 삭제하기 위해
 
-export const replaceNode = (oldNode, newNode) => {
-    if (checkDiff(oldNode, newNode)) {
-        oldNode.replaceWith(newNode);
+export const replaceNode = (parentNode, oldNode, virtualNode) => {
+    if (oldNode && !virtualNode) {
+        oldNode.remove();
+        return;
+    }
+
+    if (!oldNode && virtualNode) {
+        parentNode.appendChild(virtualNode);
+        return;
+    }
+
+    if (isNodeChanged(oldNode, virtualNode)) {
+        oldNode.replaceWith(virtualNode);
+        return;
+    }
+
+    const oldChildren = oldNode.children;
+    const virtualChildren = virtualNode.children;
+    const max = Math.max(oldChildren.length, virtualChildren.length);
+    for (let i = 0; i < max; i++) {
+        replaceNode(oldChildren[i], virtualChildren[i]);
     }
 };
 
-export const checkDiff = (oldNode, newNode) => {
-    // tag name 체크
-    if (oldNode.tagName !== newNode.tagName) return true;
+const isNodeChanged = (oldNode, newNode) => {
+    const oldAttr = oldNode.attributes;
+    const newAttr = newNode.attributes;
 
-    // attribute 체크
-    if (oldNode.attributes.length !== newNode.attributes.length) return true;
-    for (let i = 0; i < oldNode.children.length; i++) {
-        if (oldNode.attributes[i].value !== newNode.attributes[i].value)
-            return true;
+    // 속성 개수
+    if (oldAttr.length !== newAttr.length) {
+        return true;
     }
-    // textContent 체크
-    if (oldNode.textContent !== newNode.textContent) return true;
 
-    // children 체크
-    if (oldNode.children.length !== newNode.children.length) return true;
-    for (let i = 0; i < oldNode.children.length; i++) {
-        if (checkDiff(oldNode.children[0], newNode.children[0])) return true;
+    // textContent 가 다른 경우
+    if (
+        oldNode.children.length === 0 &&
+        newNode.children.length === 0 &&
+        oldNode.textContent !== newNode.textContent
+    ) {
+        return true;
+    }
+
+    // 속성의 값이 달라진 경우
+    const differentAttribute = Array.from(oldAttr).find(({ name }) => {
+        return oldNode.getAttribute(name) !== newNode.getAttribute(name);
+    });
+    if (differentAttribute) {
+        return true;
     }
 
     return false;

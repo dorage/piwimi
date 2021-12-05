@@ -25,11 +25,8 @@ const draw = (elem, state, event) => {
 
 export const QuestionQuery = (state, event) => {
     const virtualNode = cloneTemplate('#template-question-query ');
-    const oldElem = document.querySelector('.psycho__section--content');
 
     draw(virtualNode, state, event);
-
-    oldElem.replaceWith(virtualNode);
 
     return virtualNode;
 };

@@ -1,3 +1,13 @@
+mixin opengraph__Common__head(locale)
+    meta(property='og:type' content='website')
+    meta(property='og:locale' content=`${locale}`)
+
+mixin opengraph__Facebook__head(facebookId)
+    meta(property='fb:app_id' content=`${facebookId}`)
+
+mixin opengraph__Twitter__head(contentSize)
+    meta(property='twitter:card' content=`${contentSize}`)
+
 mixin og(opengraph)
     -var og = opengraph.og
     -var twt = opengraph.twitter
